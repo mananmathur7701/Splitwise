@@ -1,8 +1,14 @@
 package com.example.Splitwise_Backend.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
