@@ -1,15 +1,17 @@
 package com.example.Splitwise_Backend.entity;
 
-import jakarta.persistence.Entity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+
+import java.sql.Timestamp;
+
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 public class friends {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Timestamp createdAt;
 }
