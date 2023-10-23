@@ -1,5 +1,8 @@
-package com.example.Splitwise_Backend.entity;
+package com.example.Splitwise_Backend.Groups.Entity;
 
+import com.example.Splitwise_Backend.ExpenseSplit.Entity.ExpenseSplit;
+import com.example.Splitwise_Backend.Expenses.Entity.Expenses;
+import com.example.Splitwise_Backend.Users.Entity.Users;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
@@ -9,7 +12,7 @@ import java.util.List;
 
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "shopId")
-public class groups {
+public class Groups {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -19,7 +22,7 @@ public class groups {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "createdBy")
-    private users createdBy;
+    private Users createdBy;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_at")
@@ -31,24 +34,24 @@ public class groups {
             joinColumns = @JoinColumn(name = "users_id"),
             inverseJoinColumns = @JoinColumn(name = "groups_id")
     )
-    private List<users> users;
+    private List<Users> users;
 
     @OneToMany(mappedBy = "groups")
-    private List<expenses> expenses;
+    private List<Expenses> expenses;
 
     @OneToMany(mappedBy = "groups")
-    private List<expenseSplit> expenseSplits;
+    private List<ExpenseSplit> ExpenseSplits;
 
-    public groups(int id, Timestamp createdAt, Timestamp updatedAt, List<com.example.Splitwise_Backend.entity.users> users, List<com.example.Splitwise_Backend.entity.expenses> expenses, List<expenseSplit> expenseSplits) {
+    public Groups(int id, Timestamp createdAt, Timestamp updatedAt, List<Users> users, List<Expenses> expenses, List<ExpenseSplit> ExpenseSplits) {
         this.id = id;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.users = users;
         this.expenses = expenses;
-        this.expenseSplits = expenseSplits;
+        this.ExpenseSplits = ExpenseSplits;
     }
 
-    public groups() {
+    public Groups() {
     }
 
     public int getId() {
@@ -75,28 +78,28 @@ public class groups {
         this.updatedAt = updatedAt;
     }
 
-    public List<com.example.Splitwise_Backend.entity.users> getUsers() {
+    public List<Users> getUsers() {
         return users;
     }
 
-    public void setUsers(List<com.example.Splitwise_Backend.entity.users> users) {
+    public void setUsers(List<Users> users) {
         this.users = users;
     }
 
-    public List<com.example.Splitwise_Backend.entity.expenses> getExpenses() {
+    public List<Expenses> getExpenses() {
         return expenses;
     }
 
-    public void setExpenses(List<com.example.Splitwise_Backend.entity.expenses> expenses) {
+    public void setExpenses(List<Expenses> expenses) {
         this.expenses = expenses;
     }
 
-    public List<expenseSplit> getExpenseSplits() {
-        return expenseSplits;
+    public List<ExpenseSplit> getExpenseSplits() {
+        return ExpenseSplits;
     }
 
-    public void setExpenseSplits(List<expenseSplit> expenseSplits) {
-        this.expenseSplits = expenseSplits;
+    public void setExpenseSplits(List<ExpenseSplit> ExpenseSplits) {
+        this.ExpenseSplits = ExpenseSplits;
     }
 
     @Override
@@ -107,7 +110,7 @@ public class groups {
                 ", updatedAt=" + updatedAt +
                 ", users=" + users +
                 ", expenses=" + expenses +
-                ", expenseSplits=" + expenseSplits +
+                ", expenseSplits=" + ExpenseSplits +
                 '}';
     }
 }

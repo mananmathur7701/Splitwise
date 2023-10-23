@@ -1,9 +1,12 @@
-package com.example.Splitwise_Backend.entity;
+package com.example.Splitwise_Backend.ExpenseSplit.Entity;
 
+import com.example.Splitwise_Backend.Expenses.Entity.Expenses;
+import com.example.Splitwise_Backend.Users.Entity.Users;
+import com.example.Splitwise_Backend.Groups.Entity.Groups;
 import jakarta.persistence.*;
 
 @Entity
-public class expenseSplit {
+public class ExpenseSplit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,21 +18,21 @@ public class expenseSplit {
 
     @ManyToOne
     @JoinColumn(name = "payerId")
-    private users payerId;
+    private Users payerId;
 
     @ManyToOne
     @JoinColumn(name = "payedToId")
-    private users payedToId;
+    private Users payedToId;
 
     @ManyToOne
     @JoinColumn(name = "ExpenseId")
-    private expenses expenses;
+    private Expenses expenses;
 
    @ManyToOne
     @JoinColumn(name = "GroupId")
-    private groups groups;
+    private Groups groups;
 
-    public expenseSplit(int id, float shareAmount, users payerId, users payedToId, com.example.Splitwise_Backend.entity.expenses expenses, com.example.Splitwise_Backend.entity.groups groups) {
+    public ExpenseSplit(int id, float shareAmount, Users payerId, Users payedToId, Expenses expenses, Groups groups) {
         this.id = id;
         this.shareAmount = shareAmount;
         this.payerId = payerId;
@@ -38,7 +41,7 @@ public class expenseSplit {
         this.groups = groups;
     }
 
-    public expenseSplit() {
+    public ExpenseSplit() {
     }
 
     public int getId() {
@@ -57,35 +60,35 @@ public class expenseSplit {
         this.shareAmount = shareAmount;
     }
 
-    public users getPayerId() {
+    public Users getPayerId() {
         return payerId;
     }
 
-    public void setPayerId(users payerId) {
+    public void setPayerId(Users payerId) {
         this.payerId = payerId;
     }
 
-    public users getPayedToId() {
+    public Users getPayedToId() {
         return payedToId;
     }
 
-    public void setPayedToId(users payedToId) {
+    public void setPayedToId(Users payedToId) {
         this.payedToId = payedToId;
     }
 
-    public com.example.Splitwise_Backend.entity.expenses getExpenses() {
+    public Expenses getExpenses() {
         return expenses;
     }
 
-    public void setExpenses(com.example.Splitwise_Backend.entity.expenses expenses) {
+    public void setExpenses(Expenses expenses) {
         this.expenses = expenses;
     }
 
-    public com.example.Splitwise_Backend.entity.groups getGroups() {
+    public Groups getGroups() {
         return groups;
     }
 
-    public void setGroups(com.example.Splitwise_Backend.entity.groups groups) {
+    public void setGroups(Groups groups) {
         this.groups = groups;
     }
 

@@ -1,9 +1,11 @@
-package com.example.Splitwise_Backend.entity;
+package com.example.Splitwise_Backend.PaymentSplit.Entity;
 
+import com.example.Splitwise_Backend.Expenses.Entity.Expenses;
+import com.example.Splitwise_Backend.Users.Entity.Users;
 import jakarta.persistence.*;
 
 @Entity
-public class paymentSplit {
+public class PaymentSplit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -12,20 +14,20 @@ public class paymentSplit {
 
     @ManyToOne
     @JoinColumn(name = "payer_id")
-    private users users;
+    private Users users;
 
     @ManyToOne
     @JoinColumn(name = "expense_id")
-    private expenses expenses;
+    private Expenses expenses;
 
-    public paymentSplit(int id, double amountPaid, com.example.Splitwise_Backend.entity.users users, com.example.Splitwise_Backend.entity.expenses expenses) {
+    public PaymentSplit(int id, double amountPaid, Users users, Expenses expenses) {
         this.id = id;
         this.amountPaid = amountPaid;
         this.users = users;
         this.expenses = expenses;
     }
 
-    public paymentSplit() {
+    public PaymentSplit() {
     }
 
     public int getId() {
@@ -44,19 +46,19 @@ public class paymentSplit {
         this.amountPaid = amountPaid;
     }
 
-    public com.example.Splitwise_Backend.entity.users getUsers() {
+    public Users getUsers() {
         return users;
     }
 
-    public void setUsers(com.example.Splitwise_Backend.entity.users users) {
+    public void setUsers(Users users) {
         this.users = users;
     }
 
-    public com.example.Splitwise_Backend.entity.expenses getExpenses() {
+    public Expenses getExpenses() {
         return expenses;
     }
 
-    public void setExpenses(com.example.Splitwise_Backend.entity.expenses expenses) {
+    public void setExpenses(Expenses expenses) {
         this.expenses = expenses;
     }
 

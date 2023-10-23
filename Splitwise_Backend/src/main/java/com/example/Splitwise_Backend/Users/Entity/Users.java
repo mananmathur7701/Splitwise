@@ -1,10 +1,14 @@
-package com.example.Splitwise_Backend.entity;
+package com.example.Splitwise_Backend.Users.Entity;
 
+import com.example.Splitwise_Backend.ExpenseSplit.Entity.ExpenseSplit;
+import com.example.Splitwise_Backend.Groups.Entity.Groups;
+import com.example.Splitwise_Backend.PaymentSplit.Entity.PaymentSplit;
+import com.example.Splitwise_Backend.SquareOffTransactions.Entity.SquareOffTransactions;
 import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-public class users {
+public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -26,27 +30,27 @@ public class users {
     private String password;
 
     @ManyToMany(mappedBy = "users")
-    private List<groups> groups;
+    private List<Groups> groups;
 
     @OneToMany(mappedBy = "users")
-    private List<paymentSplit> paymentSplit;
+    private List<PaymentSplit> paymentSplit;
 
     @OneToMany(mappedBy = "payerId")
-    private List<expenseSplit> expenseSplit1;
+    private List<ExpenseSplit> expenseSplit1;
 
     @OneToMany(mappedBy = "payedToId")
-    private List<expenseSplit> expenseSplit2;
+    private List<ExpenseSplit> expenseSplit2;
 
     @OneToMany(mappedBy = "payerId")
-    private List<squareOffTransactions> squareOffTransactions1;
+    private List<SquareOffTransactions> squareOffTransactions1;
 
     @OneToMany(mappedBy = "payedToId")
-    private List<squareOffTransactions> squareOffTransactions2;
+    private List<SquareOffTransactions> squareOffTransactions2;
 
     @OneToOne(mappedBy = "createdBy")
-    private groups groups1;
+    private Groups groups1;
 
-    public users(int id, String firstName, String lastName, String email, String number, String password, List<com.example.Splitwise_Backend.entity.groups> groups, List<com.example.Splitwise_Backend.entity.paymentSplit> paymentSplit, List<expenseSplit> expenseSplit1, List<expenseSplit> expenseSplit2, List<squareOffTransactions> squareOffTransactions1, List<squareOffTransactions> squareOffTransactions2, groups groups1) {
+    public Users(int id, String firstName, String lastName, String email, String number, String password, List<Groups> groups, List<PaymentSplit> paymentSplit, List<ExpenseSplit> expenseSplit1, List<ExpenseSplit> expenseSplit2, List<SquareOffTransactions> squareOffTransactions1, List<SquareOffTransactions> squareOffTransactions2, Groups groups1) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -62,7 +66,7 @@ public class users {
         this.groups1=groups1;
     }
 
-    public users() {
+    public Users() {
     }
 
     public int getId() {
@@ -113,59 +117,59 @@ public class users {
         this.password = password;
     }
 
-    public List<com.example.Splitwise_Backend.entity.groups> getGroups() {
+    public List<Groups> getGroups() {
         return groups;
     }
 
-    public void setGroups(List<com.example.Splitwise_Backend.entity.groups> groups) {
+    public void setGroups(List<Groups> groups) {
         this.groups = groups;
     }
 
-    public List<com.example.Splitwise_Backend.entity.paymentSplit> getPaymentSplit() {
+    public List<PaymentSplit> getPaymentSplit() {
         return paymentSplit;
     }
 
-    public void setPaymentSplit(List<com.example.Splitwise_Backend.entity.paymentSplit> paymentSplit) {
+    public void setPaymentSplit(List<PaymentSplit> paymentSplit) {
         this.paymentSplit = paymentSplit;
     }
 
-    public List<expenseSplit> getExpenseSplit1() {
+    public List<ExpenseSplit> getExpenseSplit1() {
         return expenseSplit1;
     }
 
-    public void setExpenseSplit1(List<expenseSplit> expenseSplit1) {
+    public void setExpenseSplit1(List<ExpenseSplit> expenseSplit1) {
         this.expenseSplit1 = expenseSplit1;
     }
 
-    public List<expenseSplit> getExpenseSplit2() {
+    public List<ExpenseSplit> getExpenseSplit2() {
         return expenseSplit2;
     }
 
-    public void setExpenseSplit2(List<expenseSplit> expenseSplit2) {
+    public void setExpenseSplit2(List<ExpenseSplit> expenseSplit2) {
         this.expenseSplit2 = expenseSplit2;
     }
 
-    public List<squareOffTransactions> getSquareOffTransactions1() {
+    public List<SquareOffTransactions> getSquareOffTransactions1() {
         return squareOffTransactions1;
     }
 
-    public void setSquareOffTransactions1(List<squareOffTransactions> squareOffTransactions1) {
+    public void setSquareOffTransactions1(List<SquareOffTransactions> squareOffTransactions1) {
         this.squareOffTransactions1 = squareOffTransactions1;
     }
 
-    public List<squareOffTransactions> getSquareOffTransactions2() {
+    public List<SquareOffTransactions> getSquareOffTransactions2() {
         return squareOffTransactions2;
     }
 
-    public void setSquareOffTransactions2(List<squareOffTransactions> squareOffTransactions2) {
+    public void setSquareOffTransactions2(List<SquareOffTransactions> squareOffTransactions2) {
         this.squareOffTransactions2 = squareOffTransactions2;
     }
 
-    public com.example.Splitwise_Backend.entity.groups getGroups1() {
+    public Groups getGroups1() {
         return groups1;
     }
 
-    public void setGroups1(com.example.Splitwise_Backend.entity.groups groups1) {
+    public void setGroups1(Groups groups1) {
         this.groups1 = groups1;
     }
 

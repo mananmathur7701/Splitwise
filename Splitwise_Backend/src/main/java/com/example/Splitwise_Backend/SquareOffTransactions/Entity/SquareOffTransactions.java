@@ -1,12 +1,13 @@
-package com.example.Splitwise_Backend.entity;
+package com.example.Splitwise_Backend.SquareOffTransactions.Entity;
 
+import com.example.Splitwise_Backend.Users.Entity.Users;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
-public class squareOffTransactions {
+public class SquareOffTransactions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -16,13 +17,13 @@ public class squareOffTransactions {
 
     @ManyToOne
     @JoinColumn(name = "payerId")
-    private users payerId;
+    private Users payerId;
 
     @ManyToOne
     @JoinColumn(name = "payedToId")
-    private users payedToId;
+    private Users payedToId;
 
-    public squareOffTransactions(int id, double amount, Timestamp time, users payerId, users payedToId) {
+    public SquareOffTransactions(int id, double amount, Timestamp time, Users payerId, Users payedToId) {
         this.id = id;
         this.amount = amount;
         this.time = time;
@@ -30,7 +31,7 @@ public class squareOffTransactions {
         this.payedToId = payedToId;
     }
 
-    public squareOffTransactions() {
+    public SquareOffTransactions() {
     }
 
     public int getId() {
@@ -57,19 +58,19 @@ public class squareOffTransactions {
         this.time = time;
     }
 
-    public users getPayerId() {
+    public Users getPayerId() {
         return payerId;
     }
 
-    public void setPayerId(users payerId) {
+    public void setPayerId(Users payerId) {
         this.payerId = payerId;
     }
 
-    public users getPayedToId() {
+    public Users getPayedToId() {
         return payedToId;
     }
 
-    public void setPayedToId(users payedToId) {
+    public void setPayedToId(Users payedToId) {
         this.payedToId = payedToId;
     }
 

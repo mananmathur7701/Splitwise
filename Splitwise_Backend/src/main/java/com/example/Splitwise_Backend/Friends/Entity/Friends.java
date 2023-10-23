@@ -1,4 +1,4 @@
-package com.example.Splitwise_Backend.entity;
+package com.example.Splitwise_Backend.Friends.Entity;
 
 import jakarta.persistence.*;
 
@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 
 
 @Entity
-public class friends {
+public class Friends {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

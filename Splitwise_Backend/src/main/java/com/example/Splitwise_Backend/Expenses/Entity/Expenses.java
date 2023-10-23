@@ -1,12 +1,15 @@
-package com.example.Splitwise_Backend.entity;
+package com.example.Splitwise_Backend.Expenses.Entity;
 
+import com.example.Splitwise_Backend.ExpenseSplit.Entity.ExpenseSplit;
+import com.example.Splitwise_Backend.Groups.Entity.Groups;
+import com.example.Splitwise_Backend.PaymentSplit.Entity.PaymentSplit;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
-public class expenses {
+public class Expenses {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,15 +23,15 @@ public class expenses {
 
     @ManyToOne
     @JoinColumn(name = "groups_id")
-    private groups groups;
+    private Groups groups;
 
     @OneToMany(mappedBy = "expenses")
-    private List<expenseSplit> expenseSplit;
+    private List<ExpenseSplit> expenseSplit;
 
     @OneToMany(mappedBy = "expenses")
-    private List<paymentSplit> paymentSplit;
+    private List<PaymentSplit> paymentSplit;
 
-    public expenses(int id, Timestamp spentAt, float amountPaid, String comment, com.example.Splitwise_Backend.entity.groups groups, List<com.example.Splitwise_Backend.entity.expenseSplit> expenseSplit, List<com.example.Splitwise_Backend.entity.paymentSplit> paymentSplit) {
+    public Expenses(int id, Timestamp spentAt, float amountPaid, String comment, Groups groups, List<ExpenseSplit> expenseSplit, List<PaymentSplit> paymentSplit) {
         this.id = id;
         this.spentAt = spentAt;
         this.amountPaid = amountPaid;
@@ -38,7 +41,7 @@ public class expenses {
         this.paymentSplit = paymentSplit;
     }
 
-    public expenses() {
+    public Expenses() {
     }
 
     public int getId() {
@@ -73,27 +76,27 @@ public class expenses {
         this.comment = comment;
     }
 
-    public com.example.Splitwise_Backend.entity.groups getGroups() {
+    public Groups getGroups() {
         return groups;
     }
 
-    public void setGroups(com.example.Splitwise_Backend.entity.groups groups) {
+    public void setGroups(Groups groups) {
         this.groups = groups;
     }
 
-    public List<com.example.Splitwise_Backend.entity.expenseSplit> getExpenseSplit() {
+    public List<ExpenseSplit> getExpenseSplit() {
         return expenseSplit;
     }
 
-    public void setExpenseSplit(List<com.example.Splitwise_Backend.entity.expenseSplit> expenseSplit) {
+    public void setExpenseSplit(List<ExpenseSplit> expenseSplit) {
         this.expenseSplit = expenseSplit;
     }
 
-    public List<com.example.Splitwise_Backend.entity.paymentSplit> getPaymentSplit() {
+    public List<PaymentSplit> getPaymentSplit() {
         return paymentSplit;
     }
 
-    public void setPaymentSplit(List<com.example.Splitwise_Backend.entity.paymentSplit> paymentSplit) {
+    public void setPaymentSplit(List<PaymentSplit> paymentSplit) {
         this.paymentSplit = paymentSplit;
     }
 
