@@ -4,29 +4,30 @@ import com.example.Splitwise_Backend.ExpenseSplit.Entity.ExpenseSplit;
 import com.example.Splitwise_Backend.Groups.Entity.Groups;
 import com.example.Splitwise_Backend.PaymentSplit.Entity.PaymentSplit;
 import com.example.Splitwise_Backend.SquareOffTransactions.Entity.SquareOffTransactions;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
 public class Users {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
 
-    @Column(name = "f_name")
+    @Column(name = "f_name", nullable = false)
     private String firstName;
 
     @Column(name = "l_name")
     private String lastName;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
 
-    @Column(name = "number")
+    @Column(name = "number", nullable = false)
     private String number;
-    
-    @Column(name = "password")
+
+    @Column(name = "password", nullable = false)
     private String password;
 
     @ManyToMany(mappedBy = "users")

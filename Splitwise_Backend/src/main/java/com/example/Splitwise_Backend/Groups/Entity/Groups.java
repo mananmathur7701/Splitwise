@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "shopId")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Groups {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
