@@ -1,0 +1,34 @@
+.frame-1 {
+  background: transparent;
+  padding: 43px 101px 43px 101px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  /* width: 100%; */
+  position: relative;
+  /* overflow: hidden; */
+  max-width: 100vw;
+}
+.sp-lit {
+  color: #a0d7c3;
+  text-align: left;
+  font: 700 48px "Amiri", sans-serif;
+  position: relative;
+}
+.frame-2 {
+  display: flex;
+  flex-direction: row;
+  gap: 48px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 1;
+  width: max-content !important;
+  position: relative;
+}
+.lorem {
+  color: #ebebeb;
+  text-align: left;
+  font: 500 20px "Inter", sans-serif;
+  position: relative;
+}

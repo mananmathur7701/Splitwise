@@ -1,0 +1,81 @@
+
+/* body {
+    background-color: #b33d3d; /* Replace with your chosen background color 
+  }
+  */
+  .frame-5,
+.frame-5 * {
+  box-sizing: border-box;
+}
+.frame-5 {
+  width: 1843px;
+  height: 761px;
+  position: relative;
+}
+.frame-4 {
+  width: 1688px;
+  height: 564px;
+  position: absolute;
+  left: 155px;
+  top: 0px;
+}
+._3-d-casual-life-guy-shopping-online-1 {
+  width: 534px;
+  height: 567px;
+  position: absolute;
+  left: 1036px;
+  top: 19px;
+}
+.frame-3 {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  left: 155px;
+  top: 86px;
+}
+.lorem-ipsum {
+  color: #a0d7c3;
+  text-align: left;
+  font: 700 113px/140% "Amiri", sans-serif;
+  position: relative;
+}
+.lorem-ipsum-dolor-sit-amet-consectetur-adipisicing-elit-repellat-animi-ratione-eligendi-repellendus-nemo-doloremque-dolor-delectus-esse-doloribus-quaerat-vero-corrupti-ex-voluptate-fuga-officiis-quam-corporis-sunt-quidem {
+  color: #80938c;
+  text-align: left;
+  font: 400 27px "Inter", sans-serif;
+  position: relative;
+  width: 759px;
+}
+.vector {
+  position: absolute;
+  left: 0px;
+  top: 33px;
+  overflow: visible;
+  z-index: 0;
+}
+.download-button {
+  padding: 16px 48px;
+  background: #a0d7c3;
+  color: #143a2c;
+  font-weight: 500;
+  font-size: 18px;
+  border: 0;
+  border-radius: 6px;
+  width: max-content;
+  z-index: 99999999;
+}
+
+.download-button:hover {
+  background: #427462;
+  color: white;
+}
+
+.oinkita {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  /* width: max-content; */
+}

@@ -10,6 +10,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { LandingComponent } from './landing/landing.component';
 
 
 
@@ -22,6 +23,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     DashboardComponent,
     FooterComponent,
     HeaderComponent,
+    LandingComponent,
     
   
   ],
