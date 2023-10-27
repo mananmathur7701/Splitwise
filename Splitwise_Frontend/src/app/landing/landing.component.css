@@ -57,6 +57,7 @@
   z-index: 0;
 }
 .download-button {
+  display: inline-block;
   padding: 16px 48px;
   background: #a0d7c3;
   color: #143a2c;
@@ -64,8 +65,9 @@
   font-size: 18px;
   border: 0;
   border-radius: 6px;
-  width: max-content;
+  /* width: max-content; */
   z-index: 99999999;
+  /* display: inline-block; */
 }
 
 .download-button:hover {

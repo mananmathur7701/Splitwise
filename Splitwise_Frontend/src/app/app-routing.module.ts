@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { LandingComponent } from './landing/landing.component';
 
 const routes: Routes = [
   {
@@ -12,12 +13,17 @@ const routes: Routes = [
   },
   {
     path:'',
-    component: RegisterComponent,
+    component: LandingComponent,
     pathMatch:'full'
   },
   {
     path:'dashboard',
     component: DashboardComponent,
+    pathMatch:'full'
+  },
+  {
+    path:'register',
+    component: RegisterComponent,
     pathMatch:'full'
   }
 ];
