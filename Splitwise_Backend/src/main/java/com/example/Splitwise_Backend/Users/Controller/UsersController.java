@@ -13,6 +13,7 @@ import java.util.Objects;
 import java.util.Random;
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 public class UsersController {
     private final UsersServiceImplementation usersServiceImplementation;
     private final JavaMailSender javaMailSender;
@@ -45,6 +46,7 @@ public class UsersController {
     }
 
     @PostMapping("/createUser")
+    @CrossOrigin("http://localhost:4200")
     public int createUser(@RequestBody Users users)
     {
         newUserDTO.setFirstName(users.getFirstName());
@@ -63,6 +65,7 @@ public class UsersController {
     }
 
     @PostMapping("/otpVerify")
+    @CrossOrigin("http://localhost:4200")
     public Users verifyOTP(@RequestBody String optRecieved)
     {
         System.out.println("Hiiiiii-----------------------------------");
@@ -78,12 +81,14 @@ public class UsersController {
     }
 
     @DeleteMapping("/deleteUser/{id}")
+    @CrossOrigin("http://localhost:4200")
     public String deleteUser(@PathVariable int id, @RequestBody String password)
     {
         return usersServiceImplementation.deleteUser(id,password);
     }
 
     @PutMapping("/editDetails/{id}")
+    @CrossOrigin("http://localhost:4200")
     public Users editDetails(@PathVariable int id, @RequestBody Users users)
     {
         UsersViewDTO updatedUser= new UsersViewDTO();
@@ -97,6 +102,7 @@ public class UsersController {
     }
 
     @PostMapping("/editPassword/{id}")
+    @CrossOrigin("http://localhost:4200")
     public Users editPassword(@PathVariable int id,@RequestBody Map<String, String> passwords)
     {
         String oldPassword = passwords.get("oldPassword");
@@ -122,12 +128,14 @@ public class UsersController {
     }
 
     @GetMapping("/userDetailsById/{id}")
+    @CrossOrigin("http://localhost:4200")
     public UsersViewDTO showUser(@PathVariable int id)
     {
         return usersServiceImplementation.findById(id);
     }
 
     @GetMapping("/userDetailsByEmail/{email}")
+    @CrossOrigin("http://localhost:4200")
     public UsersViewDTO showUser(@PathVariable String email)
     {
         return usersServiceImplementation.findByEmail(email);

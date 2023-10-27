@@ -1,19 +1,18 @@
 /* Styling for the registration form */
-.registration-form {
-    max-width: 300px;
+  .registration-form{
+    max-width: 30%;
     margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #f9f9f9;
-    box-shadow: 0px 0px 5px #aaa;
+    background-color: #1a1a1a;
+    box-shadow: 0px 0px 16px #121212;
     justify-content: center;
     align-items: center;
-  }
-  
-  .registration-form h2 {
+}
+  .registration-form h1 {
+    font-weight:500;
     text-align: center;
-    color: #333;
+    color: #a0d7c3;
   }
   
   .registration-form .form-group {
@@ -21,21 +20,25 @@
   }
   
   .registration-form label {
-    font-weight: bold;
-    display: block;
+    
+    /* display: block; */
+    color: white;
   }
   
   .registration-form input {
-    width: 100%;
+    width: 90%;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+    outline: none;
+    border-radius: 5px;
     margin-top: 3px;
+    background-color: #292929;
   }
   
   .registration-form button {
-    background-color: #007bff;
-    color: #fff;
+    background-color: #a0d7c3;
+    font-size: medium;
+    font-weight: 700;
+    color: #1a1a1a;
     border: none;
     border-radius: 3px;
     padding: 10px 20px;
@@ -43,7 +46,8 @@
   }
   
   .registration-form button:hover {
-    background-color: #0056b3;
+    background-color: #3b9675;
+    color: #fff;
   }
   
   /* Optional: Add more styles as needed */

@@ -1,19 +1,33 @@
 <div class="registration-form">
-    <h2>Registration</h2>
-    <form (ngSubmit)="onSubmit()" #registrationForm="ngForm">
+    <h1>Registration</h1>
+    <form [formGroup]="myForm" (ngSubmit)="toRegister(myForm)">
       <div class="form-group">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" [(ngModel)]="user.username" required>
+        <label for="username">Firstname:</label>
+        <input type="text" id="username" name="username" class="form-control" formControlName="firstName" required>
+      </div>
+      <div class="form-group">
+        <label for="username">Lastname:</label>
+        <input type="text" id="username" name="username" class="form-control" formControlName="lastName" required>
       </div>
       <div class="form-group">
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" [(ngModel)]="user.email" required>
+        <input type="email" id="email" name="email" class="form-control" formControlName="email" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Mobile:</label>
+        <input type="text" id="number" name="number" class="form-control" formControlName="number" required>
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" [(ngModel)]="user.password" required>
+        <input type="password" id="password" name="password" class="form-control" formControlName="password" required>
       </div>
-      <button type="submit" [disabled]="!registrationForm.valid">Register</button>
+      <div class="form-group">
+        <label for="password">Confirm Password:</label>
+        <input type="password" id="password" name="password" class="form-control" formControlName="confirmPassword" required>
+      </div>
+      <button type="submit" [disabled]="myForm.invalid">Register</button>
     </form>
   </div>
+  
+
   
