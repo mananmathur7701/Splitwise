@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public interface UsersService {
     public Users createUser(UsersDTO usersDTO);
+    public UsersViewDTO loginUser(String email,String password);
     public String deleteUser(Integer id,String password);
     public Users editDetails(UsersViewDTO usersViewDTO);
     public Users editPassword(UsersDTO usersDTO);

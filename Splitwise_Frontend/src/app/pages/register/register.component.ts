@@ -33,25 +33,33 @@ export class RegisterComponent {
     )
   }
 
-  toRegister(Form: FormGroup)
-  {
-    this.backserviceService.signup(Form.value.firstName,Form.value.lastName,Form.value.email,Form.value.number,Form.value.password).subscribe(
-      // (data:{[x:string]:string;})=>{
-      //   if (data["message"] == "user added")
-      //   {
-      //     this.router.navigateByUrl('/signin');
-      //   }
-      //   else
-      //   {
-      //     console.log("user already existed");
-      //   }
-      (data)=>{
-        console.log(data);
-      },
-      (error)=>{
-        console.log(error);
-      }
-    );
+  // toRegister(Form: FormGroup)
+  // {
+  //   this.backserviceService.signup(Form.value.firstName,Form.value.lastName,Form.value.email,Form.value.number,Form.value.password).subscribe(
+  //     (data)=>{
+  //       console.log(data);
+  //     },
+  //     (error)=>{
+  //       console.log(error);
+  //     }
+  //   );
+  // }
+
+  toRegister(Form: FormGroup) {
+    return new Promise((resolve, reject) => 
+    {
+        this.backserviceService.signup(Form.value.firstName, Form.value.lastName, Form.value.email, Form.value.number, Form.value.password).subscribe
+        (
+          (data) => {
+            console.log(data);
+            resolve(data); // Resolve the Promise with the data
+          },
+          (error) => {
+            console.log(error);
+            reject(error); // Reject the Promise with the error
+          }
+        );
+    });
   }
 
   isFormValid():boolean

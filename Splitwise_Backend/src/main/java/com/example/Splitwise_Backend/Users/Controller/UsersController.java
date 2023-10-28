@@ -64,6 +64,15 @@ public class UsersController {
         return otp;
     }
 
+    @PostMapping("/login")
+    @CrossOrigin("http://localhost:4200")
+    public UsersViewDTO userLogin(@RequestBody Map<String,String> Credentials)
+    {
+        String email=Credentials.get("email");
+        String password=Credentials.get("password");
+        return usersServiceImplementation.loginUser(email,password);
+    }
+
     @PostMapping("/otpVerify")
     @CrossOrigin("http://localhost:4200")
     public Users verifyOTP(@RequestBody String optRecieved)

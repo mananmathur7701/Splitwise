@@ -31,6 +31,34 @@ public class UsersServiceImplementation implements UsersService{
     }
 
     @Override
+    public UsersViewDTO loginUser(String email, String password) {
+
+        Optional<Users> userToBeFind = Optional.ofNullable(usersRepo.findByEmail(email));
+        if(userToBeFind.isPresent())
+        {
+            if(password.equals(userToBeFind.get().getPassword()))
+            {
+                UsersViewDTO loggedInUser = new UsersViewDTO();
+                loggedInUser.setId(userToBeFind.get().getId());
+                loggedInUser.setEmail(email);
+                loggedInUser.setFirstName(userToBeFind.get().getFirstName());
+                loggedInUser.setLastName(userToBeFind.get().getLastName());
+                loggedInUser.setNumber(userToBeFind.get().getNumber());
+
+                return loggedInUser;
+            }
+            else
+            {
+                throw new RuntimeException("Password Missmatch");
+            }
+        }
+        else
+        {
+            throw new RuntimeException("User Not Found1");
+        }
+    }
+
+    @Override
     public String deleteUser(Integer id, String password) {
         Optional<Users> userToBeDeleted = usersRepo.findById(id);
         if(userToBeDeleted.isPresent())

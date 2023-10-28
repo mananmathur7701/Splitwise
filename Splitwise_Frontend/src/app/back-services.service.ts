@@ -17,8 +17,11 @@ export class BackServicesService {
       email: email,
       password: password,
     };
-
+    console.log(requestBody);
+    const url = `http://localhost:8080/userDetailsByEmail/${email}`;
     console.log("back service login function called..."+email+password);
+    console.log(this._http.get(url));
+    console.log(this._http.post("http://localhost:8080/login",requestBody));
     return this._http.post("http://localhost:8080/login",requestBody);
 
   }
