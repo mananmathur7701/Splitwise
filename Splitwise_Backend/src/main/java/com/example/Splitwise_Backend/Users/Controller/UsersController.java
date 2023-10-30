@@ -79,6 +79,7 @@ public class UsersController {
     {
         System.out.println("Hiiiiii-----------------------------------");
         System.out.println(newUserDTO.toString());
+        System.out.println(optRecieved);
         if(String.valueOf(otp).equals(optRecieved))
         {
             return usersServiceImplementation.createUser(newUserDTO);

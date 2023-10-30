@@ -13,6 +13,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { LandingComponent } from './landing/landing.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { OtpVerifyComponent } from './otp-verify/otp-verify.component';
 
 
 
@@ -25,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     HeaderComponent,
     LandingComponent,
+    OtpVerifyComponent,
   ],
   imports: [
     BrowserModule,
