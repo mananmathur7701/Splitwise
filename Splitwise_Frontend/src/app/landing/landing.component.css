@@ -51,10 +51,14 @@
 }
 .vector {
   position: absolute;
-  left: 0px;
-  top: 33px;
+  left: 24px;
+  top: 120px;
   overflow: visible;
   z-index: 0;
+}
+.button-wrap{
+  display: flex;
+  gap: 12px;
 }
 .download-button {
   display: inline-block;
