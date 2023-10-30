@@ -13,7 +13,7 @@
 
 
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BackServicesService } from 'src/app/back-services.service';
 
@@ -24,21 +24,26 @@ import { BackServicesService } from 'src/app/back-services.service';
 })
 export class LoginComponent {
   loginForm!: FormGroup;
+  errors:Error | undefined;
 
 //----------------------------------Constructor--------------------
-  constructor(private router: Router, private backserviceService: BackServicesService)
+  constructor(private router: Router, private backserviceService: BackServicesService, private formBuilder:FormBuilder)
   {
+    this.loginForm = this.formBuilder.group({
+      email:new FormControl('',Validators.required),
+      password:new FormControl('',Validators.required),
+    });
     console.log("Sign Up Is Rendered")
   }
 
 //-----------------------------------ngOnInit-----------------------
   ngOnInit():void{
-    this.loginForm=new FormGroup(
-      {
-          email:new FormControl('',Validators.required),
-          password:new FormControl('',Validators.required),
-      }
-    )
+    // this.loginForm=new FormGroup(
+    //   {
+    //       email:new FormControl('',Validators.required),
+    //       password:new FormControl('',Validators.required),
+    //   }
+    // )
   }
 
   // toRegister(Form: FormGroup)
@@ -60,14 +65,33 @@ export class LoginComponent {
         (
           (data) => {
             console.log(data);
+            this.router.navigateByUrl('/dashboard');
             resolve(data); // Resolve the Promise with the data
           },
           (error) => {
             console.log(error);
+            this.loginForm.reset();
             reject(error); // Reject the Promise with the error
           }
         );
     });
+  }
+
+  proceed()
+  {
+    if(this.errors)
+    {
+      this.loginForm.reset();
+    }
+    else
+    {
+      this.router.navigateByUrl('/otp');
+    }
+  }
+
+  signUp()
+  {
+    this.router.navigateByUrl('/register');
   }
 
   isFormValid():boolean

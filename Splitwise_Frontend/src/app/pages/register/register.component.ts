@@ -11,26 +11,35 @@ import { BackServicesService } from 'src/app/back-services.service';
 export class RegisterComponent {
 
   myForm!: FormGroup;
+  errors!: Error;
 
 //----------------------------------Constructor--------------------
-  constructor(private router: Router, private backserviceService: BackServicesService)
+  constructor(private router: Router, private backserviceService: BackServicesService,private formBuilder: FormBuilder)
   {
+    this.myForm = this.formBuilder.group({
+          firstName: ['', Validators.required],
+          lastName: ['', Validators.required],
+          email: ['', [Validators.required, Validators.email]],
+          number: ['', Validators.required],
+          password: ['', Validators.required],
+          confirmPassword: ['', Validators.required],
+        });
     console.log("Sign Up Is Rendered")
   }
 
 //-----------------------------------ngOnInit-----------------------
   ngOnInit():void{
-    this.myForm=new FormGroup(
-      {
-          email:new FormControl('',Validators.required),
-          firstName:new FormControl('',Validators.required),
-          lastName:new FormControl('',Validators.required),
-          number:new FormControl('',Validators.required),
-          password:new FormControl('',Validators.required),
-          confirmPassword:new FormControl('',Validators.required),
+    // this.myForm=new FormGroup(
+    //   {
+    //       email:new FormControl('',Validators.required),
+    //       firstName:new FormControl('',Validators.required),
+    //       lastName:new FormControl('',Validators.required),
+    //       number:new FormControl('',Validators.required),
+    //       password:new FormControl('',Validators.required),
+    //       confirmPassword:new FormControl('',Validators.required),
 
-      }
-    )
+    //   }
+    // )
   }
 
   // toRegister(Form: FormGroup)
@@ -52,14 +61,34 @@ export class RegisterComponent {
         (
           (data) => {
             console.log(data);
+            this.router.navigateByUrl('/otp');
             resolve(data); // Resolve the Promise with the data
           },
           (error) => {
             console.log(error);
+            this.myForm.reset();
+            this.errors=error;
             reject(error); // Reject the Promise with the error
           }
         );
     });
+  }
+
+  proceed()
+  {
+    if(this.errors)
+    {
+      this.myForm.reset();
+    }
+    else
+    {
+      this.router.navigateByUrl('/otp');
+    }
+  }
+
+  logIn()
+  {
+    this.router.navigateByUrl('/login');
   }
 
   isFormValid():boolean

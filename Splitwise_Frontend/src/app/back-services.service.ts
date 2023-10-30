@@ -17,11 +17,6 @@ export class BackServicesService {
       email: email,
       password: password,
     };
-    console.log(requestBody);
-    const url = `http://localhost:8080/userDetailsByEmail/${email}`;
-    console.log("back service login function called..."+email+password);
-    console.log(this._http.get(url));
-    console.log(this._http.post("http://localhost:8080/login",requestBody));
     return this._http.post("http://localhost:8080/login",requestBody);
 
   }
@@ -38,11 +33,19 @@ export class BackServicesService {
         number: number,
         password: password,
       };
-      console.log("Service Run")
-      console.log(this._http.get("http://localhost:8080/userDetailsById/1"));
+
     return this._http.post("http://localhost:8080/createUser",requestBody);
   }
 
+  // ******************* OTP ******************************************
+
+  otpverify(otp:string)
+  {
+
+    console.log(otp+"2")
+    return this._http.post("http://localhost:8080/otpVerify", otp);
+    
+  }
   
 }
 
