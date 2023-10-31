@@ -48,10 +48,10 @@ public class Users {
     @OneToMany(mappedBy = "payedToId")
     private List<SquareOffTransactions> squareOffTransactions2;
 
-    @OneToOne(mappedBy = "createdBy")
-    private Groups groups1;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "createdBy")
+    private List<Groups> groupsCreatedByUser;
 
-    public Users(int id, String firstName, String lastName, String email, String number, String password, List<Groups> groups, List<PaymentSplit> paymentSplit, List<ExpenseSplit> expenseSplit1, List<ExpenseSplit> expenseSplit2, List<SquareOffTransactions> squareOffTransactions1, List<SquareOffTransactions> squareOffTransactions2, Groups groups1) {
+    public Users(int id, String firstName, String lastName, String email, String number, String password, List<Groups> groups, List<PaymentSplit> paymentSplit, List<ExpenseSplit> expenseSplit1, List<ExpenseSplit> expenseSplit2, List<SquareOffTransactions> squareOffTransactions1, List<SquareOffTransactions> squareOffTransactions2, Groups groupsCreatedByUser) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -64,7 +64,7 @@ public class Users {
         this.expenseSplit2 = expenseSplit2;
         this.squareOffTransactions1 = squareOffTransactions1;
         this.squareOffTransactions2 = squareOffTransactions2;
-        this.groups1=groups1;
+        this.groupsCreatedByUser= (List<Groups>) groupsCreatedByUser;
     }
 
     public Users() {
@@ -167,11 +167,11 @@ public class Users {
     }
 
     public Groups getGroups1() {
-        return groups1;
+        return (Groups) groupsCreatedByUser;
     }
 
-    public void setGroups1(Groups groups1) {
-        this.groups1 = groups1;
+    public void setGroups1(Groups groupsCreatedByUser) {
+        this.groupsCreatedByUser = (List<Groups>) groupsCreatedByUser;
     }
 
     @Override
@@ -189,7 +189,7 @@ public class Users {
                 ", expenseSplit2=" + expenseSplit2 +
                 ", squareOffTransactions1=" + squareOffTransactions1 +
                 ", squareOffTransactions2=" + squareOffTransactions2 +
-                ", groups1=" + groups1 +
+                ", groupsCreatedByUser=" + groupsCreatedByUser +
                 '}';
     }
 }

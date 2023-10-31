@@ -71,6 +71,7 @@ export class LoginComponent {
           (error) => {
             console.log(error);
             this.loginForm.reset();
+            alert("Wrong Passwprd")
             reject(error); // Reject the Promise with the error
           }
         );

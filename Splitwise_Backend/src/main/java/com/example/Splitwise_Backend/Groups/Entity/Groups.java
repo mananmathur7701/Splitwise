@@ -19,8 +19,9 @@ public class Groups {
     private int id;
     
     private Timestamp createdAt;
+    private String groupName;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "createdBy")
     private Users createdBy;
 
@@ -42,14 +43,20 @@ public class Groups {
     @OneToMany(mappedBy = "groups")
     private List<ExpenseSplit> ExpenseSplits;
 
-    public Groups(int id, Timestamp createdAt, Timestamp updatedAt, List<Users> users, List<Expenses> expenses, List<ExpenseSplit> ExpenseSplits) {
+
+    public Groups(int id, Timestamp createdAt, String groupName, Users createdBy, Timestamp updatedAt, List<Users> users, List<Expenses> expenses, List<ExpenseSplit> expenseSplits) {
         this.id = id;
         this.createdAt = createdAt;
+        this.groupName = groupName;
+        this.createdBy = createdBy;
         this.updatedAt = updatedAt;
         this.users = users;
         this.expenses = expenses;
-        this.ExpenseSplits = ExpenseSplits;
+        ExpenseSplits = expenseSplits;
     }
+
+
+
 
     public Groups() {
     }
@@ -68,6 +75,14 @@ public class Groups {
 
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Users getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Users createdBy) {
+        this.createdBy = createdBy;
     }
 
     public Timestamp getUpdatedAt() {
@@ -98,19 +113,28 @@ public class Groups {
         return ExpenseSplits;
     }
 
-    public void setExpenseSplits(List<ExpenseSplit> ExpenseSplits) {
-        this.ExpenseSplits = ExpenseSplits;
+    public void setExpenseSplits(List<ExpenseSplit> expenseSplits) {
+        ExpenseSplits = expenseSplits;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
     @Override
     public String toString() {
-        return "groups{" +
+        return "Groups{" +
                 "id=" + id +
                 ", createdAt=" + createdAt +
+                ", createdBy=" + createdBy +
                 ", updatedAt=" + updatedAt +
                 ", users=" + users +
                 ", expenses=" + expenses +
-                ", expenseSplits=" + ExpenseSplits +
+                ", ExpenseSplits=" + ExpenseSplits +
                 '}';
     }
 }
