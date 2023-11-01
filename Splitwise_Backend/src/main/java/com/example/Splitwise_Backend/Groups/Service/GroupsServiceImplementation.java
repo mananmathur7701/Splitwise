@@ -42,8 +42,8 @@ public class GroupsServiceImplementation implements GroupsService{
 
             groupCreated.setUsers(userList);
 
-            groupsRepo.save(groupCreated);
-            return groupCreated;
+            return groupsRepo.save(groupCreated);
+//            return groupCreated;
         }
         else
         {
@@ -66,7 +66,7 @@ public class GroupsServiceImplementation implements GroupsService{
 
     @Override
     public List<Groups> groupInfoByName(String groupName) {
-        Optional<Groups> groupInfo = Optional.ofNullable(groupsRepo.findByName(groupName));
+        Optional<List<Groups>> groupInfo = Optional.ofNullable(groupsRepo.findBygroupName(groupName));
         if (groupInfo.isPresent())
         {
             return (List<Groups>) groupInfo.get();
@@ -107,18 +107,16 @@ public class GroupsServiceImplementation implements GroupsService{
     }
 
     @Override
-    public Groups editGroups(int groupId, String groupName)
-    {
-        Optional<Groups> groupToBeEditted = groupsRepo.findById(groupId);
-        if(groupToBeEditted.isPresent())
-        {
-            groupToBeEditted.get().setGroupName(groupName);
-            groupToBeEditted.get().setUpdatedAt(Timestamp.from(Instant.now()));
-            return groupToBeEditted.get();
-        }
-        else
-        {
-            throw new RuntimeException("");
+    public Groups editGroups(int groupId, String groupName) {
+        Optional<Groups> groupToBeEdited = groupsRepo.findById(groupId);
+        if (groupToBeEdited.isPresent()) {
+            Groups group = groupToBeEdited.get();
+            group.setGroupName(groupName);
+            group.setUpdatedAt(Timestamp.from(Instant.now()));
+            groupsRepo.save(group); // Use the correct repository
+            return group;
+        } else {
+            throw new RuntimeException("Group not found with ID: " + groupId);
         }
     }
 

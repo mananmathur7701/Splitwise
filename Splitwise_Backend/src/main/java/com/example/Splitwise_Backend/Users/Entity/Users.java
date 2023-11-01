@@ -4,6 +4,7 @@ import com.example.Splitwise_Backend.ExpenseSplit.Entity.ExpenseSplit;
 import com.example.Splitwise_Backend.Groups.Entity.Groups;
 import com.example.Splitwise_Backend.PaymentSplit.Entity.PaymentSplit;
 import com.example.Splitwise_Backend.SquareOffTransactions.Entity.SquareOffTransactions;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.util.List;
@@ -31,24 +32,31 @@ public class Users {
     private String password;
 
     @ManyToMany(mappedBy = "users")
+    @JsonIgnore
     private List<Groups> groups;
 
     @OneToMany(mappedBy = "users")
+    @JsonIgnore
     private List<PaymentSplit> paymentSplit;
 
     @OneToMany(mappedBy = "payerId")
+    @JsonIgnore
     private List<ExpenseSplit> expenseSplit1;
 
     @OneToMany(mappedBy = "payedToId")
+    @JsonIgnore
     private List<ExpenseSplit> expenseSplit2;
 
     @OneToMany(mappedBy = "payerId")
+    @JsonIgnore
     private List<SquareOffTransactions> squareOffTransactions1;
 
     @OneToMany(mappedBy = "payedToId")
+    @JsonIgnore
     private List<SquareOffTransactions> squareOffTransactions2;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "createdBy")
+    @OneToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH}, mappedBy = "createdBy")
+    @JsonIgnore
     private List<Groups> groupsCreatedByUser;
 
     public Users(int id, String firstName, String lastName, String email, String number, String password, List<Groups> groups, List<PaymentSplit> paymentSplit, List<ExpenseSplit> expenseSplit1, List<ExpenseSplit> expenseSplit2, List<SquareOffTransactions> squareOffTransactions1, List<SquareOffTransactions> squareOffTransactions2, Groups groupsCreatedByUser) {
@@ -183,13 +191,13 @@ public class Users {
                 ", email='" + email + '\'' +
                 ", number='" + number + '\'' +
                 ", password='" + password + '\'' +
-                ", groups=" + groups +
+//                ", groups=" + groups +
                 ", paymentSplit=" + paymentSplit +
                 ", expenseSplit1=" + expenseSplit1 +
                 ", expenseSplit2=" + expenseSplit2 +
                 ", squareOffTransactions1=" + squareOffTransactions1 +
                 ", squareOffTransactions2=" + squareOffTransactions2 +
-                ", groupsCreatedByUser=" + groupsCreatedByUser +
+//                ", groupsCreatedByUser=" + groupsCreatedByUser +
                 '}';
     }
 }

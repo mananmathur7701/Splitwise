@@ -3,14 +3,14 @@ package com.example.Splitwise_Backend.Groups.Entity;
 import com.example.Splitwise_Backend.ExpenseSplit.Entity.ExpenseSplit;
 import com.example.Splitwise_Backend.Expenses.Entity.Expenses;
 import com.example.Splitwise_Backend.Users.Entity.Users;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
+//@JsonIgnoreProperties({"expenses","ExpenseSplit","createdBy"})
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Groups {
     @Id
@@ -21,19 +21,21 @@ public class Groups {
     private Timestamp createdAt;
     private String groupName;
 
-    @ManyToOne()
+    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinColumn(name = "createdBy")
+    @JsonIgnore
     private Users createdBy;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @JsonIgnore
     @JoinTable(
             name = "groupMembers",
-            joinColumns = @JoinColumn(name = "users_id"),
-            inverseJoinColumns = @JoinColumn(name = "groups_id")
+            joinColumns = @JoinColumn(name = "groups_id"),
+            inverseJoinColumns = @JoinColumn(name = "users_id")
     )
     private List<Users> users;
 
@@ -130,7 +132,7 @@ public class Groups {
         return "Groups{" +
                 "id=" + id +
                 ", createdAt=" + createdAt +
-                ", createdBy=" + createdBy +
+//                ", createdBy=" + createdBy +
                 ", updatedAt=" + updatedAt +
                 ", users=" + users +
                 ", expenses=" + expenses +
