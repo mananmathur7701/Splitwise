@@ -55,6 +55,7 @@ public class UsersController {
         newUserDTO.setNumber(users.getNumber());
         System.out.println(users.getPassword());
         newUserDTO.setPassword(users.getPassword());
+
         otp=generateOTP();
 
         System.out.println(newUserDTO.toString());
