@@ -15,6 +15,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { OtpVerifyComponent } from './otp-verify/otp-verify.component';
 
+import { ExpenseComponent } from './pages/dashboard/expense/expense.component';
+import { FriendsComponent } from './pages/dashboard/friends/friends.component';
+import { GroupsComponent } from './pages/dashboard/groups/groups.component';
+import { HomeComponent } from './pages/dashboard/home/home.component';
+
 
 
 @NgModule({
@@ -27,6 +32,10 @@ import { OtpVerifyComponent } from './otp-verify/otp-verify.component';
     HeaderComponent,
     LandingComponent,
     OtpVerifyComponent,
+    HomeComponent,
+    ExpenseComponent,
+    FriendsComponent,
+    GroupsComponent,
   ],
   imports: [
     BrowserModule,

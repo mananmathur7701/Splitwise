@@ -5,6 +5,10 @@ import { RegisterComponent } from './pages/register/register.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LandingComponent } from './landing/landing.component';
 import { OtpVerifyComponent } from './otp-verify/otp-verify.component';
+import { ExpenseComponent } from './pages/dashboard/expense/expense.component';
+import { FriendsComponent } from './pages/dashboard/friends/friends.component';
+import { GroupsComponent } from './pages/dashboard/groups/groups.component';
+import { HomeComponent } from './pages/dashboard/home/home.component';
 
 const routes: Routes = [
   {
@@ -30,7 +34,13 @@ const routes: Routes = [
   {
     path:'dashboard',
     component: DashboardComponent,
-    pathMatch:'full'
+    children:  [
+      { path: 'home', component: HomeComponent },
+      { path: 'addExpense', component: ExpenseComponent },
+      { path: 'friends', component: FriendsComponent },
+      { path: 'groups', component: GroupsComponent },
+    ],
+    // pathMatch:'full'
   }
 ];
 
