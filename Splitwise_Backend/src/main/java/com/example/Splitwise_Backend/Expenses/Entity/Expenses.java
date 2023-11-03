@@ -3,6 +3,7 @@ package com.example.Splitwise_Backend.Expenses.Entity;
 import com.example.Splitwise_Backend.ExpenseSplit.Entity.ExpenseSplit;
 import com.example.Splitwise_Backend.Groups.Entity.Groups;
 import com.example.Splitwise_Backend.PaymentSplit.Entity.PaymentSplit;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
@@ -23,6 +24,7 @@ public class Expenses {
 
     @ManyToOne
     @JoinColumn(name = "groups_id")
+    @JsonIgnoreProperties("expenses")
     private Groups groups;
 
     @OneToMany(mappedBy = "expenses")
@@ -104,9 +106,10 @@ public class Expenses {
     public String toString() {
         return "expenses{" +
                 "id=" + id +
+                ", comment='" + comment + '\'' +
                 ", spentAt=" + spentAt +
                 ", amountPaid=" + amountPaid +
-                ", comment='" + comment + '\'' +
+
                 ", groups=" + groups +
                 ", expenseSplit=" + expenseSplit +
                 ", paymentSplit=" + paymentSplit +

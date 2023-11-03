@@ -3,6 +3,7 @@
   box-sizing: border-box;
 }
 .frame-15 {
+  /* margin-top: 54px; */
   padding: 24px;
   display: flex;
   flex-direction: column;
@@ -12,7 +13,23 @@
   align-self: stretch;
   flex: 1;
   position: relative;
-  overflow: hidden;
+  width: 85vw;
+  height: 92vh;
+  /* max-width: 100% ; */
+  /* overflow: hidden; */
+  /* background-color: #00ff19; */
+}
+ul, li {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+ul {
+  display: flex;
+  flex-direction: column;
+  gap:12px;
+  max-height: 100%;
+  overflow-y: auto;
 }
 .frame-21 {
   display: flex;

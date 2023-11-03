@@ -28,6 +28,7 @@
   position: relative;
   box-shadow: 4px 4px 30px 0px rgba(0, 0, 0, 0.3);
   overflow: hidden;
+  width: 15vw;
 }
 .sp-lit {
   color: #a0d7c3;
@@ -387,31 +388,7 @@
   position: relative;
   overflow: hidden;
 }
-.frame-14 {
-  padding: 24px 0px 24px 0px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
-}
-.with-ammu-and-manan {
-  text-align: left;
-  font: 400 12px "Inter", sans-serif;
-  position: relative;
-}
-.with-ammu-and-manan-span {
-  color: #ffffff;
-  font: 400 12px "Inter", sans-serif;
-}
-.with-ammu-and-manan-span2 {
-  color: #ff0000;
-  font: 400 12px "Inter", sans-serif;
-}
-.with-ammu-and-manan-span3 {
-  color: #ffffff;
-  font: 400 12px "Inter", sans-serif;
+.active {
+  color: #ff0000; /* Change this to the desired style */
+  font-weight: bold;
 }
