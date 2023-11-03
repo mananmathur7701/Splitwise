@@ -2,7 +2,7 @@ package com.example.Splitwise_Backend.Expenses.DTO;
 
 import com.example.Splitwise_Backend.Groups.Entity.Groups;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class expenseDTO {
 
@@ -62,7 +62,7 @@ public class expenseDTO {
     @Override
     public String toString() {
         return "expenseDTO{" +
-                "spentAt=" + spentAt +
+                "spentAt=" + spentAt+
                 ", amountPaid=" + amountPaid +
                 ", comment='" + comment + '\'' +
                 ", groups=" + groups +

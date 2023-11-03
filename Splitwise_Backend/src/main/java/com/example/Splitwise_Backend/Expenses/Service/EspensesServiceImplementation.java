@@ -44,6 +44,7 @@ public class EspensesServiceImplementation implements ExpensesService{
             newExpenses.setAmountPaid(amountPaid);
             newExpenses.setSpentAt(Timestamp.from(Instant.now()));
             return expensesRepo.save(newExpenses);
+
         }
 
 //        expenseDTO expenseDTO = this.modelMapper.map(expense, expenseDTO.class);
