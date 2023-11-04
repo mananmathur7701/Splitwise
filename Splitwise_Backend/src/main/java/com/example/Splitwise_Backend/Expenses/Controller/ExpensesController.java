@@ -47,16 +47,26 @@ public class ExpensesController {
 
 
 
-//    @DeleteMapping("/deleteExpense/{id}")
-//    @CrossOrigin("http://localhost:4200")
-//    public String deleteExpense(@PathVariable int id)
+    @DeleteMapping("/deleteExpense/{id}")
+    @CrossOrigin("http://localhost:4200")
+    public String deleteExpense(@PathVariable int id)
+    {
+        return expensesServiceImplementation.deleteExpense(id);
+    }
 
 
     @GetMapping("/showAllGroupExpense/{groupId}")
     @CrossOrigin("http://localhost:4200")
-    public List<Expenses> showExpenseDetail(@PathVariable int groupId)
+    public List<Expenses> showAllGroupExpense(@PathVariable int groupId)
     {
-        return expensesServiceImplementation.showAllExpenses(groupId);
+        return expensesServiceImplementation.showAllGroupExpense(groupId);
+    }
+
+    @GetMapping("/expenseInfoById/{Id}")
+    @CrossOrigin("http://localhost:4200")
+    public Expenses expenseInfoById(@PathVariable int Id)
+    {
+        return expensesServiceImplementation.expenseInfoById(Id);
     }
 
 

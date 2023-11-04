@@ -31,9 +31,8 @@ public class EspensesServiceImplementation implements ExpensesService{
     @Override
     public Expenses addExpense(ExpenseInfoDTO expenseInfoDTO) {
         Optional<Groups> groupOfExpense = groupsRepo.findById(expenseInfoDTO.getGroupId());
-        if(groupOfExpense.isPresent())
-        {
-            float sumOfAmount=0;
+        if (groupOfExpense.isPresent()) {
+            float sumOfAmount = 0;
             Expenses newExpenses = new Expenses();
             newExpenses.setGroups(groupOfExpense.get());
             newExpenses.setComment(expenseInfoDTO.getComment());
@@ -44,46 +43,48 @@ public class EspensesServiceImplementation implements ExpensesService{
 
 //            Ab Chadhega Payment Split Ka Data
             List<SplitData> usersWhoPaidWithAmount = expenseInfoDTO.getPayee();
-            if(!usersWhoPaidWithAmount.isEmpty())
-            {
-                for (SplitData data: usersWhoPaidWithAmount)
-                {
-                 sumOfAmount+=data.getAmount();
+            if (!usersWhoPaidWithAmount.isEmpty()) {
+                for (SplitData data : usersWhoPaidWithAmount) {
+                    sumOfAmount += data.getAmount();
                 }
-                if(sumOfAmount==expenseInfoDTO.getAmountPaid())
-                {
-                    for (SplitData data: usersWhoPaidWithAmount)
-                    {
-                        ExpensesService expensesService
+                if (sumOfAmount == expenseInfoDTO.getAmountPaid()) {
+                    for (SplitData data : usersWhoPaidWithAmount) {
+                        ExpensesService expensesService;
                     }
-                }
-                else
-                {
+                } else {
                     throw new RuntimeException("Amount Mismatched Of Payment. Please Check Either Amount Paid Is More Than Shares Given By User. Or User Has Entered Wrong Shares As It Exceeds Amount");
                 }
-            }
-            else
-            {
+            } else {
                 throw new RuntimeException("No User List Found");
             }
 
         }
 
 //        expenseDTO expenseDTO = this.modelMapper.map(expense, expenseDTO.class);
-        else
-        {
+        else {
             throw new RuntimeException("Group Not Found");
         }
+        return null;
     }
 
     @Override
     public String deleteExpense(int expenseId) {
-        return null;
+        Optional<Expenses> expenseToBeDeleted = expensesRepo.findById(expenseId);
+        if(expenseToBeDeleted.isPresent())
+        {
+            String prompt = "Expense deleted";
+            expensesRepo.deleteById(expenseId);
+            return prompt;
+        }
+        else
+        {
+            throw new RuntimeException(("Expense does not exist"));
+        }
     }
 
 
     @Override
-    public List<Expenses> showAllExpenses(int groupId) {
+    public List<Expenses> showAllGroupExpense(int groupId) {
         Optional<List<Expenses>> exp = expensesRepo.findByGroups_Id(groupId);
         if(exp.isPresent())
         {
@@ -106,7 +107,7 @@ public class EspensesServiceImplementation implements ExpensesService{
 
     @Override
     public Expenses expenseInfoById(int expenseId) {
-        Optional<List<Expenses>> expense = expensesRepo.findById(expenseId);
+        Optional<Expenses> expense = expensesRepo.findById(expenseId);
         if(expense.isPresent())
         {
             return  expense.get();

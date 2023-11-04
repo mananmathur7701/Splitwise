@@ -43,42 +43,36 @@
   justify-content: space-between;
   flex: 1;
   position: relative;
+  width: 100%;
 }
 .frame-9 {
-  padding: 24px 48px 24px 48px;
   display: flex;
   flex-direction: row;
   gap: 10px;
   align-items: center;
   justify-content: center;
-  align-self: stretch;
-  flex-shrink: 0;
+  /* align-self: stretch; */
+  /* flex-shrink: 0; */
   position: relative;
+  width: 100%;
 }
 .home {
-  color: #ffffff;
+   color: #ffffff;
   text-align: left;
   font: 500 24px "Inter", sans-serif;
   position: relative;
-}
-.frame-10 {
-  background: #232323;
-
-  padding: 24px 48px 24px 48px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
-}
-.friends {
-  color: #ffffff;
-  text-align: left;
-  font: 500 24px "Inter", sans-serif;
-  position: relative;
+  width: 100%;
+  /* background: #232323; */
+  /* width: 100%; */
+    padding: 24px 48px 24px 48px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
+    /* flex-shrink: 0; */
+    position: relative;
 }
 .frame-11 {
   padding: 24px 48px 24px 48px;
@@ -389,6 +383,15 @@
   overflow: hidden;
 }
 .active {
-  color: #ff0000; /* Change this to the desired style */
-  font-weight: bold;
+  background: #232323;
+/* width: 100%; */
+  padding: 24px 48px 24px 48px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  /* flex-shrink: 0; */
+  position: relative;
 }
