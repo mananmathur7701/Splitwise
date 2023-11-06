@@ -7,7 +7,7 @@ public class ExpenseInfoDTO {
     private float amountPaid;
     private String comment;
     private List<SplitData> payee;
-    private List<SplitData> settelment;
+    private List<SplitData> settlement;
 
     public ExpenseInfoDTO() {
     }
@@ -17,7 +17,7 @@ public class ExpenseInfoDTO {
         this.amountPaid = amountPaid;
         this.comment = comment;
         this.payee = payee;
-        this.settelment = settelment;
+        this.settlement = settelment;
     }
 
     public int getGroupId() {
@@ -52,12 +52,12 @@ public class ExpenseInfoDTO {
         this.payee = payee;
     }
 
-    public List<SplitData> getSettelment() {
-        return settelment;
+    public List<SplitData> getSettlement() {
+        return settlement;
     }
 
-    public void setSettelment(List<SplitData> settelment) {
-        this.settelment = settelment;
+    public void setSettlement(List<SplitData> settlement) {
+        this.settlement = settlement;
     }
 
     @Override
@@ -67,7 +67,7 @@ public class ExpenseInfoDTO {
                 ", amountPaid=" + amountPaid +
                 ", comment='" + comment + '\'' +
                 ", payee=" + payee +
-                ", settelment=" + settelment +
+                ", settelment=" + settlement +
                 '}';
     }
 }

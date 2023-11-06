@@ -1,4 +1,32 @@
 package com.example.Splitwise_Backend.ExpenseSplit.Controller;
 
-public class ExpenseSplitController {
+import com.example.Splitwise_Backend.ExpenseSplit.Entity.ExpenseSplit;
+import com.example.Splitwise_Backend.ExpenseSplit.Service.ExpenseSplitServiceImplementation;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+public class ExpenseSplitController
+{
+    private final ExpenseSplitServiceImplementation expenseSplitServiceImplementation;
+
+    public ExpenseSplitController(ExpenseSplitServiceImplementation expenseSplitServiceImplementation) {
+        this.expenseSplitServiceImplementation = expenseSplitServiceImplementation;
+    }
+
+    @GetMapping("/SharesOfGroup/{id}")
+    public List<ExpenseSplit> sharesOfGroup(@PathVariable int id)
+    {
+        return expenseSplitServiceImplementation.expenseSplitOfAllGroups(id);
+    }
+
+    @GetMapping("/SharesOfParticularTransaction/{id}")
+    public List<ExpenseSplit> sharesOfTransaction(@PathVariable int id)
+    {
+        return expenseSplitServiceImplementation.expenseSplitOfParticularExpenseId(id);
+    }
+
 }

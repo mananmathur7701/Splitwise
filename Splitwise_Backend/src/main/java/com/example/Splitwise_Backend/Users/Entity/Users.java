@@ -192,11 +192,11 @@ public class Users {
                 ", number='" + number + '\'' +
                 ", password='" + password + '\'' +
 //                ", groups=" + groups +
-                ", paymentSplit=" + paymentSplit +
-                ", expenseSplit1=" + expenseSplit1 +
-                ", expenseSplit2=" + expenseSplit2 +
-                ", squareOffTransactions1=" + squareOffTransactions1 +
-                ", squareOffTransactions2=" + squareOffTransactions2 +
+//                ", paymentSplit=" + paymentSplit +
+//               ", expenseSplit1=" + expenseSplit1 +
+//                ", expenseSplit2=" + expenseSplit2 +
+//                ", squareOffTransactions1=" + squareOffTransactions1 +
+//                ", squareOffTransactions2=" + squareOffTransactions2 +
 //                ", groupsCreatedByUser=" + groupsCreatedByUser +
                 '}';
     }
