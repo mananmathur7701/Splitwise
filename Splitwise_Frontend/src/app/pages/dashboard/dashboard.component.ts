@@ -7,4 +7,7 @@ import { RouterLinkActive } from '@angular/router';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
+  logout() {
+    localStorage.setItem('id', '');
+  }
 }

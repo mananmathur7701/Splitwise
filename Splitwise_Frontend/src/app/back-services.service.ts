@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +46,32 @@ export class BackServicesService {
     return this._http.post("http://localhost:8080/otpVerify", otp);
     
   }
+
+  // ********************* TO SHOW ALL GROUPS OF USER ****************
+
+  groupsOfUser(id:number):Observable<any>
+  {
+
+    const header = new HttpHeaders({
+      'Access-Control-Allow-Origin' : '*'
+    });
+    return this._http.get("http://localhost:8080/groupsOfUser/"+id, {headers : header}); 
+  
+  }
+
+  //************* TO ADD NEW GROUP *************************
+  addNewGroup(id:number, groupName:string):Observable<any>
+  {
+    const requestBody ={
+       id:id,
+       groupName: groupName,
+        
+    };
+    return this._http.post("http://localhost:8080/createGroup",requestBody);
+  }  
+ 
+  
+
   
 }
 

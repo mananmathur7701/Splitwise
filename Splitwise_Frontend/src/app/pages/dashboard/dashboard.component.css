@@ -56,6 +56,10 @@
   position: relative;
   width: 100%;
 }
+
+.frame-9 a {
+  cursor: pointer;
+}
 .home {
    color: #ffffff;
   text-align: left;

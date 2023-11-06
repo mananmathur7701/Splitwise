@@ -9,43 +9,47 @@ import { ExpenseComponent } from './pages/dashboard/expense/expense.component';
 import { FriendsComponent } from './pages/dashboard/friends/friends.component';
 import { GroupsComponent } from './pages/dashboard/groups/groups.component';
 import { HomeComponent } from './pages/dashboard/home/home.component';
+import { AddGroupComponent } from './pages/dashboard/groups/add-group/add-group.component';
 
 const routes: Routes = [
   {
-    path:'',
+    path: '',
     component: LandingComponent,
-    pathMatch:'full'
+    pathMatch: 'full',
   },
   {
-    path:'register',
+    path: 'register',
     component: RegisterComponent,
-    pathMatch:'full'
+    pathMatch: 'full',
   },
   {
-    path:'otp',
+    path: 'otp',
     component: OtpVerifyComponent,
-    pathMatch:'full'
+    pathMatch: 'full',
   },
   {
-    path:'login',
+    path: 'login',
     component: LoginComponent,
-    pathMatch:'full'
+    pathMatch: 'full',
   },
   {
-    path:'dashboard',
+    path: 'dashboard',
     component: DashboardComponent,
-    children:  [
+    children: [
       { path: 'home', component: HomeComponent },
       { path: 'addExpense', component: ExpenseComponent },
       { path: 'friends', component: FriendsComponent },
-      { path: 'groups', component: GroupsComponent },
+      { path: 'groups', component: GroupsComponent, 
+      children: [
+        {path: 'addGroup', component: AddGroupComponent}
+      ] },
     ],
     // pathMatch:'full'
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
