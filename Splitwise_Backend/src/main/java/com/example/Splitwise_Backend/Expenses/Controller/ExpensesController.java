@@ -77,6 +77,8 @@ public class ExpensesController {
         return expensesServiceImplementation.editExpense(id, expenseInfoDTO);
     }
 
+//    @GetMapping("/showALlUserExpense/{id}")
+//    @CrossOrigin("http://localhost:4200")
 
 }
 

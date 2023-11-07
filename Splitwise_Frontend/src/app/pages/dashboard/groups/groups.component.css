@@ -379,3 +379,12 @@ ul {
   font: 700 24px "Inter", sans-serif;
   position: relative;
 }
+
+.addBtn{
+    width: 100px;
+    height: 50px;
+    font-size: medium;
+    background-color: #232323;
+    border: none;
+    color: white;
+}

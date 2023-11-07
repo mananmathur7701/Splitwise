@@ -24,6 +24,12 @@
     /* display: block; */
     color: white;
   }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
   
   .registration-form input {
     width: 90%;
