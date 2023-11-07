@@ -67,8 +67,8 @@ public class PaymentSplit {
         return "paymentSplit{" +
                 "id=" + id +
                 ", amountPaid=" + amountPaid +
-                ", users=" + users +
-                ", expenses=" + expenses +
+                ", users=" + users.getId() +
+                ", expenses=" + expenses.getId() +
                 '}';
     }
 }

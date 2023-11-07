@@ -110,9 +110,9 @@ public class Expenses {
                 ", spentAt=" + spentAt +
                 ", amountPaid=" + amountPaid +
 
-                ", groups=" + groups +
-                ", expenseSplit=" + expenseSplit +
-                ", paymentSplit=" + paymentSplit +
+                ", groups=" + groups.getId() +
+//                ", expenseSplit=" + expenseSplit+
+//                ", paymentSplit=" + paymentSplit +
                 '}';
     }
 }

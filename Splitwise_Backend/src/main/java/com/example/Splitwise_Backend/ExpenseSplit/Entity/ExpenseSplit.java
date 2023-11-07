@@ -97,10 +97,10 @@ public class ExpenseSplit {
         return "expenseSplit{" +
                 "id=" + id +
                 ", shareAmount=" + shareAmount +
-                ", payerId=" + payerId +
-                ", payedToId=" + payedToId +
-                ", expenses=" + expenses +
-                ", groups=" + groups +
+                ", payerId=" + payerId.getId() +
+                ", payedToId=" + payedToId.getId() +
+                ", expenses=" + expenses.getId() +
+                ", groups=" + groups.getId() +
                 '}';
     }
 }

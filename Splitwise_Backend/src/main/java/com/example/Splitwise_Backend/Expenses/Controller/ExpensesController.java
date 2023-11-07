@@ -27,7 +27,7 @@ public class ExpensesController {
 
     @PostMapping("/addExpenseToGroup")
     @CrossOrigin("http://localhost:4200")
-    public Expenses addExpense(@RequestBody ExpenseInfoDTO expenseInfoDTO)
+    public String addExpense(@RequestBody ExpenseInfoDTO expenseInfoDTO)
     {
         return expensesServiceImplementation.addExpense(expenseInfoDTO);
 //        ExpenseInfoDTO expenseToBeAdded = new ExpenseInfoDTO();
@@ -70,9 +70,12 @@ public class ExpensesController {
     }
 
 
-//    @PostMapping("/editExpense/{id}")
-//    @CrossOrigin("http://localhost:4200")
-//    public Expenses editExpense(@PathVariable int id)
+    @PostMapping("/editExpense/{id}")
+    @CrossOrigin("http://localhost:4200")
+    public String editExpense(@PathVariable int id,@RequestBody ExpenseInfoDTO expenseInfoDTO)
+    {
+        return expensesServiceImplementation.editExpense(id, expenseInfoDTO);
+    }
 
 //    @GetMapping("/showALlUserExpense/{id}")
 //    @CrossOrigin("http://localhost:4200")

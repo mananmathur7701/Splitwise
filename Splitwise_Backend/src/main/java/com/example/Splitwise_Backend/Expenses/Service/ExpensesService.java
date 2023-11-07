@@ -6,9 +6,9 @@ import java.util.List;
 public interface ExpensesService {
 
 //    public Expenses addExpense(int groupId,float amountPaid,String comment);
-    public Expenses addExpense(ExpenseInfoDTO expenseInfoDTO);
+    public String addExpense(ExpenseInfoDTO expenseInfoDTO);
     public String deleteExpense(int expenseId);
     public List<Expenses> showAllGroupExpense(int groupId);
-    public Expenses editExpense(int ExpenseId);
+    public String editExpense(int expenseId, ExpenseInfoDTO expenseInfoDTO);
     public Expenses expenseInfoById(int expenseId);
 }

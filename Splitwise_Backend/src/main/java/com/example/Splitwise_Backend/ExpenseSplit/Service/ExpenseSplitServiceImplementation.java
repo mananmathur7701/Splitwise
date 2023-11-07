@@ -10,6 +10,7 @@ import com.example.Splitwise_Backend.Users.Repository.UsersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 @Service
 public class ExpenseSplitServiceImplementation implements ExpenseSplitService
@@ -63,6 +64,86 @@ public class ExpenseSplitServiceImplementation implements ExpenseSplitService
         else
         {
             throw new RuntimeException("Out Of Given Users, One User Not Found");
+        }
+    }
+
+    @Override
+    public String deleteExpenseSplit(int expenseId) {
+        Optional<List<ExpenseSplit>> expenseSplitToBeDeleted = expenseSplitRepo.findByExpenses_Id(expenseId);
+        if(expenseSplitToBeDeleted.isPresent())
+        {
+            String result = "Expense Split Deleted For Expense Id : "+expenseId;
+            for (ExpenseSplit e:expenseSplitToBeDeleted.get())
+            {
+                result.concat("\n").concat(e.toString());
+                expenseSplitRepo.delete(e);
+            }
+            return result;
+        }
+        else
+        {
+            throw new RuntimeException("Expense Not Found");
+        }
+    }
+
+    @Override
+    public List<ExpenseSplit> amountToBeRecievedByYou(int userId) {
+        Optional<Users> userWhoRecieveAmount = usersRepo.findById(userId);
+        if (userWhoRecieveAmount.isPresent())
+        {
+            Optional<List<ExpenseSplit>> allTransactionWhereUserRecieve = expenseSplitRepo.findByPayedToId(userWhoRecieveAmount.get());
+            return allTransactionWhereUserRecieve.get();
+        }
+        else
+        {
+            throw new RuntimeException("User Not Found");
+        }
+
+    }
+
+    @Override
+    public List<ExpenseSplit> amountToBeGivenByYou(int userId)
+    {
+        Optional<Users> userWhoGivesAmount = usersRepo.findById(userId);
+        if (userWhoGivesAmount.isPresent())
+        {
+            Optional<List<ExpenseSplit>> allTransactionWhereUserGives = expenseSplitRepo.findByPayerId(userWhoGivesAmount.get());
+            return allTransactionWhereUserGives.get();
+        }
+        else
+        {
+            throw new RuntimeException("User Not Found");
+        }
+    }
+
+
+    @Override
+    public List<ExpenseSplit> expenseSplitOfAllGroups(int groupId)
+    {
+        Optional<Groups> expensesOfGroup= groupsRepo.findById(groupId);
+        if (expensesOfGroup.isPresent())
+        {
+            Optional<List<ExpenseSplit>> allTransactionOfGroup = expenseSplitRepo.findByGroups_Id(groupId);
+            return allTransactionOfGroup.get();
+        }
+        else
+        {
+            throw new RuntimeException("Group Not Found");
+        }
+    }
+
+    @Override
+    public List<ExpenseSplit> expenseSplitOfParticularExpenseId(int expenseId)
+    {
+        Optional<Expenses> expensesOfExpenseSplit= expensesRepo.findById(expenseId);
+        if (expensesOfExpenseSplit.isPresent())
+        {
+            Optional<List<ExpenseSplit>> allTransactionOfExpense = expenseSplitRepo.findByExpenses_Id(expenseId);
+            return allTransactionOfExpense.get();
+        }
+        else
+        {
+            throw new RuntimeException("Expense Not Found");
         }
     }
 }

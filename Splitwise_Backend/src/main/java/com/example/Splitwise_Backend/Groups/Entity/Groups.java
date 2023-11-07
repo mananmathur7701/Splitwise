@@ -132,11 +132,9 @@ public class Groups {
         return "Groups{" +
                 "id=" + id +
                 ", createdAt=" + createdAt +
-//                ", createdBy=" + createdBy +
                 ", updatedAt=" + updatedAt +
-                ", users=" + users +
-                ", expenses=" + expenses +
-                ", ExpenseSplits=" + ExpenseSplits +
+//                ", expenses=" + expenses +
+//                ", ExpenseSplits=" + ExpenseSplits +
                 '}';
     }
 }
