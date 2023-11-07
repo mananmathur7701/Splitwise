@@ -74,6 +74,8 @@ public class ExpensesController {
 //    @CrossOrigin("http://localhost:4200")
 //    public Expenses editExpense(@PathVariable int id)
 
+//    @GetMapping("/showALlUserExpense/{id}")
+//    @CrossOrigin("http://localhost:4200")
 
 }
 
