@@ -19,7 +19,8 @@ import { ExpenseComponent } from './pages/dashboard/expense/expense.component';
 import { FriendsComponent } from './pages/dashboard/friends/friends.component';
 import { GroupsComponent } from './pages/dashboard/groups/groups.component';
 import { HomeComponent } from './pages/dashboard/home/home.component';
-import { AddGroupComponent } from './pages/dashboard/groups/add-group/add-group.component';
+import { AddGroupComponent } from './pages/dashboard/add-group/add-group.component';
+import { GroupDetailsComponent } from './pages/dashboard/group-details/group-details.component';
 
 
 
@@ -38,6 +39,7 @@ import { AddGroupComponent } from './pages/dashboard/groups/add-group/add-group.
     FriendsComponent,
     GroupsComponent,
     AddGroupComponent,
+    GroupDetailsComponent,
   ],
   imports: [
     BrowserModule,

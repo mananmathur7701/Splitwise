@@ -388,3 +388,17 @@ ul {
     border: none;
     color: white;
 }
+.list-section {
+  color: white;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  font-size: 18px;
+}
+
+.addBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}

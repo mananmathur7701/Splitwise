@@ -60,7 +60,7 @@ export class BackServicesService {
   }
 
   //************* TO ADD NEW GROUP *************************
-  addNewGroup(id:number, groupName:string):Observable<any>
+  addNewGroup(id:number, groupName:any):Observable<any>
   {
     const requestBody ={
        id:id,
@@ -69,9 +69,76 @@ export class BackServicesService {
     };
     return this._http.post("http://localhost:8080/createGroup",requestBody);
   }  
+
+
+  //********EK USER KO KAHAN SE KITNE PAISE MILENGE WO LIST */
+  expensesOfUserWhereOwes(id:number):Observable<any>
+  {
+    const header= new HttpHeaders({
+      "Access-Control-Allow-Origin" : "*"
+
+    });
+    return this._http.get("http://localhost:8080/showAllPaymentsDoneOfExpense/{id}", {headers : header});
+  }
+
+  //**********EK USER KO KIDHR KITNE PAISE DENE HAI WO LIST */
+  expensesOfUserWhereOwed(id:number):Observable<any>
+  {
+    const header= new HttpHeaders({
+      "Access-Control-Allow-Origin" : "*"
+    });
+    return this._http.get("http://localhost:8080/SharesOfParticularTransaction/{id}",{headers: header});
+  }
+
+  //*************ADD EXPENSE */
+  // addExpense():Observable<any>
+  // {
+  //   const requestBody={
+  //     id:id,
+
+  //   };
+
+  // }
  
+
+  //*******EK GROUP K SAARE EXPENSES DIKHAYEGA */
+  showAllGroupExpense(id:number): Observable<any>
+  {
+    const header= new HttpHeaders({
+      "Access-Control-Allow-Origin" : "*"
+    });
+    return this._http.get("http://localhost:8080/showAllGroupExpense/{groupId}", {headers: header});
+  }
+
+  //*****EK USER KO TOTAL KITNE PAISE DENE HAI USKA SUM */
+
+  sumOfDeneKaMoney():Observable<any>
+  {
+    const header = new HttpHeaders({
+
+    });
+    return this._http.get("")
+  }
+
+  //*************EK USER KO TOTAL KITNE PAISE MILNE HAI USKA SUM */
   
+
+  sumOfLeneKaMoney():Observable<any>
+  {
+    const header = new HttpHeaders({
+
+    });
+    return this._http.get("")
+  }
+
+  //***********TOTAL BALANCE DIKHANE KO LENE MINUS DENE KA EITHER PLUS OR MINUS  */
+  totalBalance():Observable<any>
+  {
+    const header = new HttpHeaders({
+
+    });
+    return this._http.get("")
+  }
 
   
 }
-
