@@ -19,7 +19,6 @@ public class SquareOffTransactionsController
         this.squareOffTransactionsServiceImplementation = squareOffTransactionsServiceImplementation;
     }
 
-
     @GetMapping("/BalancesOfUsers/{id}")
     @CrossOrigin("http://localhost:4200")
     public ArrayList<String> dashboardData(@PathVariable int id)
