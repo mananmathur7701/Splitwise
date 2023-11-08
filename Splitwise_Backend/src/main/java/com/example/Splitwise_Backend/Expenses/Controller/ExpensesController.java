@@ -21,31 +21,12 @@ public class ExpensesController {
         this.expensesServiceImplementation = expensesServiceImplementation;
     }
 
-    //    private  ExpensesService expensesService;
-//    private ModelMapper modelMapper;
-
-
     @PostMapping("/addExpenseToGroup")
     @CrossOrigin("http://localhost:4200")
     public String addExpense(@RequestBody ExpenseInfoDTO expenseInfoDTO)
     {
         return expensesServiceImplementation.addExpense(expenseInfoDTO);
-//        ExpenseInfoDTO expenseToBeAdded = new ExpenseInfoDTO();
-//
-//        expenseToBeAdded.setGroupId(Integer.parseInt(data.get("groupId")));
-//        expenseToBeAdded.setAmountPaid(Float.parseFloat(data.get("amountPaid")));
-//        expenseToBeAdded.setComment(data.get("comment"));
-//        expenseToBeAdded.set
-//        float amountPaid = Float.parseFloat(data.get("amountPaid"));
-//        String comment = data.get("comment");
-//        Expenses expenses=  expensesService.addExpense(id,amountPaid,comment);
-        // Call the service to save the new expense
-        //return modelMapper.map(expenses, expenseDTO.class);
-       // return ExpensesService.addExpense(expenses);
     }
-
-
-
 
     @DeleteMapping("/deleteExpense/{id}")
     @CrossOrigin("http://localhost:4200")
@@ -53,7 +34,6 @@ public class ExpensesController {
     {
         return expensesServiceImplementation.deleteExpense(id);
     }
-
 
     @GetMapping("/showAllGroupExpense/{groupId}")
     @CrossOrigin("http://localhost:4200")
@@ -69,16 +49,11 @@ public class ExpensesController {
         return expensesServiceImplementation.expenseInfoById(Id);
     }
 
-
     @PostMapping("/editExpense/{id}")
     @CrossOrigin("http://localhost:4200")
     public String editExpense(@PathVariable int id,@RequestBody ExpenseInfoDTO expenseInfoDTO)
     {
         return expensesServiceImplementation.editExpense(id, expenseInfoDTO);
     }
-
-//    @GetMapping("/showALlUserExpense/{id}")
-//    @CrossOrigin("http://localhost:4200")
-
 }
 
