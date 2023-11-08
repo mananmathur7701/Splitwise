@@ -13,7 +13,7 @@ import java.util.Map;
 @CrossOrigin("http://localhost:4200")
 public class GroupsController
 {
-    private GroupsServiceImplementation groupsServiceImplementation;
+    private final GroupsServiceImplementation groupsServiceImplementation;
 
     @Autowired
     public GroupsController(GroupsServiceImplementation groupsServiceImplementation) {
