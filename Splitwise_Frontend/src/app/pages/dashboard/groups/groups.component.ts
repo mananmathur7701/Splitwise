@@ -49,5 +49,31 @@ export class GroupsComponent implements OnInit{
   }
 
 
+  getLeneKaSum():void{
+    this.backService.sumOfLeneKaMoney().subscribe(
+      (response) => {
+        console.log();
+        this.groups = response;
+        console.log();
+      },
+      (error) => {
+        console.error("error fetching data", error);
+      }
+    );
+  }
+
+  getDeneKaSum(): void{
+    this.backService.sumOfDeneKaMoney().subscribe(
+      (response) => {
+        console.log();
+        this.groups = response;
+        console.log();
+      },
+      (error) => {
+        console.error("error fetching data", error);
+      }
+    );
+  }
+
 
 }

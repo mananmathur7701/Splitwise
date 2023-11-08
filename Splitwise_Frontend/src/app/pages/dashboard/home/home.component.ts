@@ -38,4 +38,31 @@ export class HomeComponent implements OnInit{
   }
 
 
+  getLeneKaSum():void{
+    this.backService.sumOfLeneKaMoney().subscribe(
+      (response) => {
+        console.log();
+        this.home = response;
+        console.log();
+      },
+      (error) => {
+        console.error("error fetching data", error);
+      }
+    );
+  }
+
+  getDeneKaSum(): void{
+    this.backService.sumOfDeneKaMoney().subscribe(
+      (response) => {
+        console.log();
+        this.home = response;
+        console.log();
+      },
+      (error) => {
+        console.error("error fetching data", error);
+      }
+    );
+  }
+
+
 }
