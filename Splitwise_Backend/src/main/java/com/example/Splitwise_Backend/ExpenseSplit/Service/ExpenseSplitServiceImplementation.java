@@ -4,6 +4,7 @@ import com.example.Splitwise_Backend.ExpenseSplit.Repository.ExpenseSplitRepo;
 import com.example.Splitwise_Backend.Expenses.Entity.Expenses;
 import com.example.Splitwise_Backend.Groups.Entity.Groups;
 import com.example.Splitwise_Backend.Groups.Repository.GroupsRepo;
+import com.example.Splitwise_Backend.SquareOffTransactions.Entity.SquareOffTransactions;
 import com.example.Splitwise_Backend.Users.Entity.Users;
 import com.example.Splitwise_Backend.Expenses.Repository.ExpensesRepo;
 import com.example.Splitwise_Backend.Users.Repository.UsersRepo;
@@ -146,4 +147,64 @@ public class ExpenseSplitServiceImplementation implements ExpenseSplitService
             throw new RuntimeException("Expense Not Found");
         }
     }
+
+
+
+
+
+    @Override
+    public float totalAmountJoDenaHaiByPayerId(int payerId)
+    {
+        Optional<Users> payer = usersRepo.findById(payerId);
+        if(payer.isPresent())
+        {
+            float totalAmount = 0;
+            Optional<List<ExpenseSplit>> totalPaisaDenaHai = expenseSplitRepo.findByPayerId(payer.get());
+            if (totalPaisaDenaHai.isPresent())
+            {
+                for (ExpenseSplit ex: totalPaisaDenaHai.get())
+                {
+                    totalAmount+= ex.getShareAmount();
+                }
+                return totalAmount;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        else
+        {
+            throw new RuntimeException("User Not Found Who Needs To Pay");
+        }
+
+    }
+
+    @Override
+    public float totalAmountJoLenaHaiByPaidToId(int payedToId)
+    {
+        Optional<Users> payee = usersRepo.findById(payedToId);
+        if(payee.isPresent())
+        {
+            float totalAmount = 0;
+            Optional<List<ExpenseSplit>> totalPaisaLenaHai = expenseSplitRepo.findByPayedToId(payee.get());
+            if (totalPaisaLenaHai.isPresent())
+            {
+                for (ExpenseSplit ex: totalPaisaLenaHai.get())
+                {
+                    totalAmount+= ex.getShareAmount();
+                }
+                return totalAmount;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        else
+        {
+            throw new RuntimeException("User Not Found Who Needs To Pay");
+        }
+    }
+
 }

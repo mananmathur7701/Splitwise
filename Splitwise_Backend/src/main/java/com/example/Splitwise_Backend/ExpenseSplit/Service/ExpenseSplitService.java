@@ -12,4 +12,6 @@ public interface ExpenseSplitService {
     public List<ExpenseSplit> amountToBeGivenByYou(int userId);
     public List<ExpenseSplit> expenseSplitOfAllGroups(int groupId);
     public List<ExpenseSplit> expenseSplitOfParticularExpenseId(int expenseId);
+    public float totalAmountJoDenaHaiByPayerId(int payerId);
+    public float totalAmountJoLenaHaiByPaidToId(int payedToId);
 }
