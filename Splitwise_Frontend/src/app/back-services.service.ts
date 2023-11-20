@@ -112,33 +112,43 @@ export class BackServicesService {
 
   //*****EK USER KO TOTAL KITNE PAISE DENE HAI USKA SUM */
 
-  sumOfDeneKaMoney():Observable<any>
-  {
-    const header = new HttpHeaders({
+  // sumOfDeneKaMoney():Observable<any>
+  // {
+  //   const header = new HttpHeaders({
 
-    });
-    return this._http.get("")
-  }
+  //   });
+  //   return this._http.get("")
+  // }
 
   //*************EK USER KO TOTAL KITNE PAISE MILNE HAI USKA SUM */
   
 
-  sumOfLeneKaMoney():Observable<any>
-  {
-    const header = new HttpHeaders({
+  // sumOfLeneKaMoney():Observable<any>
+  // {
+  //   const header = new HttpHeaders({
 
-    });
-    return this._http.get("")
-  }
+  //   });
+  //   return this._http.get("")
+  // }
 
   //***********TOTAL BALANCE DIKHANE KO LENE MINUS DENE KA EITHER PLUS OR MINUS  */
-  totalBalance():Observable<any>
+  // totalBalance():Observable<any>
+  // {
+  //   const header = new HttpHeaders({
+
+  //   });
+  //   return this._http.get("")
+  // }
+
+  //***********LENE KA SUM, DENE KA SUM & BALANCE SAB SATH MEIN */
+
+  lenaDenaBalance(): Observable<any>
   {
     const header = new HttpHeaders({
-
+      
     });
-    return this._http.get("")
+    return this._http.get("http://localhost:8080/BalancesOfUsers/{id}")
   }
-
   
 }
+ 

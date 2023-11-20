@@ -49,24 +49,37 @@ export class GroupsComponent implements OnInit{
   }
 
 
-  getLeneKaSum():void{
-    this.backService.sumOfLeneKaMoney().subscribe(
-      (response) => {
-        console.log();
-        this.groups = response;
-        console.log();
-      },
-      (error) => {
-        console.error("error fetching data", error);
-      }
-    );
-  }
+  // getLeneKaSum():void{
+  //   this.backService.sumOfLeneKaMoney().subscribe(
+  //     (response) => {
+  //       console.log();
+  //       this.groups = response;
+  //       console.log();
+  //     },
+  //     (error) => {
+  //       console.error("error fetching data", error);
+  //     }
+  //   );
+  // }
 
-  getDeneKaSum(): void{
-    this.backService.sumOfDeneKaMoney().subscribe(
+  // getDeneKaSum(): void{
+  //   this.backService.sumOfDeneKaMoney().subscribe(
+  //     (response) => {
+  //       console.log();
+  //       this.groups = response;
+  //       console.log();
+  //     },
+  //     (error) => {
+  //       console.error("error fetching data", error);
+  //     }
+  //   );
+  // }
+
+  lenaDenaBalance(): void{
+    this.backService.lenaDenaBalance().subscribe(
       (response) => {
         console.log();
-        this.groups = response;
+        this.groups=response;
         console.log();
       },
       (error) => {
