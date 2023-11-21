@@ -9,6 +9,10 @@ import { BackServicesService } from 'src/app/back-services.service';
 export class GroupsComponent implements OnInit{
   groups!: any[];
   id : any = localStorage.getItem('id');
+  mylist!:any[];
+  owed:number |any;
+  owes:number |any;
+  balance:number |any;
   constructor(
     private backService: BackServicesService
   ) {};
@@ -17,6 +21,7 @@ export class GroupsComponent implements OnInit{
     // this.addGroup();
     this.getGroups();
     this.addGroup();
+    this.udhariKaData();
   }
 
   getGroups(): void {
@@ -88,5 +93,21 @@ export class GroupsComponent implements OnInit{
     );
   }
 
+
+  udhariKaData(){
+    this.backService.dashboardKaData(this.id).subscribe(
+      (data)=>{
+        console.log(data);
+        this.mylist=data;
+        this.owed=this.mylist[0];
+        this.owes=this.mylist[1];
+        this.balance=this.mylist[2];
+      },
+      (error)=>
+      {
+        console.log(error);
+      }
+    )
+  }
 
 }

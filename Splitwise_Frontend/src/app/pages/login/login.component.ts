@@ -66,7 +66,8 @@ export class LoginComponent {
           (data) => {
             console.log(data);
             const id = data.id;
-            localStorage.setItem("id",String(id));
+            //localStorage.setItem("id",String(id));
+            localStorage.setItem("id",id);
             this.router.navigateByUrl('/dashboard/home');
             resolve(data); // Resolve the Promise with the data
           },

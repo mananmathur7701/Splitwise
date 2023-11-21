@@ -78,7 +78,7 @@ export class BackServicesService {
       "Access-Control-Allow-Origin" : "*"
 
     });
-    return this._http.get("http://localhost:8080/showAllPaymentsDoneOfExpense/{id}", {headers : header});
+    return this._http.get("http://localhost:8080/showAllPaymentsDoneOfExpense/"+id, {headers : header});
   }
 
   //**********EK USER KO KIDHR KITNE PAISE DENE HAI WO LIST */
@@ -87,7 +87,7 @@ export class BackServicesService {
     const header= new HttpHeaders({
       "Access-Control-Allow-Origin" : "*"
     });
-    return this._http.get("http://localhost:8080/SharesOfParticularTransaction/{id}",{headers: header});
+    return this._http.get("http://localhost:8080/SharesOfParticularTransaction/"+id,{headers: header});
   }
 
   //*************ADD EXPENSE */
@@ -102,12 +102,12 @@ export class BackServicesService {
  
 
   //*******EK GROUP K SAARE EXPENSES DIKHAYEGA */
-  showAllGroupExpense(id:number): Observable<any>
+  showAllGroupExpense(groupId:number): Observable<any>
   {
     const header= new HttpHeaders({
       "Access-Control-Allow-Origin" : "*"
     });
-    return this._http.get("http://localhost:8080/showAllGroupExpense/{groupId}", {headers: header});
+    return this._http.get("http://localhost:8080/showAllGroupExpense/"+groupId, {headers: header});
   }
 
   //*****EK USER KO TOTAL KITNE PAISE DENE HAI USKA SUM */
@@ -142,15 +142,15 @@ export class BackServicesService {
 
   //***********LENE KA SUM, DENE KA SUM & BALANCE SAB SATH MEIN */
 
-  lenaDenaBalance(id:String): Observable<any>
+  lenaDenaBalance(id:number): Observable<any>
   {
     const header = new HttpHeaders({
       
     });
-    return this._http.get("http://localhost:8080/BalancesOfUsers/${id}")
+    return this._http.get("http://localhost:8080/BalancesOfUsers/"+id)
   }
 
-  dashboardKaData(id:String): Observable<any>
+  dashboardKaData(id:number): Observable<any>
   {
   //   const header = new HttpHeaders({
       
@@ -160,7 +160,7 @@ export class BackServicesService {
   const header= new HttpHeaders({
     "Access-Control-Allow-Origin" : "*"
   });
-  return this._http.get("http://localhost:8080/BalancesOfUsers/${id}",{headers: header});
+  return this._http.get("http://localhost:8080/BalancesOfUsers/"+id,{headers: header});
   }
   
 }

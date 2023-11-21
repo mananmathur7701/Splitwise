@@ -11,9 +11,9 @@ export class HomeComponent implements OnInit
   home!: any[];
   mylist!:any[];
   id : any = localStorage.getItem("id");
-  owed:number = 0;
-  owes:number=0;
-  balance:number=0;
+  owed:number | any;
+  owes:number |any;
+  balance:number |any;
   constructor(private backService: BackServicesService){};
 
   ngOnInit(): void
