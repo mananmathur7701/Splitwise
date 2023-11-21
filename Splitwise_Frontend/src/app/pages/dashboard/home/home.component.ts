@@ -6,17 +6,24 @@ import { BackServicesService } from 'src/app/back-services.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit
+{
   home!: any[];
+  mylist!:any[];
   id : any = localStorage.getItem("id");
-  constructor(
-    private backService: BackServicesService
-  ){};
+  owed:number = 0;
+  owes:number=0;
+  balance:number=0;
+  constructor(private backService: BackServicesService){};
 
-  ngOnInit(): void {
-  this.getHome();
-}
-  getHome(): void {
+  ngOnInit(): void
+  {
+    this.getHome();
+    this.udhariKaData();
+  }
+
+  getHome(): void
+  {
     this.backService.expensesOfUserWhereOwed(this.id).subscribe(
       (response) => {
         console.log(this.id);
@@ -37,6 +44,21 @@ export class HomeComponent implements OnInit{
     );
   }
 
+  udhariKaData(){
+    this.backService.dashboardKaData(this.id).subscribe(
+      (data)=>{
+        console.log(data);
+        this.mylist=data;
+        this.owed=this.mylist[0];
+        this.owes=this.mylist[1];
+        this.balance=this.mylist[2];
+      },
+      (error)=>
+      {
+        console.log(error);
+      }
+    )
+  }
 
   // getLeneKaSum():void{
   //   this.backService.sumOfLeneKaMoney().subscribe(
@@ -64,18 +86,16 @@ export class HomeComponent implements OnInit{
   //   );
   // }
 
-  lenaDenaBalance(): void{
-    this.backService.lenaDenaBalance().subscribe(
-      (response) => {
-        console.log();
-        this.home=response;
-        console.log();
-      },
-      (error) => {
-        console.error("error fetching data", error);
-      }
-    );
-  }
-
-
+  // lenaDenaBalance(): void{
+  //   this.backService.lenaDenaBalance().subscribe(
+  //     (response) => {
+  //       console.log();
+  //       this.home=response;
+  //       console.log();
+  //     },
+  //     (error) => {
+  //       console.error("error fetching data", error);
+  //     }
+  //   );
+  // }
 }

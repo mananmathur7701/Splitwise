@@ -76,7 +76,7 @@ export class GroupsComponent implements OnInit{
   // }
 
   lenaDenaBalance(): void{
-    this.backService.lenaDenaBalance().subscribe(
+    this.backService.lenaDenaBalance(this.id).subscribe(
       (response) => {
         console.log();
         this.groups=response;
