@@ -29,7 +29,7 @@ export class OtpVerifyComponent
       this.backserviceService.otpverify(this.otpForm.value.otp).subscribe(
         (data) => {
           console.log(data);
-          this.router.navigateByUrl('/login');
+          this.router.navigateByUrl('/dashboard');
           resolve(data);
         },
         (error) => {

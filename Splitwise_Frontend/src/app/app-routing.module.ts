@@ -5,11 +5,12 @@ import { RegisterComponent } from './pages/register/register.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LandingComponent } from './landing/landing.component';
 import { OtpVerifyComponent } from './otp-verify/otp-verify.component';
-import { ExpenseComponent } from './pages/dashboard/expense/expense.component';
+import { ExpenseComponent } from './pages/dashboard/groups/expense/expense.component';
 import { FriendsComponent } from './pages/dashboard/friends/friends.component';
 import { GroupsComponent } from './pages/dashboard/groups/groups.component';
 import { HomeComponent } from './pages/dashboard/home/home.component';
-import { AddGroupComponent } from './pages/dashboard/groups/add-group/add-group.component';
+import { AddGroupComponent } from './pages/dashboard/add-group/add-group.component';
+import { GroupDetailsComponent } from './pages/dashboard/group-details/group-details.component';
 
 const routes: Routes = [
   {
@@ -37,14 +38,13 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       { path: 'home', component: HomeComponent },
-      { path: 'addExpense', component: ExpenseComponent },
       { path: 'friends', component: FriendsComponent },
-      { path: 'groups', component: GroupsComponent, 
-      children: [
-        {path: 'addGroup', component: AddGroupComponent}
-      ] },
-    ],
-    // pathMatch:'full'
+      { path: 'groups',component: GroupsComponent},
+      { path: 'addExpense', component: ExpenseComponent },
+      { path: 'addGroup', component: AddGroupComponent },
+      { path: 'group-details', component: GroupDetailsComponent },
+
+    ]
   },
 ];
 

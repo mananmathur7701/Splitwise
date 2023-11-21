@@ -88,6 +88,7 @@ export class RegisterComponent {
 
   logIn()
   {
+    console.log("wprk");
     this.router.navigateByUrl('/login');
   }
 

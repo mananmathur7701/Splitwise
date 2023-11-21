@@ -1,148 +1,33 @@
-.wrap {
-  display: flex;
-}
-.mac-book-pro-14-1,
-.mac-book-pro-14-1 * {
+.frame-15,
+.frame-15 * {
   box-sizing: border-box;
 }
-.mac-book-pro-14-1 {
-  background: #1a1a1a;
-  display: flex;
-  flex-direction: row;
-  gap: 0px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  position: relative;
-  overflow: hidden;
-  background: #1a1a1a;
-  box-shadow: 4px 4px 30px 0px rgba(0, 0, 0, 0.3);
-  /* width: 30vw; */
-}
-.frame-7 {
-  background: #1a1a1a;
-  padding: 24px 0px 24px 0px;
-  display: flex;
-  flex-direction: column;
-  gap: 180px;
-  align-items: center;
-  justify-content: flex-start;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
-  box-shadow: 4px 4px 30px 0px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-  width: 15vw;
-}
-.sp-lit {
-  color: #a0d7c3;
-  text-align: left;
-  font: 700 48px "Amiri", sans-serif;
-  position: relative;
-}
-.frame-8 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  flex: 1;
-  position: relative;
-  width: 100%;
-}
-.frame-9 {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  /* align-self: stretch; */
-  /* flex-shrink: 0; */
-  position: relative;
-  width: 100%;
-}
-
-.frame-9 a {
-  cursor: pointer;
-}
-.home {
-  color: #ffffff;
-  text-align: left;
-  font: 500 24px "Inter", sans-serif;
-  position: relative;
-  width: 100%;
-  /* background: #232323; */
-  /* width: 100%; */
-  padding: 24px 48px 24px 48px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  align-self: stretch;
-  /* flex-shrink: 0; */
-  position: relative;
-}
-.frame-11 {
-  padding: 24px 48px 24px 48px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
-}
-.groups {
-  color: #ffffff;
-  text-align: left;
-  font: 500 24px "Inter", sans-serif;
-  position: relative;
-}
-.frame-12 {
-  padding: 24px 48px 24px 48px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
-}
-.add-expense {
-  color: #ffffff;
-  text-align: left;
-  font: 500 24px "Inter", sans-serif;
-  position: relative;
-}
-.frame-16 {
-  flex-shrink: 0;
-  width: 100px;
-  height: 6px;
-  position: relative;
-  overflow: hidden;
-}
-.frame-13 {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  align-self: stretch;
-  flex: 1;
-  position: relative;
-  overflow: hidden;
-}
 .frame-15 {
+  /* margin-top: 54px; */
   padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 48px;
   align-items: flex-start;
   justify-content: flex-start;
-  align-self: stretch;
-  flex: 1;
   position: relative;
-  overflow: hidden;
+  width: 85vw;
+  height: 92vh;
+
+}
+ul,
+li {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  overflow-y: auto;
+  width: 100%;
 }
 .frame-21 {
   display: flex;
@@ -151,8 +36,6 @@
   align-items: center;
   justify-content: flex-start;
   align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
 }
 .frame-17 {
   background: #232323;
@@ -163,7 +46,6 @@
   gap: 10px;
   align-items: center;
   justify-content: center;
-  align-self: stretch;
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
@@ -241,6 +123,14 @@
 .you-owe-380-span2 {
   color: #ffffff;
   font: 700 28px "Inter", sans-serif;
+}
+.list-section {
+  color: white;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
 }
 .frame-27 {
   display: flex;
@@ -389,16 +279,18 @@
   position: relative;
   overflow: hidden;
 }
-.active {
-  background: #232323;
-  /* width: 100%; */
-  padding: 24px 48px 24px 48px;
+.btnExpense {
+  background-color: #ffffff1c;
+  /* height: 100%; */
+  width: 100%;
+  border-radius: 8px;
+
   display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
   justify-content: center;
-  align-self: stretch;
-  /* flex-shrink: 0; */
-  position: relative;
+  align-items: center;
+}
+.section {
+  display: flex;
+  width: 100%;
+  gap: 12px;
 }

@@ -16,6 +16,7 @@ export class GroupsComponent implements OnInit{
   ngOnInit(): void {
     // this.addGroup();
     this.getGroups();
+    this.addGroup();
   }
 
   getGroups(): void {
@@ -31,10 +32,61 @@ export class GroupsComponent implements OnInit{
     );
   }
 
-  // addGroup(): void{
-  //   this.backService.
+  addGroup(): void{
+    this.backService.addNewGroup(this.id, this.groupName).subscribe(
+      (response) =>{
+        console.log(this.id);
+        this.groups=response;
+        console.log(this.groups);
+      },
+      (error: any) => {
+        console.error('Error fetching groups:', error);
+      }
+    );
+  }
+  groupName(id: any, groupName: any) {
+    throw new Error('Method not implemented.');
+  }
+
+
+  // getLeneKaSum():void{
+  //   this.backService.sumOfLeneKaMoney().subscribe(
+  //     (response) => {
+  //       console.log();
+  //       this.groups = response;
+  //       console.log();
+  //     },
+  //     (error) => {
+  //       console.error("error fetching data", error);
+  //     }
+  //   );
   // }
 
+  // getDeneKaSum(): void{
+  //   this.backService.sumOfDeneKaMoney().subscribe(
+  //     (response) => {
+  //       console.log();
+  //       this.groups = response;
+  //       console.log();
+  //     },
+  //     (error) => {
+  //       console.error("error fetching data", error);
+  //     }
+  //   );
+  // }
+
+  lenaDenaBalance(): void{
+    this.backService.lenaDenaBalance().subscribe(
+      (response) => {
+        console.log();
+        this.groups=response;
+        console.log();
+      },
+      (error) => {
+        console.error("error fetching data", error);
+      }
+    );
+  }
 
 
 }

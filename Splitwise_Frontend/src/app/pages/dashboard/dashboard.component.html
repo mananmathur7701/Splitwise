@@ -10,7 +10,7 @@
   
   <div class="mac-book-pro-14-1">
     <div class="frame-7">
-      <div class="sp-lit">खर्चा बहि</div>
+      <div class="sp-lit" [routerLink]="['home']" routerLinkActive="active">खर्चा बहि</div>
       <div class="frame-8">
         <div class="frame-9">
           <a class="home" [routerLink]="['home']" routerLinkActive="active">Home</a>
@@ -21,17 +21,20 @@
         <div class="frame-9">
           <a class="home" [routerLink]="['groups']" routerLinkActive="active">Groups</a>
         </div>
-        <div class="frame-9">
-          <a class="home" (click)="logout()" [routerLink]="['/']" routerLinkActive="active">Log Out</a>
-        </div>
-        <div class="frame-9">
-          <div class="home">Add Expense</div>
-        </div>
+        <!-- <div class="frame-9">
+          <a class="home" [routerLink]="['addExpense']" routerLinkActive="active">Add Expense</a>
+        </div> -->
+
         <!-- <div class="frame-9">
           <a class="home" (click)="logout()">Log Out</a>
         </div> -->
       </div>
-      <div class="frame-16"></div>
+      <div class="frame-9">
+        <a class="home" (click)="logout()" [routerLink]="['/']" routerLinkActive="active">Log Out</a>
+      </div>
+      <div class="frame-16">
+        
+      </div>
     </div>
   </div>
   <router-outlet></router-outlet>
