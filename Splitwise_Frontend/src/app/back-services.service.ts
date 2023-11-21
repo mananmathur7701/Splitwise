@@ -142,12 +142,25 @@ export class BackServicesService {
 
   //***********LENE KA SUM, DENE KA SUM & BALANCE SAB SATH MEIN */
 
-  lenaDenaBalance(): Observable<any>
+  lenaDenaBalance(id:String): Observable<any>
   {
     const header = new HttpHeaders({
       
     });
-    return this._http.get("http://localhost:8080/BalancesOfUsers/{id}")
+    return this._http.get("http://localhost:8080/BalancesOfUsers/${id}")
+  }
+
+  dashboardKaData(id:String): Observable<any>
+  {
+  //   const header = new HttpHeaders({
+      
+  //   });
+  //   return this._http.get("http://localhost:8080/BalancesOfUsers/{id}")
+  // }
+  const header= new HttpHeaders({
+    "Access-Control-Allow-Origin" : "*"
+  });
+  return this._http.get("http://localhost:8080/BalancesOfUsers/${id}",{headers: header});
   }
   
 }

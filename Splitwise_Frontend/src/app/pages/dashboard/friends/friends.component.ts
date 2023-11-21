@@ -8,7 +8,7 @@ import { BackServicesService } from 'src/app/back-services.service';
 })
 export class FriendsComponent implements OnInit {
   friends!: any[];
-
+  id : any = localStorage.getItem("id");
 
   constructor(
     private backService: BackServicesService
@@ -16,6 +16,7 @@ export class FriendsComponent implements OnInit {
 
 
   ngOnInit(): void {
+    
     //throw new Error('Method not implemented.');
   }
   
@@ -48,7 +49,7 @@ export class FriendsComponent implements OnInit {
   // }
 
   lenaDenaBalance(): void{
-    this.backService.lenaDenaBalance().subscribe(
+    this.backService.lenaDenaBalance(this.id).subscribe(
       (response) => {
         console.log();
         this.friends=response;
