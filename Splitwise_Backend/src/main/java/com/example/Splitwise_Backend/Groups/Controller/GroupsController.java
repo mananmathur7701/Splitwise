@@ -1,5 +1,6 @@
 package com.example.Splitwise_Backend.Groups.Controller;
 
+import com.example.Splitwise_Backend.Groups.DTO.GroupsDTO;
 import com.example.Splitwise_Backend.Groups.Entity.Groups;
 import com.example.Splitwise_Backend.Groups.Service.GroupsServiceImplementation;
 import com.example.Splitwise_Backend.Users.DTO.UsersViewDTO;
@@ -83,7 +84,7 @@ public class GroupsController
 
     @GetMapping("/groupsOfUser/{id}")
     @CrossOrigin("http://localhost:4200")
-    public List<Groups> allGroupsOfUser(@PathVariable int id)
+    public List<GroupsDTO> allGroupsOfUser(@PathVariable int id)
     {
         return groupsServiceImplementation.allGroupsOfUsers(id);
     }

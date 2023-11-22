@@ -20,7 +20,7 @@ export class GroupsComponent implements OnInit{
   ngOnInit(): void {
     // this.addGroup();
     this.getGroups();
-    this.addGroup();
+  //  this.addGroup();
     this.udhariKaData();
   }
 
@@ -37,21 +37,21 @@ export class GroupsComponent implements OnInit{
     );
   }
 
-  addGroup(): void{
-    this.backService.addNewGroup(this.id, this.groupName).subscribe(
-      (response) =>{
-        console.log(this.id);
-        this.groups=response;
-        console.log(this.groups);
-      },
-      (error: any) => {
-        console.error('Error fetching groups:', error);
-      }
-    );
-  }
-  groupName(id: any, groupName: any) {
-    throw new Error('Method not implemented.');
-  }
+  // addGroup(): void{
+  //   this.backService.addNewGroup(this.id, this.groupName).subscribe(
+  //     (response) =>{
+  //       console.log(this.id);
+  //       this.groups=response;
+  //       console.log(this.groups);
+  //     },
+  //     (error: any) => {
+  //       console.error('Error fetching groups:', error);
+  //     }
+  //   );
+  // }
+  // groupName(id: any, groupName: any) {
+  //   throw new Error('Method not implemented.');
+  // }
 
 
   // getLeneKaSum():void{

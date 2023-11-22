@@ -133,6 +133,7 @@ public class Groups {
                 "id=" + id +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
+                ", groupName=" + groupName +
 //                ", expenses=" + expenses +
 //                ", ExpenseSplits=" + ExpenseSplits +
                 '}';

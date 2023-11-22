@@ -1,5 +1,6 @@
 package com.example.Splitwise_Backend.Groups.Service;
 
+import com.example.Splitwise_Backend.Groups.DTO.GroupsDTO;
 import com.example.Splitwise_Backend.Groups.Entity.Groups;
 import com.example.Splitwise_Backend.Groups.Repository.GroupsRepo;
 import com.example.Splitwise_Backend.Users.DTO.UsersViewDTO;
@@ -184,12 +185,40 @@ public class GroupsServiceImplementation implements GroupsService{
     }
 
     @Override
-    public List<Groups> allGroupsOfUsers(int userId)
+    public List<GroupsDTO> allGroupsOfUsers(int userId)
     {
+//        Optional<Users> user = usersRepo.findById(userId);
+//        if (user.isPresent())
+//        {
+//            return user.get().getGroups();
+//        }
+
+        List<Groups> groupsOfUser = new ArrayList<>();
         Optional<Users> user = usersRepo.findById(userId);
         if (user.isPresent())
         {
-            return user.get().getGroups();
+            List<Groups> allGroups = groupsRepo.findAll();
+            for(int i=0;i<allGroups.toArray().length;i++)
+            {
+                Groups group = allGroups.get(i);
+                List<Users> groupUsers = group.getUsers();
+                if(groupUsers.contains(user.get()))
+                {
+                    groupsOfUser.add(allGroups.get(i));
+                }
+            }
+            List<GroupsDTO> groupsDTOOfGroupsOfUser = new ArrayList<>();
+            for (Groups g:groupsOfUser)
+            {
+                GroupsDTO data = new GroupsDTO();
+                data.setId(g.getId());
+                data.setGroupName(g.getGroupName());
+                data.setCreatedAt(g.getCreatedAt());
+                data.setUpdatedAt(g.getUpdatedAt());
+                groupsDTOOfGroupsOfUser.add(data);
+            }
+            System.out.println(groupsDTOOfGroupsOfUser);
+            return groupsDTOOfGroupsOfUser;
         }
         else
         {

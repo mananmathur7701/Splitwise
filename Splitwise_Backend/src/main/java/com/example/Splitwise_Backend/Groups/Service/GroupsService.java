@@ -1,4 +1,5 @@
 package com.example.Splitwise_Backend.Groups.Service;
+import com.example.Splitwise_Backend.Groups.DTO.GroupsDTO;
 import com.example.Splitwise_Backend.Groups.Entity.Groups;
 import com.example.Splitwise_Backend.Users.DTO.UsersViewDTO;
 
@@ -14,5 +15,5 @@ public interface GroupsService {
     public String deleteGroup(int groupId);
     public Groups addUser(List<String> userEmail, int groupId);
     public Groups removeUser(String userEmail, int groupId);
-    public List<Groups> allGroupsOfUsers(int userId);
+    public List<GroupsDTO> allGroupsOfUsers(int userId);
 }
