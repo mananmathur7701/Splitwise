@@ -60,7 +60,7 @@ export class BackServicesService {
   }
 
   //************* TO ADD NEW GROUP *************************
-  addNewGroup(id:number, groupName:any):Observable<any>
+  addNewGroup(id:String, groupName:any):Observable<any>
   {
     const requestBody ={
        id:id,

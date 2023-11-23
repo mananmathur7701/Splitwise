@@ -294,3 +294,31 @@ ul {
   width: 100%;
   gap: 12px;
 }
+.list-section {
+  color: white;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  font-size: 18px;
+}
+.list-section > div {
+  font-size: 24px;
+}
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+.addBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 50px;
+  font-size: medium;
+  background-color: #232323;
+  border: none;
+  color: white;
+  width: min-content;
+  padding: 8px 16px;
+  border-radius: 4px;
+}

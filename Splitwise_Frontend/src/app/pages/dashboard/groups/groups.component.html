@@ -2,14 +2,14 @@
   <div class="frame-21">
     <div class="frame-17">
       <div class="total-balance">Total Balance</div>
-      <div class="_38-034">₹{{balance}}</div>
+      <div class="_38-034">₹{{ balance }}</div>
     </div>
     <div class="frame-20">
       <div class="frame-18">
         <div class="you-are-owed-69-000">
           <span
             ><span class="you-are-owed-69-000-span">You are owed :<br /></span
-            ><span class="you-are-owed-69-000-span2">₹{{owed}}</span></span
+            ><span class="you-are-owed-69-000-span2">₹{{owes}}</span></span
           >
         </div>
       </div>
@@ -17,7 +17,7 @@
         <div class="you-owe-380">
           <span
             ><span class="you-owe-380-span">You owe :<br /></span
-            ><span class="you-owe-380-span2">₹{{owes}}</span></span
+            ><span class="you-owe-380-span2">₹{{owed}}</span></span
           >
         </div>
       </div>
@@ -25,12 +25,22 @@
   </div>
   <div class="list-section">
     <div>All Groups</div>
-    <a class="addBtn" routerLink="../addGroup" routerLinkActive="active">Add Group</a>
-    <a class="addBtn" routerLink="../addExpense" routerLinkActive="active">Add Expense</a>
+    <div class="buttons">
+      <a class="addBtn" (click)="toggleModal()"
+        >Create Group</a
+      >
+      <a class="addBtn" routerLink="../addExpense"
+        >Add Expense</a
+      >
+    </div>
   </div>
   <ul>
     <li *ngFor="let group of groups">
-      <div class="frame-27" routerLink="../group-details" routerLinkActive="active">
+      <div
+        class="frame-27"
+        routerLink="../group-details"
+        routerLinkActive="active"
+      >
         <div class="frame-22">
           <div class="frame-23">
             <div class="frame-24"></div>
@@ -49,5 +59,10 @@
       </div>
     </li>
   </ul>
-  
+</div>
+<div class="modal" [style.display]="showModal ? 'flex' : 'none'">
+  <div class="blur"></div>
+  <div class="modal-content">
+    <app-add-group (closeModal)="closeModalHandler()"></app-add-group>
+  </div>
 </div>

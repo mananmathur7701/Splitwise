@@ -13,6 +13,17 @@ export class GroupsComponent implements OnInit{
   owed:number |any;
   owes:number |any;
   balance:number |any;
+
+  showModal = false;
+
+  toggleModal() {
+    this.showModal = !this.showModal;
+  }
+
+  closeModalHandler() {
+    this.showModal = false; // Close the modal
+  }
+  
   constructor(
     private backService: BackServicesService
   ) {};
@@ -79,6 +90,7 @@ export class GroupsComponent implements OnInit{
   //     }
   //   );
   // }
+
 
   lenaDenaBalance(): void{
     this.backService.lenaDenaBalance(this.id).subscribe(
