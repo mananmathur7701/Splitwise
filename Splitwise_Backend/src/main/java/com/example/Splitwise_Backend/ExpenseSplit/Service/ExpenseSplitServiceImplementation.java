@@ -173,7 +173,7 @@ public class ExpenseSplitServiceImplementation implements ExpenseSplitService
             }
             else
             {
-                return 0;
+                return totalAmount;
             }
         }
         else
@@ -201,7 +201,7 @@ public class ExpenseSplitServiceImplementation implements ExpenseSplitService
             }
             else
             {
-                return 0;
+                return totalAmount;
             }
         }
         else

@@ -18,31 +18,31 @@ export class HomeComponent implements OnInit
 
   ngOnInit(): void
   {
-    this.getHome();
+    // this.getHome();
     this.udhariKaData();
   }
 
-  getHome(): void
-  {
-    this.backService.expensesOfUserWhereOwed(this.id).subscribe(
-      (response) => {
-        console.log(this.id);
-        this.home= response;
-        console.log(this.home);
+  // getHome(): void
+  // {
+  //   this.backService.expensesOfUserWhereOwed(this.id).subscribe(
+  //     (response) => {
+  //       console.log(this.id);
+  //       this.home= response;
+  //       console.log(this.home);
 
-        this.backService.expensesOfUserWhereOwes(this.id).subscribe(
-          (response) => {
-            console.log(this.id);
-            this.home=response;
-            console.log(this.home);
-          }
-        )
-      },
-      (error) => {
-        console.error("Error fetching details:", error);
-      }
-    );
-  }
+  //       this.backService.expensesOfUserWhereOwes(this.id).subscribe(
+  //         (response) => {
+  //           console.log(this.id);
+  //           this.home=response;
+  //           console.log(this.home);
+  //         }
+  //       )
+  //     },
+  //     (error) => {
+  //       console.error("Error fetching details:", error);
+  //     }
+  //   );
+  // }
 
   udhariKaData(){
     this.backService.dashboardKaData(this.id).subscribe(

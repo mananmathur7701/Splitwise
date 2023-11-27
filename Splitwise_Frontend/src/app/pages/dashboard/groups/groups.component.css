@@ -390,6 +390,9 @@ ul {
   background-color: #232323;
   border: none;
   color: white;
+  width: min-content;
+  padding: 8px 16px;
+  border-radius: 4px;
 }
 .list-section {
   color: white;
@@ -397,4 +400,39 @@ ul {
   width: 100%;
   justify-content: space-between;
   font-size: 18px;
+}
+.list-section > div {
+  font-size: 24px;
+}
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  padding: 24px;
+  background-color: rgba(0, 0, 0, 0.185);
+  width: max-content;
+  height: max-content;
+  z-index: 999;
+}
+.blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(10px);
+  z-index: 99;
+  /* filter: blur(100px); */
 }

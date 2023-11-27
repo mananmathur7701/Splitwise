@@ -1,5 +1,6 @@
 .wrap {
   display: flex;
+  text-wrap: nowrap;
 }
 .mac-book-pro-14-1,
 .mac-book-pro-14-1 * {

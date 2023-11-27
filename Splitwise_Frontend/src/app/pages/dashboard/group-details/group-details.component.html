@@ -26,7 +26,13 @@
     </div>
   </div>
   <div class="list-section">
-    <div>GROUP NAME</div>
+    <h1>Goo</h1>
+    <div class="buttons">
+      <a class="addBtn" (click)="toggleModal()">Add Member</a>
+      <a class="addBtn" routerLink="../addExpense" routerLinkActive="active"
+        >Add Expense</a
+      >
+    </div>
   </div>
   <div class="section">
     <ul>
@@ -79,6 +85,77 @@
         </div>
       </li>
     </ul>
-    <div class="btnExpense">Add Expense</div>
+  </div>
+</div>
+<div class="modal" [style.display]="showModal ? 'flex' : 'none'">
+  <div class="blur"></div>
+  <div class="modal-content">
+    <div class="wrap">
+      <div class="title">
+        <h1>Add new member</h1>
+        <button class="close-icon" (click)="toggleModal()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="white"
+            class="bi bi-x-lg"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"
+            />
+          </svg>
+        </button>
+      </div>
+      <form #myForm="ngForm" (ngSubmit)="addMember(memberMail.value)">
+        <div class="form-group">
+          <label for="memberMail">Enter member email:</label>
+          <span class="input-group">
+            <input
+              type="email"
+              id="memberMail"
+              #memberMail
+              class="form-control"
+              placeholder="example@mail.com"
+              required
+            />
+            <div class="add-icon">
+              <button type="submit">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="white"
+                  class="bi bi-plus-square-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <!-- SVG icon for add button -->
+                </svg>
+              </button>
+            </div>
+          </span>
+        </div>
+        <p>List of members:</p>
+        <ul class="member-list">
+          <li *ngFor="let member of members">
+            {{ member }}
+            <button (click)="removeMember(member)">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="white"
+                class="bi bi-x-lg"
+                viewBox="0 0 16 16"
+              >
+                <!-- SVG icon for remove button -->
+              </svg>
+            </button>
+          </li>
+        </ul>
+        <button>Add Members</button>
+      </form>
+    </div>
   </div>
 </div>

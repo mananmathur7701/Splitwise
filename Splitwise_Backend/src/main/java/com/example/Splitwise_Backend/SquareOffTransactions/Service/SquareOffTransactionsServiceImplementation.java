@@ -144,7 +144,7 @@ public class SquareOffTransactionsServiceImplementation implements SquareOffTran
             }
             else
             {
-                return 0;
+                return totalAmount;
             }
         }
         else
@@ -171,7 +171,7 @@ public class SquareOffTransactionsServiceImplementation implements SquareOffTran
             }
             else
             {
-                return 0;
+                return totalAmount;
             }
         }
         else

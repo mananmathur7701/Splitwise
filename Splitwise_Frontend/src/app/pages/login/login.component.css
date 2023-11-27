@@ -71,4 +71,13 @@
     gap: 4px;
   }
   /* Optional: Add more styles as needed */
-  
+  .existing{
+    color: white;
+
+  }
+
+  .existing span{
+    color: #a0d7c3;
+    text-decoration: underline;
+    cursor: pointer;
+  }
