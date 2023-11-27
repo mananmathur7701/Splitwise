@@ -18,6 +18,11 @@ export class AddGroupComponent implements OnInit{
   {
    this.addGroup();    
   }
+
+  onSubmit(formData:any){
+    console.log(formData.value);
+       
+  }
   
   addGroup() {
     this.backService.addNewGroup(String(this.id), this.groupName).subscribe(
@@ -33,9 +38,9 @@ export class AddGroupComponent implements OnInit{
     throw new Error('Method not implemented.');
   }
 
-  groupName(id: any, groupName: any) {
-    throw new Error('Method not implemented.');
-  }
+  groupName(id: any, groupName: any) {}
+
+
   @Output() closeModal: EventEmitter<void> = new EventEmitter<void>();
 
   onCloseClick() {
@@ -43,9 +48,7 @@ export class AddGroupComponent implements OnInit{
   }
 }
 
-function groupName(id: any, any: any, groupName: any, any1: any) {
-  throw new Error('Function not implemented.');
-}
+
 
 
 

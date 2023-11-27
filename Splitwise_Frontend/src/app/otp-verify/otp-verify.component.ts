@@ -27,9 +27,13 @@ export class OtpVerifyComponent
     return new Promise((resolve, reject) => {
       console.log("ts file 1");
       this.backserviceService.otpverify(this.otpForm.value.otp).subscribe(
-        (data) => {
+        (data:any) => {
           console.log(data);
-          this.router.navigateByUrl('/dashboard');
+          const id = data.id;
+          //localStorage.setItem("id",String(id));
+          localStorage.setItem("id",id);
+          this.router.navigateByUrl('/dashboard/home');
+          //this.router.navigateByUrl('/dashboard');
           resolve(data);
         },
         (error) => {
