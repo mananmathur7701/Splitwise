@@ -1,4 +1,6 @@
 package com.example.Splitwise_Backend.SquareOffTransactions.Service;
+import com.example.Splitwise_Backend.Exceptions.SquareOffTransactionNotFoundException;
+import com.example.Splitwise_Backend.Exceptions.UserNotFoundException;
 import com.example.Splitwise_Backend.ExpenseSplit.Repository.ExpenseSplitRepo;
 import com.example.Splitwise_Backend.ExpenseSplit.Service.ExpenseSplitServiceImplementation;
 import com.example.Splitwise_Backend.SquareOffTransactions.Entity.SquareOffTransactions;
@@ -49,12 +51,12 @@ public class SquareOffTransactionsServiceImplementation implements SquareOffTran
             }
             else
             {
-                throw new RuntimeException("Payer Not Found");
+                throw new UserNotFoundException("Payer Not Found");
             }
         }
         else
         {
-            throw new RuntimeException("Payer Not Found");
+            throw new UserNotFoundException("Payer Not Found");
         }
     }
 
@@ -70,7 +72,7 @@ public class SquareOffTransactionsServiceImplementation implements SquareOffTran
         }
         else
         {
-            throw new RuntimeException("Transaction Id Not Found");
+            throw new SquareOffTransactionNotFoundException("Transaction Id Not Found");
         }
     }
 
@@ -96,17 +98,17 @@ public class SquareOffTransactionsServiceImplementation implements SquareOffTran
                 }
                 else
                 {
-                    throw new RuntimeException("Payer Not Found");
+                    throw new UserNotFoundException("Payer Not Found");
                 }
             }
             else
             {
-                throw new RuntimeException("Payer Not Found");
+                throw new UserNotFoundException("Payer Not Found");
             }
         }
         else
         {
-            throw new RuntimeException("Transaction Id Not Found");
+            throw new SquareOffTransactionNotFoundException("Transaction Id Not Found");
         }
     }
 
@@ -120,7 +122,7 @@ public class SquareOffTransactionsServiceImplementation implements SquareOffTran
         }
         else
         {
-            throw new RuntimeException("Transaction Id Not Found");
+            throw new SquareOffTransactionNotFoundException("Transaction Id Not Found");
         }
     }
 
@@ -147,7 +149,7 @@ public class SquareOffTransactionsServiceImplementation implements SquareOffTran
         }
         else
         {
-            throw new RuntimeException("User Not Found Who Paid");
+            throw new UserNotFoundException("User Not Found Who Paid");
         }
 
     }
@@ -174,7 +176,7 @@ public class SquareOffTransactionsServiceImplementation implements SquareOffTran
         }
         else
         {
-            throw new RuntimeException("User Not Found Who Paid");
+            throw new UserNotFoundException("User Not Found Who Paid");
         }
     }
 

@@ -1,4 +1,6 @@
 package com.example.Splitwise_Backend.Users.Service;
+import com.example.Splitwise_Backend.Exceptions.GeneralException;
+import com.example.Splitwise_Backend.Exceptions.UserNotFoundException;
 import com.example.Splitwise_Backend.Users.DTO.UsersDTO;
 import com.example.Splitwise_Backend.Users.DTO.UsersViewDTO;
 import com.example.Splitwise_Backend.Users.Entity.Users;
@@ -49,12 +51,12 @@ public class UsersServiceImplementation implements UsersService{
             }
             else
             {
-                throw new RuntimeException("Password Missmatch");
+                throw new GeneralException("Password Missmatch");
             }
         }
         else
         {
-            throw new RuntimeException("User Not Found1");
+            throw new UserNotFoundException("User Not Found1");
         }
     }
 
@@ -72,12 +74,12 @@ public class UsersServiceImplementation implements UsersService{
             }
             else
             {
-                throw new RuntimeException("Password Missmatch");
+                throw new GeneralException("Password Missmatch");
             }
         }
         else
         {
-            throw new RuntimeException("User Not Found");
+            throw new UserNotFoundException("User Not Found");
         }
     }
 
@@ -95,7 +97,7 @@ public class UsersServiceImplementation implements UsersService{
             usersRepo.save(userToUpdate); // Save the updated user
             return userToUpdate;
         } else {
-            throw new RuntimeException("User Not Found");
+            throw new UserNotFoundException("User Not Found");
         }
     }
 
@@ -109,7 +111,7 @@ public class UsersServiceImplementation implements UsersService{
             usersRepo.save(userWhosePwdToBeUpdated); // Save the updated user
             return userWhosePwdToBeUpdated;
         } else {
-            throw new RuntimeException("User Not Found");
+            throw new UserNotFoundException("User Not Found");
         }
     }
 
@@ -130,7 +132,7 @@ public class UsersServiceImplementation implements UsersService{
         }
         else
         {
-            throw  new RuntimeException("User Not Found");
+            throw  new UserNotFoundException("User Not Found");
 
         }
     }
@@ -151,7 +153,7 @@ public class UsersServiceImplementation implements UsersService{
         }
         else
         {
-            throw new RuntimeException("User Not Found");
+            throw new UserNotFoundException("User Not Found");
         }
     }
 
@@ -164,7 +166,7 @@ public class UsersServiceImplementation implements UsersService{
         }
         else
         {
-            throw new RuntimeException("User Not Found");
+            throw new UserNotFoundException("User Not Found");
         }
     }
 }

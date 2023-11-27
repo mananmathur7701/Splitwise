@@ -1,4 +1,7 @@
 package com.example.Splitwise_Backend.PaymentSplit.Service;
+import com.example.Splitwise_Backend.Exceptions.ExpenseNotFoundException;
+import com.example.Splitwise_Backend.Exceptions.GeneralException;
+import com.example.Splitwise_Backend.Exceptions.UserNotFoundException;
 import com.example.Splitwise_Backend.Expenses.Entity.Expenses;
 import com.example.Splitwise_Backend.Expenses.Repository.ExpensesRepo;
 import com.example.Splitwise_Backend.PaymentSplit.Entity.PaymentSplit;
@@ -42,12 +45,12 @@ public class PaymentSplitServiceImplementation implements PaymentSplitService
             }
             else
             {
-                throw new RuntimeException("Expense Not Found");
+                throw new ExpenseNotFoundException("Expense Not Found");
             }
         }
         else
         {
-            throw new RuntimeException("User Not Found");
+            throw new UserNotFoundException("User Not Found");
         }
     }
 
@@ -62,7 +65,7 @@ public class PaymentSplitServiceImplementation implements PaymentSplitService
         }
         else
         {
-            throw new RuntimeException("User Not Found");
+            throw new UserNotFoundException("User Not Found");
         }
     }
 
@@ -85,12 +88,12 @@ public class PaymentSplitServiceImplementation implements PaymentSplitService
             }
             else
             {
-                throw new RuntimeException("Empty List");
+                throw new GeneralException("Empty List");
             }
         }
         else
         {
-            throw new RuntimeException("User Not Found");
+            throw new UserNotFoundException("User Not Found");
         }
     }
 
@@ -105,7 +108,7 @@ public class PaymentSplitServiceImplementation implements PaymentSplitService
         }
         else
         {
-            throw new RuntimeException("User Not Found");
+            throw new UserNotFoundException("User Not Found");
         }
     }
 }

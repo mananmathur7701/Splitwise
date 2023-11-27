@@ -16,4 +16,40 @@ public class ExceptionHandlerControllerAdvice
         userNotFoundErrorResponse.setMessage(userNotFoundErrorResponse.getMessage());
         return new ResponseEntity<>(userNotFoundErrorResponse,HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponse> GroupNotFoundResponse(GroupNotFoundException groupNotFoundException)
+    {
+        ErrorResponse groupNotFoundErrorResponse = new ErrorResponse();
+        groupNotFoundErrorResponse.setStatus(HttpStatus.NOT_FOUND.value());
+        groupNotFoundErrorResponse.setMessage(groupNotFoundErrorResponse.getMessage());
+        return new ResponseEntity<>(groupNotFoundErrorResponse,HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponse> ExpenseNotFoundResponse(ExpenseNotFoundException expenseNotFoundException)
+    {
+        ErrorResponse expenseNotFoundErrorResponse = new ErrorResponse();
+        expenseNotFoundErrorResponse.setStatus(HttpStatus.NOT_FOUND.value());
+        expenseNotFoundErrorResponse.setMessage(expenseNotFoundErrorResponse.getMessage());
+        return new ResponseEntity<>(expenseNotFoundErrorResponse,HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponse> SquareOffTransactionNotFoundResponse(SquareOffTransactionNotFoundException squareOffTransactionNotFoundException)
+    {
+        ErrorResponse squareOffTransactionNotFoundErrorResponse = new ErrorResponse();
+        squareOffTransactionNotFoundErrorResponse.setStatus(HttpStatus.NOT_FOUND.value());
+        squareOffTransactionNotFoundErrorResponse.setMessage(squareOffTransactionNotFoundErrorResponse.getMessage());
+        return new ResponseEntity<>(squareOffTransactionNotFoundErrorResponse,HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponse> GeneralResponse(GeneralException generalException)
+    {
+        ErrorResponse generalResponse = new ErrorResponse();
+        generalResponse.setStatus(HttpStatus.NOT_FOUND.value());
+        generalResponse.setMessage(generalResponse.getMessage());
+        return new ResponseEntity<>(generalResponse,HttpStatus.NOT_FOUND);
+    }
 }

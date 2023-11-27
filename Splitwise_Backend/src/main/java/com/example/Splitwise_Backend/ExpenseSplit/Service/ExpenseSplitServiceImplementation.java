@@ -1,4 +1,7 @@
 package com.example.Splitwise_Backend.ExpenseSplit.Service;
+import com.example.Splitwise_Backend.Exceptions.ExpenseNotFoundException;
+import com.example.Splitwise_Backend.Exceptions.GroupNotFoundException;
+import com.example.Splitwise_Backend.Exceptions.UserNotFoundException;
 import com.example.Splitwise_Backend.ExpenseSplit.Entity.ExpenseSplit;
 import com.example.Splitwise_Backend.ExpenseSplit.Repository.ExpenseSplitRepo;
 import com.example.Splitwise_Backend.Expenses.Entity.Expenses;
@@ -54,17 +57,17 @@ public class ExpenseSplitServiceImplementation implements ExpenseSplitService
                 }
                 else
                 {
-                    throw new RuntimeException("Expense Not Found");
+                    throw new ExpenseNotFoundException("Expense Not Found");
                 }
             }
             else
             {
-                throw new RuntimeException("No Group Found Of Expense");
+                throw new GroupNotFoundException("No Group Found Of Expense");
             }
         }
         else
         {
-            throw new RuntimeException("Out Of Given Users, One User Not Found");
+            throw new UserNotFoundException("Out Of Given Users, One User Not Found");
         }
     }
 
@@ -83,7 +86,7 @@ public class ExpenseSplitServiceImplementation implements ExpenseSplitService
         }
         else
         {
-            throw new RuntimeException("Expense Not Found");
+            throw new ExpenseNotFoundException("Expense Not Found");
         }
     }
 
@@ -97,7 +100,7 @@ public class ExpenseSplitServiceImplementation implements ExpenseSplitService
         }
         else
         {
-            throw new RuntimeException("User Not Found");
+            throw new UserNotFoundException("User Not Found");
         }
 
     }
@@ -113,7 +116,7 @@ public class ExpenseSplitServiceImplementation implements ExpenseSplitService
         }
         else
         {
-            throw new RuntimeException("User Not Found");
+            throw new UserNotFoundException("User Not Found");
         }
     }
 
@@ -129,7 +132,7 @@ public class ExpenseSplitServiceImplementation implements ExpenseSplitService
         }
         else
         {
-            throw new RuntimeException("Group Not Found");
+            throw new GroupNotFoundException("Group Not Found");
         }
     }
 
@@ -144,7 +147,7 @@ public class ExpenseSplitServiceImplementation implements ExpenseSplitService
         }
         else
         {
-            throw new RuntimeException("Expense Not Found");
+            throw new ExpenseNotFoundException("Expense Not Found");
         }
     }
 
@@ -175,7 +178,7 @@ public class ExpenseSplitServiceImplementation implements ExpenseSplitService
         }
         else
         {
-            throw new RuntimeException("User Not Found Who Needs To Pay");
+            throw new UserNotFoundException("User Not Found Who Needs To Pay");
         }
 
     }
@@ -203,7 +206,7 @@ public class ExpenseSplitServiceImplementation implements ExpenseSplitService
         }
         else
         {
-            throw new RuntimeException("User Not Found Who Needs To Pay");
+            throw new UserNotFoundException("User Not Found Who Needs To Pay");
         }
     }
 

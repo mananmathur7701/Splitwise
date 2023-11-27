@@ -36,14 +36,14 @@ public class SquareOffTransactionsController
         return squareOffTransactionsServiceImplementation.addSquareOffTransaction(amount,payerId,payeeId);
     }
 
-    @PostMapping("/deleteSquareOffTransaction/{id}")
+    @DeleteMapping("/deleteSquareOffTransaction/{id}")
     @CrossOrigin("http://localhost:4200")
     public String DeleteSquareOffTransactions(@PathVariable int id)
     {
         return squareOffTransactionsServiceImplementation.deleteSquareOffTransactions(id);
     }
 
-    @GetMapping("/updateSquareOffTransaction/{id}")
+    @PostMapping("/updateSquareOffTransaction/{id}")
     @CrossOrigin("http://localhost:4200")
     public SquareOffTransactions updateSquareOffTransactions(@PathVariable int id,@RequestBody Map<String,String>data)
     {

@@ -1,5 +1,7 @@
 package com.example.Splitwise_Backend.Groups.Service;
 
+import com.example.Splitwise_Backend.Exceptions.GroupNotFoundException;
+import com.example.Splitwise_Backend.Exceptions.UserNotFoundException;
 import com.example.Splitwise_Backend.Groups.DTO.GroupsDTO;
 import com.example.Splitwise_Backend.Groups.Entity.Groups;
 import com.example.Splitwise_Backend.Groups.Repository.GroupsRepo;
@@ -48,7 +50,7 @@ public class GroupsServiceImplementation implements GroupsService{
         }
         else
         {
-            throw new RuntimeException("No User Exists To Form Group");
+            throw new UserNotFoundException("No User Exists To Form Group");
         }
     }
 
@@ -60,7 +62,7 @@ public class GroupsServiceImplementation implements GroupsService{
             return groupInfo.get();
         }
         else {
-            throw new RuntimeException("Group ID Don't Exist");
+            throw new GroupNotFoundException("Group ID Don't Exist");
         }
 
     }
@@ -74,7 +76,7 @@ public class GroupsServiceImplementation implements GroupsService{
         }
         else
         {
-            throw new RuntimeException("Group ID Don't Exist");
+            throw new GroupNotFoundException("Group ID Don't Exist");
         }
     }
 
@@ -103,7 +105,7 @@ public class GroupsServiceImplementation implements GroupsService{
         }
         else
         {
-            throw new RuntimeException("Group With Id : "+groupId+" Dont Exsists.");
+            throw new GroupNotFoundException("Group With Id : "+groupId+" Dont Exsists.");
         }
     }
 
@@ -117,7 +119,7 @@ public class GroupsServiceImplementation implements GroupsService{
             groupsRepo.save(group); // Use the correct repository
             return group;
         } else {
-            throw new RuntimeException("Group not found with ID: " + groupId);
+            throw new GroupNotFoundException("Group not found with ID: " + groupId);
         }
     }
 
@@ -131,7 +133,7 @@ public class GroupsServiceImplementation implements GroupsService{
             return prompt;
         }
         else {
-            throw new RuntimeException("Group Do Not Exist");
+            throw new GroupNotFoundException("Group Do Not Exist");
         }
     }
 
@@ -154,7 +156,7 @@ public class GroupsServiceImplementation implements GroupsService{
         }
         else
         {
-            throw new RuntimeException("Group Not Found");
+            throw new GroupNotFoundException("Group Not Found");
         }
     }
 
@@ -175,12 +177,12 @@ public class GroupsServiceImplementation implements GroupsService{
             }
             else
             {
-                throw new RuntimeException("User Not Found");
+                throw new UserNotFoundException("User Not Found");
             }
         }
         else
         {
-            throw new RuntimeException("Group Not Found");
+            throw new GroupNotFoundException("Group Not Found");
         }
     }
 
@@ -222,7 +224,7 @@ public class GroupsServiceImplementation implements GroupsService{
         }
         else
         {
-            throw new RuntimeException("User Not Found");
+            throw new UserNotFoundException("User Not Found");
         }
 
 

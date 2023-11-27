@@ -1,6 +1,10 @@
 package com.example.Splitwise_Backend.Expenses.Service;
 import com.example.Splitwise_Backend.DTO.ExpenseInfoDTO;
 import com.example.Splitwise_Backend.DTO.SplitData;
+import com.example.Splitwise_Backend.Exceptions.ExpenseNotFoundException;
+import com.example.Splitwise_Backend.Exceptions.GeneralException;
+import com.example.Splitwise_Backend.Exceptions.GroupNotFoundException;
+import com.example.Splitwise_Backend.Exceptions.UserNotFoundException;
 import com.example.Splitwise_Backend.ExpenseSplit.Service.ExpenseSplitServiceImplementation;
 import com.example.Splitwise_Backend.Expenses.Entity.Expenses;
 import com.example.Splitwise_Backend.Expenses.Repository.ExpensesRepo;
@@ -123,17 +127,17 @@ public class EspensesServiceImplementation implements ExpensesService{
                 }
                 else
                 {
-                    throw new RuntimeException("Amount Mismatched Of Payment. Please Check Either Amount Paid Is More Than Shares Given By User. Or User Has Entered Wrong Shares As It Exceeds Amount");
+                    throw new GeneralException("Amount Mismatched Of Payment. Please Check Either Amount Paid Is More Than Shares Given By User. Or User Has Entered Wrong Shares As It Exceeds Amount");
                 }
             }
             else
             {
-                throw new RuntimeException("No User List Found");
+                throw new UserNotFoundException("No User List Found");
             }
         }
         else
         {
-            throw new RuntimeException("Group Not Found");
+            throw new GroupNotFoundException("Group Not Found");
         }
     }
 
@@ -150,7 +154,7 @@ public class EspensesServiceImplementation implements ExpensesService{
         }
         else
         {
-            throw new RuntimeException(("Expense does not exist"));
+            throw new ExpenseNotFoundException("Expense does not exist");
         }
     }
 
@@ -164,7 +168,7 @@ public class EspensesServiceImplementation implements ExpensesService{
         }
         else
         {
-            throw new RuntimeException("No expenses in the group Found");
+            throw new ExpenseNotFoundException("No expenses in the group Found");
         }
     }
 
@@ -258,17 +262,17 @@ public class EspensesServiceImplementation implements ExpensesService{
                }
                else
                {
-                   throw new RuntimeException("Amount Mismatched Of Payment. Please Check Either Amount Paid Is More Than Shares Given By User. Or User Has Entered Wrong Shares As It Exceeds Amount");
+                   throw new GeneralException("Amount Mismatched Of Payment. Please Check Either Amount Paid Is More Than Shares Given By User. Or User Has Entered Wrong Shares As It Exceeds Amount");
                }
            }
            else
            {
-               throw new RuntimeException("No User List Found");
+               throw new UserNotFoundException("No User List Found");
            }
        }
        else
        {
-           throw new RuntimeException("Group Not Found");
+           throw new GroupNotFoundException("Group Not Found");
        }
 
     }
@@ -282,7 +286,7 @@ public class EspensesServiceImplementation implements ExpensesService{
         }
         else
         {
-            throw new RuntimeException("No expense found.");
+            throw new ExpenseNotFoundException("No expense found.");
         }
     }
 }

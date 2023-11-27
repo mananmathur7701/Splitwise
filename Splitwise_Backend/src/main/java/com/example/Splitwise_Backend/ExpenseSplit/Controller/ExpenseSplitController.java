@@ -34,5 +34,6 @@ public class ExpenseSplitController
         return expenseSplitServiceImplementation.expenseSplitOfParticularExpenseId(id);
     }
 
+    // ISme ek DTO aur bana kar try karna hai ki hum kis group mai kaisse kitne paise maangte hai to group wise kisse kitne paise maang rhe hai wo bhi aa sakta hai
 
 }
