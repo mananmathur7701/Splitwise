@@ -2,6 +2,7 @@ package com.example.Splitwise_Backend.Groups.Service;
 
 import com.example.Splitwise_Backend.Exceptions.GroupNotFoundException;
 import com.example.Splitwise_Backend.Exceptions.UserNotFoundException;
+import com.example.Splitwise_Backend.Friends.Service.FriendsServiceImplementation;
 import com.example.Splitwise_Backend.Groups.DTO.GroupsDTO;
 import com.example.Splitwise_Backend.Groups.Entity.Groups;
 import com.example.Splitwise_Backend.Groups.Repository.GroupsRepo;
@@ -22,10 +23,14 @@ public class GroupsServiceImplementation implements GroupsService{
     private final GroupsRepo groupsRepo;
     private final UsersRepo usersRepo;
 
+    private final FriendsServiceImplementation friendsServiceImplementation;
+
     @Autowired
-    public GroupsServiceImplementation(GroupsRepo groupsRepo, UsersRepo usersRepo) {
+    public GroupsServiceImplementation(GroupsRepo groupsRepo, UsersRepo usersRepo, FriendsServiceImplementation friendsServiceImplementation)
+    {
         this.groupsRepo = groupsRepo;
         this.usersRepo = usersRepo;
+        this.friendsServiceImplementation = friendsServiceImplementation;
     }
 
     @Override
@@ -142,14 +147,28 @@ public class GroupsServiceImplementation implements GroupsService{
         Optional<Groups> groupToWhichUserAdded = groupsRepo.findById(groupId);
         if (groupToWhichUserAdded.isPresent())
         {
-            for (String s : userEmail) {
+            for (String s : userEmail)
+            {
                 Optional<Users> userToBeAdded = Optional.ofNullable(usersRepo.findByEmail(s));
                 if (userToBeAdded.isPresent())
                 {
+                    List<Users> usersCompleteInformation=groupToWhichUserAdded.get().getUsers();
+                    List<Integer> usersIdOfMembers = new ArrayList<>();
+                    for(int i=0;i<usersCompleteInformation.toArray().length;i++)
+                    {
+                        usersIdOfMembers.add(usersCompleteInformation.get(i).getId());
+                    }
+
+                    for(int i=0;i<usersIdOfMembers.size();i++)
+                    {
+                        friendsServiceImplementation.addFriends(usersIdOfMembers.get(i),userToBeAdded.get().getId());
+                    }
+
                     List<Users> userList= groupToWhichUserAdded.get().getUsers();
                     userList.add(userToBeAdded.get());
                     groupToWhichUserAdded.get().setUsers(userList);
                     groupsRepo.save(groupToWhichUserAdded.get());
+
                 }
             }
             return groupToWhichUserAdded.get();

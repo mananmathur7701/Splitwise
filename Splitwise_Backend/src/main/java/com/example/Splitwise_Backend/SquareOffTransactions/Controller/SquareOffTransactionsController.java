@@ -19,12 +19,12 @@ public class SquareOffTransactionsController
         this.squareOffTransactionsServiceImplementation = squareOffTransactionsServiceImplementation;
     }
 
-    @GetMapping("/BalancesOfUsers/{id}")
-    @CrossOrigin("http://localhost:4200")
-    public ArrayList<String> dashboardData(@PathVariable int id)
-    {
-        return squareOffTransactionsServiceImplementation.dataToBeSentOnDashboard(id);
-    }
+//    @GetMapping("/BalancesOfUsers/{id}")
+//    @CrossOrigin("http://localhost:4200")
+//    public ArrayList<String> dashboardData(@PathVariable int id)
+//    {
+//        return squareOffTransactionsServiceImplementation.dataToBeSentOnDashboard(id);
+//    }
 
     @PostMapping("/addSquareOffTransaction")
     @CrossOrigin("http://localhost:4200")

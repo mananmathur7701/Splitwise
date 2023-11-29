@@ -180,16 +180,16 @@ public class SquareOffTransactionsServiceImplementation implements SquareOffTran
         }
     }
 
-    @Override
-    public ArrayList<String> dataToBeSentOnDashboard(int userId) {
-        ArrayList<String> data = new ArrayList<>();
-        float paisaLena = expenseSplitServiceImplementation.totalAmountJoLenaHaiByPaidToId(userId)-totalAmountByPayerId(userId);
-        float paisaDena = expenseSplitServiceImplementation.totalAmountJoDenaHaiByPayerId(userId)-totalAmountByPaidToId(userId);
-        float balance = paisaLena-paisaDena;
-
-        data.add(Float.toString(paisaLena));
-        data.add(Float.toString(paisaDena));
-        data.add(Float.toString(balance));
-        return data;
-    }
+//    @Override
+//    public ArrayList<String> dataToBeSentOnDashboard(int userId) {
+//        ArrayList<String> data = new ArrayList<>();
+//        float paisaLena = expenseSplitServiceImplementation.totalAmountJoLenaHaiByPaidToId(userId)-totalAmountByPayerId(userId);
+//        float paisaDena = expenseSplitServiceImplementation.totalAmountJoDenaHaiByPayerId(userId)-totalAmountByPaidToId(userId);
+//        float balance = paisaLena-paisaDena;
+//
+//        data.add(Float.toString(paisaLena));
+//        data.add(Float.toString(paisaDena));
+//        data.add(Float.toString(balance));
+//        return data;
+//    }
 }
