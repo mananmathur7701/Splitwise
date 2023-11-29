@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, pipe } from 'rxjs';
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -63,7 +64,7 @@ export class BackServicesService {
   addNewGroup(id:String, groupName:any):Observable<any>
   {
     const requestBody ={
-       id:id,
+       userId:id,
        groupName: groupName,
         
     };
@@ -162,6 +163,25 @@ export class BackServicesService {
   });
   return this._http.get("http://localhost:8080/BalancesOfUsers/"+id,{headers: header});
   }
+
+
+
+  //
+
+  showGroupKaName(groupId:number): Observable<any>
+  {
+    const header= new HttpHeaders({
+      "Access-Control-Allow-Origin" : "*"
+    });
+    return this._http.get("http://localhost:8080/groupInfoById/"+groupId, {headers: header})
+    .pipe(
+      map((response: any) => response.groupName) // Extract the group name from the response
+    );
+    
+  }
   
 }
+
+
+
  

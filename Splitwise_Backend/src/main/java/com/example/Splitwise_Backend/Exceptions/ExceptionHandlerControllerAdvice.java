@@ -31,7 +31,7 @@ public class ExceptionHandlerControllerAdvice
     {
         ErrorResponse expenseNotFoundErrorResponse = new ErrorResponse();
         expenseNotFoundErrorResponse.setStatus(HttpStatus.NOT_FOUND.value());
-        expenseNotFoundErrorResponse.setMessage(expenseNotFoundErrorResponse.getMessage());
+        expenseNotFoundErrorResponse.setMessage(expenseNotFoundException.getMessage());
         return new ResponseEntity<>(expenseNotFoundErrorResponse,HttpStatus.NOT_FOUND);
     }
 

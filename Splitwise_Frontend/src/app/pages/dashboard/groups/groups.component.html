@@ -35,10 +35,10 @@
     </div>
   </div>
   <ul>
-    <li *ngFor="let group of groups">
-      <div
+    <li *ngFor="let group of groups">      <div
         class="frame-27"
-        routerLink="../group-details"
+        (click)="createGroup()"
+        [routerLink]="['../group-details', group.id]" 
         routerLinkActive="active"
       >
         <div class="frame-22">
