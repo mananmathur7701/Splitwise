@@ -13,7 +13,7 @@ public class ExceptionHandlerControllerAdvice
     {
         ErrorResponse userNotFoundErrorResponse = new ErrorResponse();
         userNotFoundErrorResponse.setStatus(HttpStatus.NOT_FOUND.value());
-        userNotFoundErrorResponse.setMessage(userNotFoundErrorResponse.getMessage());
+        userNotFoundErrorResponse.setMessage(userNotFoundException.getMessage());
         return new ResponseEntity<>(userNotFoundErrorResponse,HttpStatus.NOT_FOUND);
     }
 
@@ -22,7 +22,7 @@ public class ExceptionHandlerControllerAdvice
     {
         ErrorResponse groupNotFoundErrorResponse = new ErrorResponse();
         groupNotFoundErrorResponse.setStatus(HttpStatus.NOT_FOUND.value());
-        groupNotFoundErrorResponse.setMessage(groupNotFoundErrorResponse.getMessage());
+        groupNotFoundErrorResponse.setMessage(groupNotFoundException.getMessage());
         return new ResponseEntity<>(groupNotFoundErrorResponse,HttpStatus.NOT_FOUND);
     }
 
@@ -40,7 +40,7 @@ public class ExceptionHandlerControllerAdvice
     {
         ErrorResponse squareOffTransactionNotFoundErrorResponse = new ErrorResponse();
         squareOffTransactionNotFoundErrorResponse.setStatus(HttpStatus.NOT_FOUND.value());
-        squareOffTransactionNotFoundErrorResponse.setMessage(squareOffTransactionNotFoundErrorResponse.getMessage());
+        squareOffTransactionNotFoundErrorResponse.setMessage(squareOffTransactionNotFoundException.getMessage());
         return new ResponseEntity<>(squareOffTransactionNotFoundErrorResponse,HttpStatus.NOT_FOUND);
     }
 
@@ -49,7 +49,7 @@ public class ExceptionHandlerControllerAdvice
     {
         ErrorResponse generalResponse = new ErrorResponse();
         generalResponse.setStatus(HttpStatus.NOT_FOUND.value());
-        generalResponse.setMessage(generalResponse.getMessage());
+        generalResponse.setMessage(generalException.getMessage());
         return new ResponseEntity<>(generalResponse,HttpStatus.NOT_FOUND);
     }
 }

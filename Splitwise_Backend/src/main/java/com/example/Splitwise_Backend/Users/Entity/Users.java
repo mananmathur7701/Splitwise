@@ -1,6 +1,7 @@
 package com.example.Splitwise_Backend.Users.Entity;
 
 import com.example.Splitwise_Backend.ExpenseSplit.Entity.ExpenseSplit;
+import com.example.Splitwise_Backend.Friends.Entity.Friends;
 import com.example.Splitwise_Backend.Groups.Entity.Groups;
 import com.example.Splitwise_Backend.PaymentSplit.Entity.PaymentSplit;
 import com.example.Splitwise_Backend.SquareOffTransactions.Entity.SquareOffTransactions;
@@ -35,6 +36,14 @@ public class Users {
     @JsonIgnore
     private List<Groups> groups;
 
+    @OneToMany(mappedBy = "userWhoAddedFriend")
+    @JsonIgnore
+    private List<Friends> userWhoAddedFriend;
+
+    @OneToMany(mappedBy = "userWhoIsAddedAsFriend")
+    @JsonIgnore
+    private List<Friends> userWhoIsAddedAsFriend;
+
     @OneToMany(mappedBy = "users")
     @JsonIgnore
     private List<PaymentSplit> paymentSplit;
@@ -59,7 +68,7 @@ public class Users {
     @JsonIgnore
     private List<Groups> groupsCreatedByUser;
 
-    public Users(int id, String firstName, String lastName, String email, String number, String password, List<Groups> groups, List<PaymentSplit> paymentSplit, List<ExpenseSplit> expenseSplit1, List<ExpenseSplit> expenseSplit2, List<SquareOffTransactions> squareOffTransactions1, List<SquareOffTransactions> squareOffTransactions2, Groups groupsCreatedByUser) {
+    public Users(int id, String firstName, String lastName, String email, String number, String password, List<Groups> groups, List<Friends> userWhoAddedFriend, List<Friends> userWhoIsAddedAsFriend, List<PaymentSplit> paymentSplit, List<ExpenseSplit> expenseSplit1, List<ExpenseSplit> expenseSplit2, List<SquareOffTransactions> squareOffTransactions1, List<SquareOffTransactions> squareOffTransactions2, List<Groups> groupsCreatedByUser) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -67,13 +76,32 @@ public class Users {
         this.number = number;
         this.password = password;
         this.groups = groups;
+        this.userWhoAddedFriend = userWhoAddedFriend;
+        this.userWhoIsAddedAsFriend = userWhoIsAddedAsFriend;
         this.paymentSplit = paymentSplit;
         this.expenseSplit1 = expenseSplit1;
         this.expenseSplit2 = expenseSplit2;
         this.squareOffTransactions1 = squareOffTransactions1;
         this.squareOffTransactions2 = squareOffTransactions2;
-        this.groupsCreatedByUser= (List<Groups>) groupsCreatedByUser;
+        this.groupsCreatedByUser = (List<Groups>) groupsCreatedByUser;
     }
+
+//    public Users(int id, String firstName, String lastName, String email, String number, String password, List<Groups> groups, List<PaymentSplit> paymentSplit, List<ExpenseSplit> expenseSplit1, List<ExpenseSplit> expenseSplit2, List<SquareOffTransactions> squareOffTransactions1, List<SquareOffTransactions> squareOffTransactions2, Groups groupsCreatedByUser) {
+//        this.id = id;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.email = email;
+//        this.number = number;
+//        this.password = password;
+//        this.groups = groups;
+//        this.paymentSplit = paymentSplit;
+//        this.expenseSplit1 = expenseSplit1;
+//        this.expenseSplit2 = expenseSplit2;
+//        this.squareOffTransactions1 = squareOffTransactions1;
+//        this.squareOffTransactions2 = squareOffTransactions2;
+//        this.groupsCreatedByUser= (List<Groups>) groupsCreatedByUser;
+//
+//    }
 
     public Users() {
     }
@@ -182,9 +210,33 @@ public class Users {
         this.groupsCreatedByUser = (List<Groups>) groupsCreatedByUser;
     }
 
+    public List<Friends> getUserWhoAddedFriend() {
+        return userWhoAddedFriend;
+    }
+
+    public void setUserWhoAddedFriend(List<Friends> userWhoAddedFriend) {
+        this.userWhoAddedFriend = userWhoAddedFriend;
+    }
+
+    public List<Friends> getUserWhoIsAddedAsFriend() {
+        return userWhoIsAddedAsFriend;
+    }
+
+    public void setUserWhoIsAddedAsFriend(List<Friends> userWhoIsAddedAsFriend) {
+        this.userWhoIsAddedAsFriend = userWhoIsAddedAsFriend;
+    }
+
+    public List<Groups> getGroupsCreatedByUser() {
+        return groupsCreatedByUser;
+    }
+
+    public void setGroupsCreatedByUser(List<Groups> groupsCreatedByUser) {
+        this.groupsCreatedByUser = groupsCreatedByUser;
+    }
+
     @Override
     public String toString() {
-        return "users{" +
+        return "Users{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
@@ -192,12 +244,33 @@ public class Users {
                 ", number='" + number + '\'' +
                 ", password='" + password + '\'' +
 //                ", groups=" + groups +
+//                ", userWhoAddedFriend=" + userWhoAddedFriend +
+//                ", userWhoIsAddedAsFriend=" + userWhoIsAddedAsFriend +
 //                ", paymentSplit=" + paymentSplit +
-//               ", expenseSplit1=" + expenseSplit1 +
+//                ", expenseSplit1=" + expenseSplit1 +
 //                ", expenseSplit2=" + expenseSplit2 +
 //                ", squareOffTransactions1=" + squareOffTransactions1 +
 //                ", squareOffTransactions2=" + squareOffTransactions2 +
 //                ", groupsCreatedByUser=" + groupsCreatedByUser +
                 '}';
     }
+
+//    @Override
+//    public String toString() {
+//        return "users{" +
+//                "id=" + id +
+//                ", firstName='" + firstName + '\'' +
+//                ", lastName='" + lastName + '\'' +
+//                ", email='" + email + '\'' +
+//                ", number='" + number + '\'' +
+//                ", password='" + password + '\'' +
+////                ", groups=" + groups +
+////                ", paymentSplit=" + paymentSplit +
+////               ", expenseSplit1=" + expenseSplit1 +
+////                ", expenseSplit2=" + expenseSplit2 +
+////                ", squareOffTransactions1=" + squareOffTransactions1 +
+////                ", squareOffTransactions2=" + squareOffTransactions2 +
+////                ", groupsCreatedByUser=" + groupsCreatedByUser +
+//                '}';
+//    }
 }

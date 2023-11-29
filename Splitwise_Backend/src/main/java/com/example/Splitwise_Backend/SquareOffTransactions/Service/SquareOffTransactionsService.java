@@ -12,5 +12,5 @@ public interface SquareOffTransactionsService
     public SquareOffTransactions viewSquareOffTransactions(int transactionId);
     public float totalAmountByPayerId(int payerId);
     public float totalAmountByPaidToId(int payedToId);
-    public ArrayList<String> dataToBeSentOnDashboard(int userId);
+    //public ArrayList<String> dataToBeSentOnDashboard(int userId);
 }
