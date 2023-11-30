@@ -1,5 +1,6 @@
 package com.example.Splitwise_Backend.ExpenseSplit.Service;
 
+import com.example.Splitwise_Backend.ExpenseSplit.DTO.ExpenseSplitDTO;
 import com.example.Splitwise_Backend.ExpenseSplit.Entity.ExpenseSplit;
 import com.example.Splitwise_Backend.PaymentSplit.Entity.PaymentSplit;
 
@@ -10,8 +11,8 @@ public interface ExpenseSplitService {
     public String deleteExpenseSplit(int expenseId);
     public List<ExpenseSplit> amountToBeRecievedByYou(int userId);
     public List<ExpenseSplit> amountToBeGivenByYou(int userId);
-    public List<ExpenseSplit> expenseSplitOfAllGroups(int groupId);
-    public List<ExpenseSplit> expenseSplitOfParticularExpenseId(int expenseId);
+    public List<ExpenseSplitDTO> expenseSplitOfAllGroups(int groupId);
+    public List<ExpenseSplitDTO> expenseSplitOfParticularExpenseId(int expenseId);
     public float totalAmountJoDenaHaiByPayerId(int payerId);
     public float totalAmountJoLenaHaiByPaidToId(int payedToId);
 }

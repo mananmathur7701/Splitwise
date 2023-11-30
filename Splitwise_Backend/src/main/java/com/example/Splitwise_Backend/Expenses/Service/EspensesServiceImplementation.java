@@ -6,6 +6,8 @@ import com.example.Splitwise_Backend.Exceptions.GeneralException;
 import com.example.Splitwise_Backend.Exceptions.GroupNotFoundException;
 import com.example.Splitwise_Backend.Exceptions.UserNotFoundException;
 import com.example.Splitwise_Backend.ExpenseSplit.Service.ExpenseSplitServiceImplementation;
+import com.example.Splitwise_Backend.Expenses.DTO.ExpDTO;
+import com.example.Splitwise_Backend.Expenses.DTO.expenseDTO;
 import com.example.Splitwise_Backend.Expenses.Entity.Expenses;
 import com.example.Splitwise_Backend.Expenses.Repository.ExpensesRepo;
 import com.example.Splitwise_Backend.Groups.Entity.Groups;
@@ -116,7 +118,7 @@ public class EspensesServiceImplementation implements ExpensesService{
                             if (maangne.getUserId()!=dene.getUserId()) {
                                 int amountToSettle = Math.min(maangne.getAmount(), dene.getAmount());
                                 System.out.println(maangne.getUserId() + " Needs To Give " + amountToSettle + " To " + dene.getUserId());
-                                expenseSplitServiceImplementation.saveExpenseSplit(maangne.getUserId(),dene.getUserId(),groupOfExpense.get().getId(), expenseId,amountToSettle);
+                                expenseSplitServiceImplementation.saveExpenseSplit(dene.getUserId(),maangne.getUserId(),groupOfExpense.get().getId(), expenseId,amountToSettle);
                                 maangne.setAmount(maangne.getAmount() - amountToSettle);
                                 dene.setAmount(dene.getAmount() - amountToSettle);
                             }
@@ -160,11 +162,16 @@ public class EspensesServiceImplementation implements ExpensesService{
 
 
     @Override
-    public List<Expenses> showAllGroupExpense(int groupId) {
+    public List<ExpDTO> showAllGroupExpense(int groupId) {
         Optional<List<Expenses>> exp = expensesRepo.findByGroups_Id(groupId);
         if(exp.isPresent())
         {
-            return exp.get();
+            List<ExpDTO> allExpOfGroup = new ArrayList<>();
+            for (Expenses e : exp.get())
+            {
+                allExpOfGroup.add(new ExpDTO(e.getId(),e.getSpentAt(),e.getAmountPaid(),e.getComment(),e.getGroups().getGroupName()));
+            }
+            return allExpOfGroup;
         }
         else
         {
@@ -278,11 +285,17 @@ public class EspensesServiceImplementation implements ExpensesService{
     }
 
     @Override
-    public Expenses expenseInfoById(int expenseId) {
+    public ExpDTO expenseInfoById(int expenseId) {
         Optional<Expenses> expense = expensesRepo.findById(expenseId);
         if(expense.isPresent())
         {
-            return  expense.get();
+            ExpDTO expDTO = new ExpDTO();
+            expDTO.setId(expense.get().getId());
+            expDTO.setSpentAt(expense.get().getSpentAt());
+            expDTO.setComment(expense.get().getComment());
+            expDTO.setAmountPaid(expense.get().getAmountPaid());
+            expDTO.setGroupName(expense.get().getGroups().getGroupName());
+            return expDTO;
         }
         else
         {

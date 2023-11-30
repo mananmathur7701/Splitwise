@@ -85,7 +85,7 @@ public class UsersServiceImplementation implements UsersService{
 
 
     @Override
-    public Users editDetails(UsersViewDTO usersViewDTO) {
+    public UsersViewDTO editDetails(UsersViewDTO usersViewDTO) {
         Users userToUpdate = findForUpadte(usersViewDTO.getId()); // Retrieve the user
 
         if (userToUpdate != null) {
@@ -94,8 +94,14 @@ public class UsersServiceImplementation implements UsersService{
             userToUpdate.setEmail(usersViewDTO.getEmail());
             userToUpdate.setNumber(usersViewDTO.getNumber());
 
-            usersRepo.save(userToUpdate); // Save the updated user
-            return userToUpdate;
+            usersRepo.saveAndFlush(userToUpdate); // Save the updated user
+            UsersViewDTO  viewDTO = new UsersViewDTO();
+            viewDTO.setId(usersViewDTO.getId());
+            viewDTO.setFirstName(usersViewDTO.getFirstName());
+            viewDTO.setLastName(usersViewDTO.getLastName());
+            viewDTO.setNumber(usersViewDTO.getNumber());
+            viewDTO.setEmail(usersViewDTO.getEmail());
+            return viewDTO;
         } else {
             throw new UserNotFoundException("User Not Found");
         }
@@ -103,14 +109,27 @@ public class UsersServiceImplementation implements UsersService{
 
 
     @Override
-    public Users editPassword(UsersDTO usersDTO) {
-        Users userWhosePwdToBeUpdated = findForUpadte(usersDTO.getId()); // Retrieve the user
+    public UsersDTO editPassword(Integer id, String oldPassword, String newPassword) {
+        Optional<Users> userWhosePwdToBeUpdated = usersRepo.findById(id); // Retrieve the user
+        if (userWhosePwdToBeUpdated.isPresent())
+        {
+            if(oldPassword.equals(userWhosePwdToBeUpdated.get().getPassword()))
+            {
+                userWhosePwdToBeUpdated.get().setPassword(newPassword);
+                usersRepo.save(userWhosePwdToBeUpdated.get());
 
-        if (userWhosePwdToBeUpdated != null) {
-            userWhosePwdToBeUpdated.setPassword(usersDTO.getPassword()); // Update the password
-            usersRepo.save(userWhosePwdToBeUpdated); // Save the updated user
-            return userWhosePwdToBeUpdated;
-        } else {
+                return new UsersDTO(id,userWhosePwdToBeUpdated.get().getFirstName(),userWhosePwdToBeUpdated.get().getLastName(),userWhosePwdToBeUpdated.get().getEmail(),userWhosePwdToBeUpdated.get().getNumber(),userWhosePwdToBeUpdated.get().getPassword());
+            }
+            else
+            {
+                throw new GeneralException("Password Missmatch");
+            }
+//            userWhosePwdToBeUpdated.setPassword(usersDTO.getPassword()); // Update the password
+//            usersRepo.save(userWhosePwdToBeUpdated); // Save the updated user
+//            return userWhosePwdToBeUpdated;
+        }
+        else
+        {
             throw new UserNotFoundException("User Not Found");
         }
     }

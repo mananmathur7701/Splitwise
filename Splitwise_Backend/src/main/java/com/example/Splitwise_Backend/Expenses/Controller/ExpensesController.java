@@ -2,6 +2,8 @@ package com.example.Splitwise_Backend.Expenses.Controller;
 
 
 import com.example.Splitwise_Backend.DTO.ExpenseInfoDTO;
+import com.example.Splitwise_Backend.Expenses.DTO.ExpDTO;
+import com.example.Splitwise_Backend.Expenses.DTO.expenseDTO;
 import com.example.Splitwise_Backend.Expenses.Entity.Expenses;
 import com.example.Splitwise_Backend.Expenses.Service.EspensesServiceImplementation;
 import com.example.Splitwise_Backend.Expenses.Service.ExpensesService;
@@ -37,14 +39,14 @@ public class ExpensesController {
 
     @GetMapping("/showAllGroupExpense/{groupId}")
     @CrossOrigin("http://localhost:4200")
-    public List<Expenses> showAllGroupExpense(@PathVariable int groupId)
+    public List<ExpDTO> showAllGroupExpense(@PathVariable int groupId)
     {
         return expensesServiceImplementation.showAllGroupExpense(groupId);
     }
 
     @GetMapping("/expenseInfoById/{Id}")
     @CrossOrigin("http://localhost:4200")
-    public Expenses expenseInfoById(@PathVariable int Id)
+    public ExpDTO expenseInfoById(@PathVariable int Id)
     {
         return expensesServiceImplementation.expenseInfoById(Id);
     }

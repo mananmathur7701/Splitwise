@@ -100,7 +100,7 @@ public class UsersController {
 
     @PutMapping("/editDetails/{id}")
     @CrossOrigin("http://localhost:4200")
-    public Users editDetails(@PathVariable int id, @RequestBody Users users)
+    public UsersViewDTO editDetails(@PathVariable int id, @RequestBody Users users)
     {
         UsersViewDTO updatedUser= new UsersViewDTO();
         updatedUser.setId(id);
@@ -114,28 +114,29 @@ public class UsersController {
 
     @PostMapping("/editPassword/{id}")
     @CrossOrigin("http://localhost:4200")
-    public Users editPassword(@PathVariable int id,@RequestBody Map<String, String> passwords)
+    public UsersDTO editPassword(@PathVariable int id,@RequestBody Map<String, String> passwords)
     {
         String oldPassword = passwords.get("oldPassword");
         String newPassword = passwords.get("newPassword");
-        Users userWhosePwdToBeUpdated = usersServiceImplementation.findForUpadte(id);
-
-        UsersDTO updatedUser=new UsersDTO();
-        updatedUser.setId(id);
-        updatedUser.setEmail(userWhosePwdToBeUpdated.getEmail());
-        updatedUser.setFirstName(userWhosePwdToBeUpdated.getFirstName());
-        updatedUser.setLastName(userWhosePwdToBeUpdated.getLastName());
-        updatedUser.setNumber(userWhosePwdToBeUpdated.getNumber());
-
-        if(oldPassword.equals(userWhosePwdToBeUpdated.getPassword()))
-        {
-           updatedUser.setPassword(newPassword);
-            return usersServiceImplementation.editPassword(updatedUser);
-        }
-        else
-        {
-            throw new RuntimeException("Password Missmatched");
-        }
+        return usersServiceImplementation.editPassword(id,oldPassword,newPassword);
+//        Users userWhosePwdToBeUpdated = usersServiceImplementation.findForUpadte(id);
+//
+//        UsersDTO updatedUser=new UsersDTO();
+//        updatedUser.setId(id);
+//        updatedUser.setEmail(userWhosePwdToBeUpdated.getEmail());
+//        updatedUser.setFirstName(userWhosePwdToBeUpdated.getFirstName());
+//        updatedUser.setLastName(userWhosePwdToBeUpdated.getLastName());
+//        updatedUser.setNumber(userWhosePwdToBeUpdated.getNumber());
+//
+//        if(oldPassword.equals(userWhosePwdToBeUpdated.getPassword()))
+//        {
+//           updatedUser.setPassword(newPassword);
+//            return usersServiceImplementation.editPassword(updatedUser);
+//        }
+//        else
+//        {
+//            throw new RuntimeException("Password Missmatched");
+//        }
     }
 
     @GetMapping("/userDetailsById/{id}")

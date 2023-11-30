@@ -1,7 +1,9 @@
 package com.example.Splitwise_Backend.ExpenseSplit.Service;
 import com.example.Splitwise_Backend.Exceptions.ExpenseNotFoundException;
+import com.example.Splitwise_Backend.Exceptions.GeneralException;
 import com.example.Splitwise_Backend.Exceptions.GroupNotFoundException;
 import com.example.Splitwise_Backend.Exceptions.UserNotFoundException;
+import com.example.Splitwise_Backend.ExpenseSplit.DTO.ExpenseSplitDTO;
 import com.example.Splitwise_Backend.ExpenseSplit.Entity.ExpenseSplit;
 import com.example.Splitwise_Backend.ExpenseSplit.Repository.ExpenseSplitRepo;
 import com.example.Splitwise_Backend.Expenses.Entity.Expenses;
@@ -14,6 +16,7 @@ import com.example.Splitwise_Backend.Users.Repository.UsersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -122,13 +125,25 @@ public class ExpenseSplitServiceImplementation implements ExpenseSplitService
 
 
     @Override
-    public List<ExpenseSplit> expenseSplitOfAllGroups(int groupId)
+    public List<ExpenseSplitDTO> expenseSplitOfAllGroups(int groupId)
     {
         Optional<Groups> expensesOfGroup= groupsRepo.findById(groupId);
         if (expensesOfGroup.isPresent())
         {
             Optional<List<ExpenseSplit>> allTransactionOfGroup = expenseSplitRepo.findByGroups_Id(groupId);
-            return allTransactionOfGroup.get();
+            if (allTransactionOfGroup.isPresent())
+            {
+                List<ExpenseSplitDTO> expenseSplitDTOList = new ArrayList<>();
+                for (ExpenseSplit exp : allTransactionOfGroup.get())
+                {
+                    expenseSplitDTOList.add(new ExpenseSplitDTO(exp.getId(),exp.getShareAmount(), exp.getExpenses().getId(), exp.getExpenses().getComment(), exp.getGroups().getId(), exp.getGroups().getGroupName(), exp.getPayedToId().getId(), exp.getPayedToId().getEmail(), exp.getPayerId().getId(), exp.getPayerId().getEmail()));
+                }
+                return expenseSplitDTOList;
+            }
+            else
+            {
+                throw new GeneralException("No Transaction Of A Particular Group");
+            }
         }
         else
         {
@@ -137,13 +152,25 @@ public class ExpenseSplitServiceImplementation implements ExpenseSplitService
     }
 
     @Override
-    public List<ExpenseSplit> expenseSplitOfParticularExpenseId(int expenseId)
+    public List<ExpenseSplitDTO> expenseSplitOfParticularExpenseId(int expenseId)
     {
         Optional<Expenses> expensesOfExpenseSplit= expensesRepo.findById(expenseId);
         if (expensesOfExpenseSplit.isPresent())
         {
             Optional<List<ExpenseSplit>> allTransactionOfExpense = expenseSplitRepo.findByExpenses_Id(expenseId);
-            return allTransactionOfExpense.get();
+            if (allTransactionOfExpense.isPresent())
+            {
+                List<ExpenseSplitDTO> expenseSplitDTOList = new ArrayList<>();
+                for (ExpenseSplit exp : allTransactionOfExpense.get())
+                {
+                    expenseSplitDTOList.add(new ExpenseSplitDTO(exp.getId(),exp.getShareAmount(), exp.getExpenses().getId(), exp.getExpenses().getComment(), exp.getGroups().getId(), exp.getGroups().getGroupName(), exp.getPayedToId().getId(), exp.getPayedToId().getEmail(), exp.getPayerId().getId(), exp.getPayerId().getEmail()));
+                }
+                return expenseSplitDTOList;
+            }
+            else
+            {
+                throw new GeneralException("No Transaction Of A Particular Expense");
+            }
         }
         else
         {
