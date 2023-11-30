@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, pipe } from 'rxjs';
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { createMayBeForwardRefExpression } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -187,6 +188,16 @@ export class BackServicesService {
     
     return this._http.post("http://localhost:8080/addUserToGroup/"+id,email);
 
+  }
+
+  //      SHOW GROUP K SAARE MEMBERS
+
+  showGroupKeMembers(groupId: number) : Observable<any>
+  {
+    const header = new HttpHeaders({
+      "Access-Control-Allow-Origin" : "*"
+    });
+    return this._http.get("http://localhost:8080/groupMembers/"+groupId, {headers: header})
   }
 
   

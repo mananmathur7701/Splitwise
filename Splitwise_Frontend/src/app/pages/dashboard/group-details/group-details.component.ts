@@ -12,7 +12,7 @@ export class GroupDetailsComponent implements OnInit {
   // id: any = localStorage.getItem('id');
   groupId: number = 0;
   showModal = false;
-  members: string[] = []; // Array to store members
+  members: any[] = []; // Array to store members
   groupName: any;
   expensesList: any[] = [];
 
@@ -51,6 +51,7 @@ export class GroupDetailsComponent implements OnInit {
     });
     this.getGroupKaNaam();
     this.getGroupDetails();
+    this.getGroupKeMembers();
   }
   getGroupDetails(): void {
     this.backService.showAllGroupExpense(this.groupId).subscribe(
@@ -88,6 +89,20 @@ export class GroupDetailsComponent implements OnInit {
       },
       (error) => {
         console.error("Error adding member:", error);
+      }
+    );
+  }
+
+  getGroupKeMembers(): void {
+    this.backService.showGroupKeMembers(this.groupId).subscribe(
+      (response) => {
+        // console.log(this.groupId);
+        console.log(response, 'gdxfcgyhuijkoihugyxfcgvhb');
+        this.members = response;
+        console.log('sadfgds',this.members);
+      },
+      (error) => {
+        console.error('Error fetching group members:', error);
       }
     );
   }

@@ -56,46 +56,15 @@
     </ul>
   </div>
   <div class="right-section">
-    <ul>
-      <li>
+    <ul >
+      <li *ngFor="let member of members">
         <div class="frame-27">
           <div class="frame-22">
             <div class="frame-23">
               <div class="frame-24"></div>
               <div class="frame-25">
-                <div class="oinkita-kaur">AMAN SHUKLA</div>
-                <div class="cigaretter">GANJEDI</div>
-              </div>
-            </div>
-            <div class="frame-26">
-              <div class="_38-0342">₹500</div>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="frame-27">
-          <div class="frame-22">
-            <div class="frame-23">
-              <div class="frame-24"></div>
-              <div class="frame-25">
-                <div class="oinkita-kaur">PRASHANT KUMAR</div>
-                <div class="cigaretter">SUTERI</div>
-              </div>
-            </div>
-            <div class="frame-26">
-              <div class="_38-0342">₹500</div>
-            </div>
-          </div>
-        </div>
-      </li><li>
-        <div class="frame-27">
-          <div class="frame-22">
-            <div class="frame-23">
-              <div class="frame-24"></div>
-              <div class="frame-25">
-                <div class="oinkita-kaur">SATYAM OJHA</div>
-                <div class="cigaretter">DARUA</div>
+                <div class="oinkita-kaur">{{member.firstName}} {{member.lastName}}</div>
+                <div class="cigaretter">{{member.email}}</div>
               </div>
             </div>
             <div class="frame-26">
