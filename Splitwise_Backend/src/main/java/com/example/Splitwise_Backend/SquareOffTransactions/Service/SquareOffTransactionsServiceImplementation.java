@@ -3,6 +3,7 @@ import com.example.Splitwise_Backend.Exceptions.SquareOffTransactionNotFoundExce
 import com.example.Splitwise_Backend.Exceptions.UserNotFoundException;
 import com.example.Splitwise_Backend.ExpenseSplit.Repository.ExpenseSplitRepo;
 import com.example.Splitwise_Backend.ExpenseSplit.Service.ExpenseSplitServiceImplementation;
+import com.example.Splitwise_Backend.SquareOffTransactions.DTO.SquareOffDTO;
 import com.example.Splitwise_Backend.SquareOffTransactions.Entity.SquareOffTransactions;
 import com.example.Splitwise_Backend.SquareOffTransactions.Repository.SquareOffTransactionsRepo;
 import com.example.Splitwise_Backend.Users.Entity.Users;

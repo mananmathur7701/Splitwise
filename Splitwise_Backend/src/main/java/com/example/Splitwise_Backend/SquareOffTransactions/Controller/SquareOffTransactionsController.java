@@ -1,10 +1,12 @@
 package com.example.Splitwise_Backend.SquareOffTransactions.Controller;
 
+import com.example.Splitwise_Backend.SquareOffTransactions.DTO.SquareOffDTO;
 import com.example.Splitwise_Backend.SquareOffTransactions.Entity.SquareOffTransactions;
 import com.example.Splitwise_Backend.SquareOffTransactions.Service.SquareOffTransactionsServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -28,12 +30,21 @@ public class SquareOffTransactionsController
 
     @PostMapping("/addSquareOffTransaction")
     @CrossOrigin("http://localhost:4200")
-    public SquareOffTransactions addSquareOffTransactions(@RequestBody Map<String,String>data)
+    public SquareOffDTO addSquareOffTransactions(@RequestBody Map<String,String>data)
     {
         float amount = Float.parseFloat(data.get("amount"));
         int payerId = Integer.parseInt(data.get("payerId"));
         int payeeId = Integer.parseInt(data.get("payeeId"));
-        return squareOffTransactionsServiceImplementation.addSquareOffTransaction(amount,payerId,payeeId);
+        SquareOffTransactions s =squareOffTransactionsServiceImplementation.addSquareOffTransaction(amount,payerId,payeeId);
+        SquareOffDTO squareOffDTO = new SquareOffDTO();
+        squareOffDTO.setId(s.getId());
+        squareOffDTO.setAmount(s.getAmount());
+        squareOffDTO.setTime((Timestamp) s.getTime());
+        squareOffDTO.setPayerId(s.getPayerId().getId());
+        squareOffDTO.setPayerEmail(s.getPayerId().getEmail());
+        squareOffDTO.setPayedToId(s.getPayedToId().getId());
+        squareOffDTO.setPayedToEmail(s.getPayedToId().getEmail());
+        return squareOffDTO;
     }
 
     @DeleteMapping("/deleteSquareOffTransaction/{id}")
@@ -45,19 +56,37 @@ public class SquareOffTransactionsController
 
     @PostMapping("/updateSquareOffTransaction/{id}")
     @CrossOrigin("http://localhost:4200")
-    public SquareOffTransactions updateSquareOffTransactions(@PathVariable int id,@RequestBody Map<String,String>data)
+    public SquareOffDTO updateSquareOffTransactions(@PathVariable int id,@RequestBody Map<String,String>data)
     {
         float amount = Float.parseFloat(data.get("amount"));
         int payerId = Integer.parseInt(data.get("payerId"));
         int payeeId = Integer.parseInt(data.get("payeeId"));
-        return squareOffTransactionsServiceImplementation.updateSquareOffTransactions(id,amount,payerId,payeeId);
+        SquareOffTransactions s= squareOffTransactionsServiceImplementation.updateSquareOffTransactions(id,amount,payerId,payeeId);
+        SquareOffDTO squareOffDTO = new SquareOffDTO();
+        squareOffDTO.setId(s.getId());
+        squareOffDTO.setAmount(s.getAmount());
+        squareOffDTO.setTime((Timestamp) s.getTime());
+        squareOffDTO.setPayerId(s.getPayerId().getId());
+        squareOffDTO.setPayerEmail(s.getPayerId().getEmail());
+        squareOffDTO.setPayedToId(s.getPayedToId().getId());
+        squareOffDTO.setPayedToEmail(s.getPayedToId().getEmail());
+        return squareOffDTO;
     }
 
     @GetMapping("/showTransactionById/{id}")
     @CrossOrigin("http://localhost:4200")
-    public SquareOffTransactions showTransactionById(@PathVariable int id)
+    public SquareOffDTO showTransactionById(@PathVariable int id)
     {
-        return squareOffTransactionsServiceImplementation.viewSquareOffTransactions(id);
+        SquareOffTransactions s = squareOffTransactionsServiceImplementation.viewSquareOffTransactions(id);
+        SquareOffDTO squareOffDTO = new SquareOffDTO();
+        squareOffDTO.setId(s.getId());
+        squareOffDTO.setAmount(s.getAmount());
+        squareOffDTO.setTime((Timestamp) s.getTime());
+        squareOffDTO.setPayerId(s.getPayerId().getId());
+        squareOffDTO.setPayerEmail(s.getPayerId().getEmail());
+        squareOffDTO.setPayedToId(s.getPayedToId().getId());
+        squareOffDTO.setPayedToEmail(s.getPayedToId().getEmail());
+        return squareOffDTO;
     }
 
 //

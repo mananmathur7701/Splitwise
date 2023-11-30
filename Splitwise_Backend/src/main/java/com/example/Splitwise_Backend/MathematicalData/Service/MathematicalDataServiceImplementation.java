@@ -168,7 +168,7 @@ public class MathematicalDataServiceImplementation implements MathematicalDataSe
                 }
 
 
-                float totalamount = (amountUserPaisaDiya-amountUserPaisaDenaHai)+(amountUserPaisaMaangtaHai-amountUserPaisaDenaMaangtaHai);
+                float totalamount = (amountUserPaisaDiya-amountUserPaisaDenaHai)-(amountUserPaisaMaangtaHai-amountUserPaisaDenaMaangtaHai);
                 return totalamount;
 
             }

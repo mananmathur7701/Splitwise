@@ -1,5 +1,6 @@
 package com.example.Splitwise_Backend.SquareOffTransactions.Service;
 
+import com.example.Splitwise_Backend.SquareOffTransactions.DTO.SquareOffDTO;
 import com.example.Splitwise_Backend.SquareOffTransactions.Entity.SquareOffTransactions;
 
 import java.util.ArrayList;
