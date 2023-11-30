@@ -152,22 +152,32 @@ public class GroupsServiceImplementation implements GroupsService{
                 Optional<Users> userToBeAdded = Optional.ofNullable(usersRepo.findByEmail(s));
                 if (userToBeAdded.isPresent())
                 {
-                    List<Users> usersCompleteInformation=groupToWhichUserAdded.get().getUsers();
-                    List<Integer> usersIdOfMembers = new ArrayList<>();
-                    for(int i=0;i<usersCompleteInformation.toArray().length;i++)
+                    List<UsersViewDTO> groupMembers = getGroupMembers(groupId);
+                    List<String> emails = new ArrayList<>();
+                    for(UsersViewDTO u : groupMembers)
                     {
-                        usersIdOfMembers.add(usersCompleteInformation.get(i).getId());
+                        emails.add(u.getEmail());
                     }
 
-                    for(int i=0;i<usersIdOfMembers.size();i++)
+                    if(!(emails.contains(s)))
                     {
-                        friendsServiceImplementation.addFriends(usersIdOfMembers.get(i),userToBeAdded.get().getId());
-                    }
+                        List<Users> usersCompleteInformation=groupToWhichUserAdded.get().getUsers();
+                        List<Integer> usersIdOfMembers = new ArrayList<>();
+                        for(int i=0;i<usersCompleteInformation.toArray().length;i++)
+                        {
+                            usersIdOfMembers.add(usersCompleteInformation.get(i).getId());
+                        }
 
-                    List<Users> userList= groupToWhichUserAdded.get().getUsers();
-                    userList.add(userToBeAdded.get());
-                    groupToWhichUserAdded.get().setUsers(userList);
-                    groupsRepo.save(groupToWhichUserAdded.get());
+                        for(int i=0;i<usersIdOfMembers.size();i++)
+                        {
+                            friendsServiceImplementation.addFriends(usersIdOfMembers.get(i),userToBeAdded.get().getId());
+                        }
+
+                        List<Users> userList= groupToWhichUserAdded.get().getUsers();
+                        userList.add(userToBeAdded.get());
+                        groupToWhichUserAdded.get().setUsers(userList);
+                        groupsRepo.save(groupToWhichUserAdded.get());
+                    }
 
                 }
             }
