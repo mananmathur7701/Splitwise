@@ -79,4 +79,16 @@ export class GroupDetailsComponent implements OnInit {
       }
     );
   }
+
+  addMembersToGroup(): void {
+    this.backService.addMembersToGroup(this.groupId,this.members).subscribe(
+      (response) => {
+          console.log(response);
+          
+      },
+      (error) => {
+        console.error("Error adding member:", error);
+      }
+    );
+  }
 }

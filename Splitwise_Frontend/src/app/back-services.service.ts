@@ -179,6 +179,16 @@ export class BackServicesService {
     );
     
   }
+
+  //      ADD NEW MEMBERS TO A GROUP
+
+  addMembersToGroup(id: any, email:any) : Observable<any>
+  {
+    
+    return this._http.post("http://localhost:8080/addUserToGroup/"+id,email);
+
+  }
+
   
 }
 

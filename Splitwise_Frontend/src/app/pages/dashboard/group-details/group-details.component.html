@@ -34,7 +34,8 @@
       >
     </div>
   </div>
-  <div class="section">
+ <div class="container">
+  <div class="left-section">
     <ul>
       <li *ngFor="let expense of expensesList">
         <div class="frame-27">
@@ -54,7 +55,57 @@
       </li>
     </ul>
   </div>
-</div>
+  <div class="right-section">
+    <ul>
+      <li>
+        <div class="frame-27">
+          <div class="frame-22">
+            <div class="frame-23">
+              <div class="frame-24"></div>
+              <div class="frame-25">
+                <div class="oinkita-kaur">AMAN SHUKLA</div>
+                <div class="cigaretter">GANJEDI</div>
+              </div>
+            </div>
+            <div class="frame-26">
+              <div class="_38-0342">₹500</div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="frame-27">
+          <div class="frame-22">
+            <div class="frame-23">
+              <div class="frame-24"></div>
+              <div class="frame-25">
+                <div class="oinkita-kaur">PRASHANT KUMAR</div>
+                <div class="cigaretter">SUTERI</div>
+              </div>
+            </div>
+            <div class="frame-26">
+              <div class="_38-0342">₹500</div>
+            </div>
+          </div>
+        </div>
+      </li><li>
+        <div class="frame-27">
+          <div class="frame-22">
+            <div class="frame-23">
+              <div class="frame-24"></div>
+              <div class="frame-25">
+                <div class="oinkita-kaur">SATYAM OJHA</div>
+                <div class="cigaretter">DARUA</div>
+              </div>
+            </div>
+            <div class="frame-26">
+              <div class="_38-0342">₹500</div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
 <div class="modal" [style.display]="showModal ? 'flex' : 'none'">
   <div class="blur"></div>
   <div class="modal-content">
@@ -122,7 +173,7 @@
             </button>
           </li>
         </ul>
-        <button>Add Members</button>
+        <button (click)="addMembersToGroup()">Add Members</button>
       </form>
     </div>
   </div>

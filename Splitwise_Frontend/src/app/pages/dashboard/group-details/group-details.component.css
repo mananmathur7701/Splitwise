@@ -288,9 +288,18 @@ ul {
   justify-content: center;
   align-items: center;
 }
-.section {
-  display: flex;
-  width: 100%;
+.container {
+  display: flex; /* Use flexbox layout */
+  justify-content: space-between; /* Position items with space between them */
+}
+.left-section {
+  /* display: flex; */
+  width: 50%;
+  gap: 12px;
+}
+.right-section {
+  /* display: flex; */
+  width: 50%;
   gap: 12px;
 }
 .list-section {
