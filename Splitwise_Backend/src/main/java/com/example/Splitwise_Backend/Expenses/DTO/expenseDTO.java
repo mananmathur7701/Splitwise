@@ -10,7 +10,6 @@ public class expenseDTO {
         private Timestamp spentAt;
         private float amountPaid;
         private String comment;
-
         private Groups groups;
 
 

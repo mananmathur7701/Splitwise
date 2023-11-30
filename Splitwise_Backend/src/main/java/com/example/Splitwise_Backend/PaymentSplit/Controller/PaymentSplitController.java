@@ -1,5 +1,6 @@
 package com.example.Splitwise_Backend.PaymentSplit.Controller;
 
+import com.example.Splitwise_Backend.PaymentSplit.DTO.PaymentSplitDTO;
 import com.example.Splitwise_Backend.PaymentSplit.Entity.PaymentSplit;
 import com.example.Splitwise_Backend.PaymentSplit.Service.PaymentSplitServiceImplementation;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,14 +22,14 @@ public class PaymentSplitController
 
     @GetMapping("/showAllPaymentsDoneByUser/{id}")
     @CrossOrigin("http://localhost:4200")
-    public List<PaymentSplit> allPaymentsOfUser(@PathVariable int id)
+    public List<PaymentSplitDTO> allPaymentsOfUser(@PathVariable int id)
     {
         return paymentSplitServiceImplementation.paymentDoneByUser(id);
     }
 
     @GetMapping("/showAllPaymentsDoneOfExpense/{id}")
     @CrossOrigin("http://localhost:4200")
-    public List<PaymentSplit> allPaymentsOfExpense(@PathVariable int id)
+    public List<PaymentSplitDTO> allPaymentsOfExpense(@PathVariable int id)
     {
         return paymentSplitServiceImplementation.paymentDoneForExpense(id);
     }
