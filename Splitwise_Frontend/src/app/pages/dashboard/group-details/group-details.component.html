@@ -26,67 +26,55 @@
     </div>
   </div>
   <div class="list-section">
-    <h1>Goo</h1>
+    <h1>{{groupName}}</h1>
     <div class="buttons">
       <a class="addBtn" (click)="toggleModal()">Add Member</a>
-      <a class="addBtn" routerLink="../addExpense" routerLinkActive="active"
+      <a class="addBtn" routerLink="../../addExpense" routerLinkActive="active"
         >Add Expense</a
       >
     </div>
   </div>
-  <div class="section">
+ <div class="container">
+  <div class="left-section">
     <ul>
-      <li>
+      <li *ngFor="let expense of expensesList">
         <div class="frame-27">
           <div class="frame-22">
             <div class="frame-23">
               <div class="frame-24"></div>
               <div class="frame-25">
-                <div class="oinkita-kaur">Saksham Chaudhary</div>
-                <div class="cigaretter">cigaretter</div>
+                <div class="oinkita-kaur">{{expense.comment}}</div>
+                <div class="cigaretter">{{expense.spentAt | date: 'medium'}}</div>
               </div>
             </div>
             <div class="frame-26">
-              <div class="_38-0342">₹6460</div>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="frame-27">
-          <div class="frame-22">
-            <div class="frame-23">
-              <div class="frame-24"></div>
-              <div class="frame-25">
-                <div class="oinkita-kaur">Shrija Verma</div>
-                <div class="cigaretter">cigaretter</div>
-              </div>
-            </div>
-            <div class="frame-26">
-              <div class="_38-0342">₹480</div>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="frame-27">
-          <div class="frame-22">
-            <div class="frame-23">
-              <div class="frame-24"></div>
-              <div class="frame-25">
-                <div class="oinkita-kaur">Aamrin Khan</div>
-                <div class="cigaretter">cigaretter</div>
-              </div>
-            </div>
-            <div class="frame-26">
-              <div class="_38-0342">₹765</div>
+              <div class="_38-0342">₹ {{expense.amountPaid}}</div>
             </div>
           </div>
         </div>
       </li>
     </ul>
   </div>
-</div>
+  <div class="right-section">
+    <ul >
+      <li *ngFor="let member of members">
+        <div class="frame-27">
+          <div class="frame-22">
+            <div class="frame-23">
+              <div class="frame-24"></div>
+              <div class="frame-25">
+                <div class="oinkita-kaur">{{member.firstName}} {{member.lastName}}</div>
+                <div class="cigaretter">{{member.email}}</div>
+              </div>
+            </div>
+            <div class="frame-26">
+              <div class="_38-0342">₹500</div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
 <div class="modal" [style.display]="showModal ? 'flex' : 'none'">
   <div class="blur"></div>
   <div class="modal-content">
@@ -98,7 +86,7 @@
             xmlns="http://www.w3.org/2000/svg"
             width="16"
             height="16"
-            fill="white"
+            fill="black"
             class="bi bi-x-lg"
             viewBox="0 0 16 16"
           >
@@ -126,7 +114,7 @@
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
                   height="16"
-                  fill="white"
+                  fill="black"
                   class="bi bi-plus-square-fill"
                   viewBox="0 0 16 16"
                 >
@@ -138,7 +126,7 @@
         </div>
         <p>List of members:</p>
         <ul class="member-list">
-          <li *ngFor="let member of members">
+          <li *ngFor="let member of membersToAdd">
             {{ member }}
             <button (click)="removeMember(member)">
               <svg
@@ -154,7 +142,7 @@
             </button>
           </li>
         </ul>
-        <button>Add Members</button>
+        <button (click)="addMembersToGroup()">Add Members</button>
       </form>
     </div>
   </div>

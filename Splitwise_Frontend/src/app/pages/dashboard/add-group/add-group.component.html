@@ -1,3 +1,4 @@
+<!-- add group -->
 <div class="wrap">
   <div class="title">
     <h1>Create new group</h1>
@@ -16,7 +17,7 @@
       </svg>
     </button>
   </div>
-  <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+  <form #myForm="ngForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="groupName">Enter name :</label>
       <input
@@ -24,7 +25,7 @@
         id="groupName"
         name="groupName"
         class="form-control"
-        formControlName="groupName"
+        [(ngModel)]="groupData.groupName"
         placeholder="Enter a group name"
         required
       />

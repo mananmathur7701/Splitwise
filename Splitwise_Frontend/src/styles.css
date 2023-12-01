@@ -10,7 +10,24 @@
 body {
     background: #1a1a1a;
     overflow-x: hidden;
+    
 
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Hide scrollbar for WebKit browsers */
+::-webkit-scrollbar {
+    width: 0; /* Remove scrollbar width */
+    height: 0; /* Remove scrollbar height */
+  }
+  
+  /* Optional: If you want to style the scrollbar track and thumb */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Change track background color */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #888; /* Change thumb color */
+  }
+  

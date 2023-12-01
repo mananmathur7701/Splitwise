@@ -42,7 +42,7 @@ const routes: Routes = [
       { path: 'groups',component: GroupsComponent},
       { path: 'addExpense', component: ExpenseComponent },
       { path: 'addGroup', component: AddGroupComponent },
-      { path: 'group-details', component: GroupDetailsComponent },
+      { path: 'group-details/:id', component: GroupDetailsComponent },
 
     ]
   },

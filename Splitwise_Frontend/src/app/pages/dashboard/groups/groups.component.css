@@ -152,6 +152,7 @@ ul {
   height: 75px;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 .frame-23 {
   display: flex;
@@ -407,6 +408,7 @@ ul {
 .buttons {
   display: flex;
   gap: 8px;
+  cursor: pointer;
 }
 
 .modal {

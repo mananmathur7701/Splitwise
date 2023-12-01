@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, pipe } from 'rxjs';
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { createMayBeForwardRefExpression } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -63,7 +65,7 @@ export class BackServicesService {
   addNewGroup(id:String, groupName:any):Observable<any>
   {
     const requestBody ={
-       id:id,
+       userId:id,
        groupName: groupName,
         
     };
@@ -162,6 +164,54 @@ export class BackServicesService {
   });
   return this._http.get("http://localhost:8080/BalancesOfUsers/"+id,{headers: header});
   }
+
+
+
+  //
+
+  showGroupKaName(groupId:number): Observable<any>
+  {
+    const header= new HttpHeaders({
+      "Access-Control-Allow-Origin" : "*"
+    });
+    return this._http.get("http://localhost:8080/groupInfoById/"+groupId, {headers: header})
+    .pipe(
+      map((response: any) => response.groupName) // Extract the group name from the response
+    );
+    
+  }
+
+  //      ADD NEW MEMBERS TO A GROUP
+
+  addMembersToGroup(id: any, email:any) : Observable<any>
+  {
+    
+    return this._http.post("http://localhost:8080/addUserToGroup/"+id,email);
+
+  }
+
+  //      SHOW GROUP K SAARE MEMBERS
+
+  showGroupKeMembers(groupId: number) : Observable<any>
+  {
+    const header = new HttpHeaders({
+      "Access-Control-Allow-Origin" : "*"
+    });
+    return this._http.get("http://localhost:8080/groupMembers/"+groupId, {headers: header})
+  }
+
+  //   FRIENDS YA FIR LEDGER KA LIST
+
+  showUserKeFriends(Id: number) : Observable<any>
+  {
+    const header = new HttpHeaders({
+      "Access-Control-Allow-Origin" : "*"
+    });
+    return this._http.get("http://localhost:8080/LedgerOfUser/"+Id, {headers: header})
+  }
   
 }
- 
+
+
+
+

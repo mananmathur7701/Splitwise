@@ -13,7 +13,9 @@ export class FriendsComponent implements OnInit {
   owed:number |any;
   owes:number |any;
   balance:number |any;
-
+  dost: any[] = [];
+  Id: number = 0;
+  
   constructor(
     private backService: BackServicesService
   ){};
@@ -21,6 +23,7 @@ export class FriendsComponent implements OnInit {
 
   ngOnInit(): void {
     this.udhariKaData();
+    this.getUserKeFriends();
     //throw new Error('Method not implemented.');
   }
   
@@ -80,4 +83,20 @@ export class FriendsComponent implements OnInit {
       }
     )
   }
+
+  getUserKeFriends(): void{
+    this.backService.showUserKeFriends(this.Id).subscribe(
+      (response) => {
+        // console.log(this.groupId);
+        console.log(response, 'gdxfcgyhuijkoihugyxfcgvhb');
+        this.dost = response;
+        console.log('sadfgds',this.dost);
+      },
+      (error) => {
+        console.error('Error fetching group members:', error);
+      }
+    );
+  }
+
+
 }
