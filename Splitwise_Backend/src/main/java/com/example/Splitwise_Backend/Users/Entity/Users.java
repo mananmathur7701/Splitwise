@@ -8,6 +8,10 @@ import com.example.Splitwise_Backend.SquareOffTransactions.Entity.SquareOffTrans
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -18,18 +22,25 @@ public class Users {
     private int id;
 
     @Column(name = "f_name", nullable = false)
+    @NotEmpty(message = "First name cannot be empty")
     private String firstName;
 
     @Column(name = "l_name")
+    @NotEmpty(message = "Last name cannot be empty")
     private String lastName;
 
     @Column(name = "email", unique = true, nullable = false)
+    @Email(message = "Please provide a valid email address")
+    @NotEmpty(message = "Email cannot be empty")
     private String email;
 
     @Column(name = "number", nullable = false)
+    @Size(min = 10, max = 10, message = "Number must have exactly 10 digits")
+    @Pattern(regexp = "\\d+", message = "Number must contain only digits")
     private String number;
 
     @Column(name = "password", nullable = false)
+    @NotEmpty(message = "Password cannot be empty")
     private String password;
 
     @ManyToMany(mappedBy = "users")
