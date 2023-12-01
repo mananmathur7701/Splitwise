@@ -200,9 +200,18 @@ export class BackServicesService {
     return this._http.get("http://localhost:8080/groupMembers/"+groupId, {headers: header})
   }
 
+  //   FRIENDS YA FIR LEDGER KA LIST
+
+  showUserKeFriends(Id: number) : Observable<any>
+  {
+    const header = new HttpHeaders({
+      "Access-Control-Allow-Origin" : "*"
+    });
+    return this._http.get("http://localhost:8080/LedgerOfUser/"+Id, {headers: header})
+  }
   
 }
 
 
 
- 
+

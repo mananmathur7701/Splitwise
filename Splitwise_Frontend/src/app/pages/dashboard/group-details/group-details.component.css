@@ -497,7 +497,7 @@ button:hover {
 .close-icon {
   width: max-content;
   cursor: pointer;
-  background-color: transparent;
+  /* background-color: transparent; */
 }
 form {
   display: flex;

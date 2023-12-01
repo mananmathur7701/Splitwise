@@ -13,19 +13,27 @@ export class GroupDetailsComponent implements OnInit {
   groupId: number = 0;
   showModal = false;
   members: any[] = []; // Array to store members
+  membersToAdd: any[] = []; // Array to store the members to be added
   groupName: any;
   expensesList: any[] = [];
+  router: any;
+
+
+  
+
 
   addMember(email: string) {
-    if (email.trim() !== '' && this.members.indexOf(email) === -1) {
-      this.members.push(email);
+    if (email.trim() !== '' && this.membersToAdd.indexOf(email) === -1) {
+      this.membersToAdd.push(email);
     }
   }
 
+
+
   removeMember(email: string) {
-    const index = this.members.indexOf(email);
+    const index = this.membersToAdd.indexOf(email);
     if (index !== -1) {
-      this.members.splice(index, 1);
+      this.membersToAdd.splice(index, 1);
     }
   }
   toggleModal() {
@@ -82,9 +90,11 @@ export class GroupDetailsComponent implements OnInit {
   }
 
   addMembersToGroup(): void {
-    this.backService.addMembersToGroup(this.groupId,this.members).subscribe(
+    this.backService.addMembersToGroup(this.groupId,this.membersToAdd).subscribe(
       (response) => {
           console.log(response);
+          this.membersToAdd=[];
+          
           
       },
       (error) => {

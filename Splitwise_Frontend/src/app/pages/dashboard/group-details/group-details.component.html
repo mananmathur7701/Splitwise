@@ -29,7 +29,7 @@
     <h1>{{groupName}}</h1>
     <div class="buttons">
       <a class="addBtn" (click)="toggleModal()">Add Member</a>
-      <a class="addBtn" routerLink="../addExpense" routerLinkActive="active"
+      <a class="addBtn" routerLink="../../addExpense" routerLinkActive="active"
         >Add Expense</a
       >
     </div>
@@ -86,7 +86,7 @@
             xmlns="http://www.w3.org/2000/svg"
             width="16"
             height="16"
-            fill="white"
+            fill="black"
             class="bi bi-x-lg"
             viewBox="0 0 16 16"
           >
@@ -114,7 +114,7 @@
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
                   height="16"
-                  fill="white"
+                  fill="black"
                   class="bi bi-plus-square-fill"
                   viewBox="0 0 16 16"
                 >
@@ -126,7 +126,7 @@
         </div>
         <p>List of members:</p>
         <ul class="member-list">
-          <li *ngFor="let member of members">
+          <li *ngFor="let member of membersToAdd">
             {{ member }}
             <button (click)="removeMember(member)">
               <svg
