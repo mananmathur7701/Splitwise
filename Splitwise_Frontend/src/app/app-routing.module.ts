@@ -11,6 +11,7 @@ import { GroupsComponent } from './pages/dashboard/groups/groups.component';
 import { HomeComponent } from './pages/dashboard/home/home.component';
 import { AddGroupComponent } from './pages/dashboard/add-group/add-group.component';
 import { GroupDetailsComponent } from './pages/dashboard/group-details/group-details.component';
+import { ProfileComponent } from './pages/dashboard/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -43,7 +44,7 @@ const routes: Routes = [
       { path: 'addExpense', component: ExpenseComponent },
       { path: 'addGroup', component: AddGroupComponent },
       { path: 'group-details/:id', component: GroupDetailsComponent },
-
+      { path: 'profile', component: ProfileComponent },
     ]
   },
 ];

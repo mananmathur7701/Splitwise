@@ -21,7 +21,7 @@ import { GroupsComponent } from './pages/dashboard/groups/groups.component';
 import { HomeComponent } from './pages/dashboard/home/home.component';
 import { AddGroupComponent } from './pages/dashboard/add-group/add-group.component';
 import { GroupDetailsComponent } from './pages/dashboard/group-details/group-details.component';
-
+import { ProfileComponent } from './pages/dashboard/profile/profile.component';
 
 
 @NgModule({
@@ -40,6 +40,7 @@ import { GroupDetailsComponent } from './pages/dashboard/group-details/group-det
     GroupsComponent,
     AddGroupComponent,
     GroupDetailsComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

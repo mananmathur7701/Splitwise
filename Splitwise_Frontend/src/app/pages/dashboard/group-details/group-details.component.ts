@@ -43,7 +43,6 @@ export class GroupDetailsComponent implements OnInit {
   closeModalHandler() {
     this.showModal = false; // Close the modal
   }
-
   constructor(
     private backService: BackServicesService,
     private route: ActivatedRoute

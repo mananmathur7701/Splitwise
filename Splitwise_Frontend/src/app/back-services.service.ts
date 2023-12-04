@@ -9,6 +9,8 @@ import { createMayBeForwardRefExpression } from '@angular/compiler';
 })
 export class BackServicesService {
 
+  groupKaId: any;
+
   constructor( private _http:HttpClient) { }
 
   // ***************** LOGIN ******************************************
@@ -194,6 +196,7 @@ export class BackServicesService {
 
   showGroupKeMembers(groupId: number) : Observable<any>
   {
+    this.groupKaId=groupId;
     const header = new HttpHeaders({
       "Access-Control-Allow-Origin" : "*"
     });
@@ -209,6 +212,25 @@ export class BackServicesService {
     });
     return this._http.get("http://localhost:8080/LedgerOfUser/"+Id, {headers: header})
   }
+
+  addExpense(payload:any) : Observable<any>
+  {
+   return this._http.post("http://localhost:8080/addExpenseToGroup",payload);
+  }
+
+
+
+  //    USER KA SAARA EXPENSE LIST FOR HOME PAGE
+
+
+  showUserKaExpenses():Observable<any>
+  {
+    const header = new HttpHeaders({
+      "Access-Control-Allow-Origin" : "*"
+    });
+    return this._http.get("http://localhost:8080//", {headers: header})
+  }
+  
   
 }
 

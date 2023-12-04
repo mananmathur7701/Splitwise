@@ -26,124 +26,132 @@
     </div>
   </div>
   <div class="list-section">
-    <h1>{{groupName}}</h1>
+    <h1>{{ groupName }}</h1>
     <div class="buttons">
+      <a class="addBtn">Edit Group</a>
       <a class="addBtn" (click)="toggleModal()">Add Member</a>
-      <a class="addBtn" routerLink="../../addExpense" routerLinkActive="active"
-        >Add Expense</a
-      >
+      <a class="addBtn" routerLink="../../addExpense" routerLinkActive="active">Add Expense</a>
     </div>
   </div>
- <div class="container">
-  <div class="left-section">
-    <ul>
-      <li *ngFor="let expense of expensesList">
-        <div class="frame-27">
-          <div class="frame-22">
-            <div class="frame-23">
-              <div class="frame-24"></div>
-              <div class="frame-25">
-                <div class="oinkita-kaur">{{expense.comment}}</div>
-                <div class="cigaretter">{{expense.spentAt | date: 'medium'}}</div>
+  <div class="container">
+    <div class="left-section">
+      <ul>
+        <h2 class="list-title">Expense List</h2>
+        <li *ngFor="let expense of expensesList">
+          <div class="frame-27">
+            <div class="frame-22">
+              <div class="frame-23">
+                <div class="frame-24"></div>
+                <div class="frame-25">
+                  <div class="oinkita-kaur">{{ expense.comment }}</div>
+                  <div class="cigaretter">
+                    {{ expense.spentAt | date : "medium" }}
+                  </div>
+                </div>
+              </div>
+              <div class="frame-26">
+                <div class="_38-0342">₹ {{ expense.amountPaid }}</div>
               </div>
             </div>
-            <div class="frame-26">
-              <div class="_38-0342">₹ {{expense.amountPaid}}</div>
-            </div>
           </div>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div class="right-section">
-    <ul >
-      <li *ngFor="let member of members">
-        <div class="frame-27">
-          <div class="frame-22">
-            <div class="frame-23">
-              <div class="frame-24"></div>
-              <div class="frame-25">
-                <div class="oinkita-kaur">{{member.firstName}} {{member.lastName}}</div>
-                <div class="cigaretter">{{member.email}}</div>
+        </li>
+      </ul>
+    </div>
+    <div class="right-section">
+      <ul>
+        <h2 class="list-title">Member List</h2>
+        <li *ngFor="let member of members">
+          <div class="frame-27">
+            <div class="frame-22">
+              <div class="frame-23">
+                <div class="frame-24"></div>
+                <div class="frame-25">
+                  <div class="oinkita-kaur">
+                    {{ member.firstName }} {{ member.lastName }}
+                    <span><button>Delete</button></span>
+                  </div>
+                  <div class="cigaretter">{{ member.email }}</div>
+                </div>
+              </div>
+              <div class="frame-26">
+                <div class="_38-0342">₹500</div>
               </div>
             </div>
-            <div class="frame-26">
-              <div class="_38-0342">₹500</div>
-            </div>
           </div>
-        </div>
-      </li>
-    </ul>
-  </div>
-<div class="modal" [style.display]="showModal ? 'flex' : 'none'">
-  <div class="blur"></div>
-  <div class="modal-content">
-    <div class="wrap">
-      <div class="title">
-        <h1>Add new member</h1>
-        <button class="close-icon" (click)="toggleModal()">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="black"
-            class="bi bi-x-lg"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"
-            />
-          </svg>
-        </button>
-      </div>
-      <form #myForm="ngForm" (ngSubmit)="addMember(memberMail.value)">
-        <div class="form-group">
-          <label for="memberMail">Enter member email:</label>
-          <span class="input-group">
-            <input
-              type="email"
-              id="memberMail"
-              #memberMail
-              class="form-control"
-              placeholder="example@mail.com"
-              required
-            />
-            <div class="add-icon">
-              <button type="submit">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="black"
-                  class="bi bi-plus-square-fill"
-                  viewBox="0 0 16 16"
-                >
-                  <!-- SVG icon for add button -->
-                </svg>
-              </button>
-            </div>
-          </span>
-        </div>
-        <p>List of members:</p>
-        <ul class="member-list">
-          <li *ngFor="let member of membersToAdd">
-            {{ member }}
-            <button (click)="removeMember(member)">
+        </li>
+      </ul>
+    </div>
+    <div class="modal" [style.display]="showModal ? 'flex' : 'none'">
+      <div class="blur"></div>
+      <div class="modal-content">
+        <div class="wrap">
+          <div class="title">
+            <h1>Add new member</h1>
+            <button class="close-icon" (click)="toggleModal()">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
                 height="16"
-                fill="white"
+                fill="black"
                 class="bi bi-x-lg"
                 viewBox="0 0 16 16"
               >
-                <!-- SVG icon for remove button -->
+                <path
+                  d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"
+                />
               </svg>
             </button>
-          </li>
-        </ul>
-        <button (click)="addMembersToGroup()">Add Members</button>
-      </form>
+          </div>
+          <form #myForm="ngForm" (ngSubmit)="addMember(memberMail.value)">
+            <div class="form-group">
+              <label for="memberMail">Enter member email:</label>
+              <span class="input-group">
+                <input
+                  type="email"
+                  id="memberMail"
+                  #memberMail
+                  class="form-control"
+                  placeholder="example@mail.com"
+                  required
+                />
+                <div class="add-icon">
+                  <button type="submit">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="black"
+                      class="bi bi-plus-square-fill"
+                      viewBox="0 0 16 16"
+                    >
+                      <!-- SVG icon for add button -->
+                    </svg>
+                  </button>
+                </div>
+              </span>
+            </div>
+            <p>List of members:</p>
+            <ul class="member-list">
+              <li *ngFor="let member of membersToAdd">
+                {{ member }}
+                <button (click)="removeMember(member)">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="white"
+                    class="bi bi-x-lg"
+                    viewBox="0 0 16 16"
+                  >
+                    <!-- SVG icon for remove button -->
+                  </svg>
+                </button>
+              </li>
+            </ul>
+            <button (click)="addMembersToGroup()">Add Members</button>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>
