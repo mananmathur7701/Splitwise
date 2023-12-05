@@ -60,11 +60,14 @@ public class GroupsServiceImplementation implements GroupsService{
     }
 
     @Override
-    public Groups groupsInfoById(int groupId) {
+    public GroupsDTO groupsInfoById(int groupId) {
         Optional<Groups> groupInfo = groupsRepo.findById(groupId);
         if (groupInfo.isPresent())
         {
-            return groupInfo.get();
+
+            Groups group = groupInfo.get();
+            GroupsDTO dto = new GroupsDTO(group.getId(),group.getGroupName(),group.getCreatedAt(),group.getUpdatedAt());
+            return dto;
         }
         else {
             throw new GroupNotFoundException("Group ID Don't Exist");

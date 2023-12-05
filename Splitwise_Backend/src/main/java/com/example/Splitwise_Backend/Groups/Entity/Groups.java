@@ -40,9 +40,11 @@ public class Groups {
     private List<Users> users;
 
     @OneToMany(mappedBy = "groups")
+    @JsonIgnore
     private List<Expenses> expenses;
 
     @OneToMany(mappedBy = "groups")
+    @JsonIgnore
     private List<ExpenseSplit> ExpenseSplits;
 
 

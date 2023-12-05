@@ -32,7 +32,7 @@ public class GroupsController
 
     @GetMapping("/groupInfoById/{id}")
     @CrossOrigin("http://localhost:4200")
-    public Groups getGroupInformation(@PathVariable int id)
+    public GroupsDTO getGroupInformation(@PathVariable int id)
     {
         return groupsServiceImplementation.groupsInfoById(id);
     }

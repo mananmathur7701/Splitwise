@@ -26,6 +26,7 @@ form {
     width: 100%;
     justify-content: space-between;
     margin-top: 24px;
+    gap: 24px;
 }
 .split {
     display: flex;
@@ -94,4 +95,17 @@ button, input[type="submit"] {
 button:hover {
   background-color: #3b9675;
   color: #fff;
+}
+
+.ul-split {
+ display: flex;
+ flex-direction: column;
+ align-items: flex-start;
+ width: min-content;
+}
+
+.ul-split li {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }

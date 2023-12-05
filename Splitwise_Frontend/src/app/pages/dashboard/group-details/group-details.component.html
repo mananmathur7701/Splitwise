@@ -29,7 +29,7 @@
     <div class="group-title">
       <h1>{{ groupName }}</h1>
       <a class="addBtn" (click)="toggleEditModal()">Edit Name</a>
-      <a class="addBtn">Delete Group</a>
+      <a class="addBtn" (click)="deleteGroup()">Delete Group</a>
     </div>
     <div class="buttons">
       <!-- <a class="addBtn" (click)="toggleEditModal()">Edit Name</a> -->
@@ -139,7 +139,7 @@
         <div class="wrap">
           <div class="title">
             <h1>Expense Details</h1>
-            <button class="close-icon" (click)="toggleExpenseModal()">
+            <button class="close-icon" (click)="getExpenseDetails()">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -156,7 +156,7 @@
           </div>
           <div class="expense-details">
             <h2>Expense Name</h2>
-            <p>Bahaut kharch kar rahe ho... aukaat mai raho</p>
+            <p>Bahaut kharch kar rahe ho...</p>
           </div>
         </div>
       </div>

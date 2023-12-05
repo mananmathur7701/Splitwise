@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface GroupsService {
     public Groups createGroup(int userId, String groupName);
-    public Groups groupsInfoById(int groupId);
+    public GroupsDTO groupsInfoById(int groupId);
     public List<Groups> groupInfoByName(String groupName);
     public List<UsersViewDTO> getGroupMembers(int groupId);
     public Groups editGroups(int groupId, String groupName);

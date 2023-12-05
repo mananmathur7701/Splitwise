@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BackServicesService } from 'src/app/back-services.service';
 
+
 @Component({
   selector: 'app-group-details',
   templateUrl: './group-details.component.html',
@@ -19,6 +20,8 @@ export class GroupDetailsComponent implements OnInit {
   groupName: string = '';
   expensesList: any[] = [];
   router: any;
+  expenseId: any;
+  expenseDetails: any;
 
 
   
@@ -77,8 +80,8 @@ export class GroupDetailsComponent implements OnInit {
     });
     this.getGroupKaNaam();
     this.getGroupDetails();
-    // this.myForm.get('groupNameControl').patchValue(this.groupName);
-        this.getGroupKeMembers();
+    this.getGroupKeMembers();
+    this.getExpenseDetails();
   }
   getGroupDetails(): void {
     this.backService.showAllGroupExpense(this.groupId).subscribe(
@@ -172,6 +175,26 @@ export class GroupDetailsComponent implements OnInit {
     );
   }
 
+
+
+  deleteGroup(): void {
+    const confirmDelete = window.confirm('Are you sure you want to delete this group?');
+  
+    if (confirmDelete) {
+      this.backService.deleteEntireGroup(this.groupId).subscribe(
+        (response) => {
+          console.log(response);
+          // Handle successful group deletion, if needed
+        },
+        (error) => {
+          console.error('Error deleting group:', error);
+          // Handle error while deleting group, if needed
+        }
+      );
+    }
+  }
+
+  
   deleteEntireGroup():void{
     this.backService.deleteEntireGroup(this.groupId).subscribe(
       (response) =>{
@@ -180,6 +203,24 @@ export class GroupDetailsComponent implements OnInit {
       },
       (error) => {
         console.error("Error deleting group:", error);
+      }
+    );
+  }
+
+  getExpenseDetails(): void {
+    console.log(this.expenseId,'plkmk');
+    
+    this.backService.showExpenseKaDetails(this.expenseId).subscribe(
+      (response) => {
+        // console.log(this.groupId);
+        console.log(response, 'gdxfcgyhuijkoihugyxfcgvhb');
+        this.expenseDetails = response;
+        console.log(" aja bhai naam", response)
+        return response;
+        console.log(this.expenseDetails);
+      },
+      (error) => {
+        console.error('Error fetching group name:', error);
       }
     );
   }

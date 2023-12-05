@@ -24,7 +24,6 @@ ul {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  height: 400px;
   overflow-y: auto;
   width: 100%;
 }
