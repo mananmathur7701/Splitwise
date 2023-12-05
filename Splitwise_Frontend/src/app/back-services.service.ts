@@ -3,6 +3,7 @@ import { Observable, pipe } from 'rxjs';
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { createMayBeForwardRefExpression } from '@angular/compiler';
+import { group } from '@angular/animations';
 
 @Injectable({
   providedIn: 'root'
@@ -94,15 +95,7 @@ export class BackServicesService {
     return this._http.get("http://localhost:8080/SharesOfParticularTransaction/"+id,{headers: header});
   }
 
-  //*************ADD EXPENSE */
-  // addExpense():Observable<any>
-  // {
-  //   const requestBody={
-  //     id:id,
-
-  //   };
-
-  // }
+  
  
 
   //*******EK GROUP K SAARE EXPENSES DIKHAYEGA */
@@ -114,35 +107,7 @@ export class BackServicesService {
     return this._http.get("http://localhost:8080/showAllGroupExpense/"+groupId, {headers: header});
   }
 
-  //*****EK USER KO TOTAL KITNE PAISE DENE HAI USKA SUM */
-
-  // sumOfDeneKaMoney():Observable<any>
-  // {
-  //   const header = new HttpHeaders({
-
-  //   });
-  //   return this._http.get("")
-  // }
-
-  //*************EK USER KO TOTAL KITNE PAISE MILNE HAI USKA SUM */
   
-
-  // sumOfLeneKaMoney():Observable<any>
-  // {
-  //   const header = new HttpHeaders({
-
-  //   });
-  //   return this._http.get("")
-  // }
-
-  //***********TOTAL BALANCE DIKHANE KO LENE MINUS DENE KA EITHER PLUS OR MINUS  */
-  // totalBalance():Observable<any>
-  // {
-  //   const header = new HttpHeaders({
-
-  //   });
-  //   return this._http.get("")
-  // }
 
   //***********LENE KA SUM, DENE KA SUM & BALANCE SAB SATH MEIN */
 
@@ -192,6 +157,16 @@ export class BackServicesService {
 
   }
 
+  //     REMOVE MEMBERS FROM GROUP
+
+  removeMemberFromGroup(userEmail: string, groupId: any) :Observable<any>
+  {
+    const requestBody = {
+      userEmail:userEmail
+    };
+    return this._http.post("http://localhost:8080/deleteUserFromGroup/"+groupId,requestBody);
+  }
+
   //      SHOW GROUP K SAARE MEMBERS
 
   showGroupKeMembers(groupId: number) : Observable<any>
@@ -213,6 +188,11 @@ export class BackServicesService {
     return this._http.get("http://localhost:8080/LedgerOfUser/"+Id, {headers: header})
   }
 
+
+  //           ADD EXPENSE
+
+
+
   addExpense(payload:any) : Observable<any>
   {
    return this._http.post("http://localhost:8080/addExpenseToGroup",payload);
@@ -230,7 +210,47 @@ export class BackServicesService {
     });
     return this._http.get("http://localhost:8080//", {headers: header})
   }
+
+  //     EDIT GROUP KA NAME
+
+  changeGroupKaName(groupId: any,groupName:any): Observable<any>
+  {
+
+    const requestBody = {
+      groupName: groupName
+    };
+    return this._http.post("http://localhost:8080/editGroup/"+groupId,requestBody);
+  }
+
+  //      DELETE ENTIRE GROUP
+
+  deleteEntireGroup(groupId:any): Observable<any>
+  {
+    const requestBody = {
+      groupId: groupId
+    };
+    return this._http.post("http://localhost:8080/deleteGroup/",requestBody);
+  }
+
+  showExpenseKaDetails(expenseId:any): Observable<any>
+  {
+    const header = new HttpHeaders({
+      "Access-Control-Allow-Origin" : "*"
+    });
+    return this._http.get("http://localhost:8080/expenseInfoById/", {headers: header})
+  }
   
+
+  listOfPayementsDoneByUser(id:number):Observable<any>
+  {
+    const header= new HttpHeaders({
+      "Access-Control-Allow-Origin" : "*"
+
+    });
+    return this._http.get("http://localhost:8080/showAllPaymentsDoneByUser/"+id, {headers : header});
+  }
+
+
   
 }
 

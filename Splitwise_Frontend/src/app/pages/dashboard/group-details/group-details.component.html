@@ -26,9 +26,13 @@
     </div>
   </div>
   <div class="list-section">
-    <h1>{{ groupName }}</h1>
+    <div class="group-title">
+      <h1>{{ groupName }}</h1>
+      <a class="addBtn" (click)="toggleEditModal()">Edit Name</a>
+      <a class="addBtn">Delete Group</a>
+    </div>
     <div class="buttons">
-      <a class="addBtn">Edit Group</a>
+      <!-- <a class="addBtn" (click)="toggleEditModal()">Edit Name</a> -->
       <a class="addBtn" (click)="toggleModal()">Add Member</a>
       <a class="addBtn" routerLink="../../addExpense" routerLinkActive="active">Add Expense</a>
     </div>
@@ -37,7 +41,7 @@
     <div class="left-section">
       <ul>
         <h2 class="list-title">Expense List</h2>
-        <li *ngFor="let expense of expensesList">
+        <li *ngFor="let expense of expensesList" (click)="toggleExpenseModal()">
           <div class="frame-27">
             <div class="frame-22">
               <div class="frame-23">
@@ -68,7 +72,7 @@
                 <div class="frame-25">
                   <div class="oinkita-kaur">
                     {{ member.firstName }} {{ member.lastName }}
-                    <span><button>Delete</button></span>
+                    <span><button (click)="removeMemberFromGroup(member.email)">Delete</button></span>
                   </div>
                   <div class="cigaretter">{{ member.email }}</div>
                 </div>
@@ -81,6 +85,84 @@
         </li>
       </ul>
     </div>
+
+    <!-- edit name -->
+    <div class="modal" [style.display]="showEditModal ? 'flex' : 'none'">
+      <div class="blur"></div>
+      <div class="modal-content">
+        <div class="wrap">
+          <div class="title">
+            <h1>Edit Name</h1>
+            <button class="close-icon" (click)="toggleEditModal()">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="black"
+                class="bi bi-x-lg"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"
+                />
+              </svg>
+            </button>
+          </div>
+          <form #myForm="ngForm" (ngSubmit)="changeGroupKaName(newName.value)">
+            <div class="form-group">
+              <label for="memberMail">Enter new name:</label>
+              <span class="input-group">
+                <input
+                  type="text"
+                  id="newName"
+                  #newName
+                  class="form-control"
+                  placeholder="New Name ..."
+                  required
+                />
+                <div class="add-icon">
+                  <button type="submit">
+                    Update
+                  </button>
+                </div>
+              </span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- expense details -->
+    <div class="modal" [style.display]="showExpenseModal ? 'flex' : 'none'">
+      <div class="blur"></div>
+      <div class="modal-content">
+        <div class="wrap">
+          <div class="title">
+            <h1>Expense Details</h1>
+            <button class="close-icon" (click)="toggleExpenseModal()">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="black"
+                class="bi bi-x-lg"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="expense-details">
+            <h2>Expense Name</h2>
+            <p>Bahaut kharch kar rahe ho... aukaat mai raho</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- add member -->
     <div class="modal" [style.display]="showModal ? 'flex' : 'none'">
       <div class="blur"></div>
       <div class="modal-content">

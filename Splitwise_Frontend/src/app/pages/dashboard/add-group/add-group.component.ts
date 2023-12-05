@@ -19,7 +19,7 @@ export class AddGroupComponent {
 
   onSubmit(): void {
     this.addGroup(this.groupData.groupName);
-    this.router.navigate(['/dashboard/group-details',this.groups.id]);
+    
   }
 
   addGroup(groupName: string): void {

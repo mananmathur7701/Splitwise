@@ -22,6 +22,8 @@ import { HomeComponent } from './pages/dashboard/home/home.component';
 import { AddGroupComponent } from './pages/dashboard/add-group/add-group.component';
 import { GroupDetailsComponent } from './pages/dashboard/group-details/group-details.component';
 import { ProfileComponent } from './pages/dashboard/profile/profile.component';
+import { ChangeNameComponent } from './pages/dashboard/group-details/change-name/change-name.component';
+
 
 
 @NgModule({
@@ -40,7 +42,9 @@ import { ProfileComponent } from './pages/dashboard/profile/profile.component';
     GroupsComponent,
     AddGroupComponent,
     GroupDetailsComponent,
-    ProfileComponent
+    ProfileComponent,
+    ChangeNameComponent,
+    
   ],
   imports: [
     BrowserModule,

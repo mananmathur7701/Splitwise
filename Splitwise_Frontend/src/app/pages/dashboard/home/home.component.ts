@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit
   owes:number |any;
   balance:number |any;
   dosts: any[] = [];
+  paymentsList: any[] = [];
   
   constructor(
     private backService: BackServicesService
@@ -23,37 +24,13 @@ export class HomeComponent implements OnInit
 
   ngOnInit(): void {
     this.udhariKaData();
+    this.getPaymentsDoneByUser();
     // this.getUserKeFriends();
     //throw new Error('Method not implemented.');
   }
   
 
 
-  // getLeneKaSum():void{
-  //   this.backService.sumOfLeneKaMoney().subscribe(
-  //     (response) => {
-  //       console.log();
-  //       this.friends = response;
-  //       console.log();
-  //     },
-  //     (error) => {
-  //       console.error("error fetching data", error);
-  //     }
-  //   );
-  // }
-
-  // getDeneKaSum(): void{
-  //   this.backService.sumOfDeneKaMoney().subscribe(
-  //     (response) => {
-  //       console.log();
-  //       this.friends = response;
-  //       console.log();
-  //     },
-  //     (error) => {
-  //       console.error("error fetching data", error);
-  //     }
-  //   );
-  // }
 
   lenaDenaBalance(): void{
     this.backService.lenaDenaBalance(this.id).subscribe(
@@ -97,5 +74,20 @@ export class HomeComponent implements OnInit
   //     }
   //   );
   // }
+
+
+  getPaymentsDoneByUser(): void{
+    this.backService.listOfPayementsDoneByUser(this.id).subscribe(
+      (response) => {
+        console.log(this.id);
+        console.log(response);
+        this.paymentsList = response;
+        console.log(this.paymentsList);        
+      },
+      (error) => {
+        console.error('Error fetching payments list:', error);
+      }
+    );
+  }
 
 }
