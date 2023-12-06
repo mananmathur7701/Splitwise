@@ -601,5 +601,19 @@ label {
 }
 
 .expense-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   color: #fff;
+  gap: 12px;
+}
+.expense-details table {
+  border-spacing: 8px;
+}
+.title h2 {
+  color: white !important;
+}
+.wrap.expense {
+  width: 40vw;
 }

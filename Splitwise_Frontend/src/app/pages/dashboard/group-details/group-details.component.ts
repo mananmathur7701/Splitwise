@@ -79,8 +79,8 @@ export class GroupDetailsComponent implements OnInit {
       // You can now use this.groupId in this component
       console.log('Group ID from URL parameter:', this.groupId);
     });
-    this.getGroupKaNaam();
     this.getGroupDetails();
+    this.getGroupKaNaam();
     this.getGroupKeMembers();
     // this.getExpenseDetails();
   }

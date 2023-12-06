@@ -14,7 +14,10 @@ export class FriendsComponent implements OnInit {
   owes:number |any;
   balance:number |any;
   dosts: any[] = [];
-  
+  showModal = false;
+  amount : any;
+  payeeid : any;
+  settelmentAmt : any;
   constructor(
     private backService: BackServicesService
   ){};
@@ -27,7 +30,13 @@ export class FriendsComponent implements OnInit {
   }
   
 
+  toggleModal() {
+    this.showModal = !this.showModal;
+  }
 
+  closeModalHandler() {
+    this.showModal = false; // Close the modal
+  }
   // getLeneKaSum():void{
   //   this.backService.sumOfLeneKaMoney().subscribe(
   //     (response) => {
@@ -96,6 +105,23 @@ export class FriendsComponent implements OnInit {
       }
     );
   }
+
+
+  addNewSquareOffTransaction(): void{
+    this.backService.addNewSquareOffTransaction(this.amount,this.id,this.payeeid).subscribe(
+      (response) => {
+        // console.log(this.groupId);
+        console.log(response, 'gdxfcgyhuijkoihugyxfcgvhb');
+        this.dosts = response;
+        console.log('sadfgds',this.dosts);
+      },
+      (error) => {
+        console.error('Error fetching friends:', error);
+      }
+    );
+  }
+
+
 
 
 }

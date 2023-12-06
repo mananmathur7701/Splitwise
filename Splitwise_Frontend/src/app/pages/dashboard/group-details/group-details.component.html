@@ -136,9 +136,9 @@
     <div class="modal" [style.display]="showExpenseModal ? 'flex' : 'none'">
       <div class="blur"></div>
       <div class="modal-content">
-        <div class="wrap">
+        <div class="wrap expense">
           <div class="title">
-            <h1>Expense Details</h1>
+            <h2>{{expenseDetails.comment}}</h2>
             <button class="close-icon" (click)="closeExpenseModalHandler()">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -152,14 +152,39 @@
                   d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"
                 />
               </svg>
-            </button>
+
+            </button> 
           </div>
           <div class="expense-details">
-            <h2>{{expenseDetails.comment}}</h2>
-            <p>{{expenseDetails.groupName}}</p>
-            <p>{{expenseDetails.amountPaid}}</p>
-            <p>{{expenseDetails.spentAt}}</p>
-            <p>Bahaut kharch kar rahe ho...</p>
+            <h1>{{expenseDetails.amountPaid}}</h1>
+            <table>
+              <!-- <tr class="details-list"> -->
+                <tr>
+                  <td>You paid </td>
+                  <td>40</td>
+                  <td>and spent </td>
+                  <td>150</td>
+                </tr>
+                <tr>
+                  <td>Nano paid </td>
+                  <td>40</td>
+                  <td>and spent </td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td>Kaku paid </td>
+                  <td>40</td>
+                  <td>and spent </td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td>Nimmo paid </td>
+                  <td>40</td>
+                  <td>and spent </td>
+                  <td>10</td>
+                </tr>
+              <!-- </tr> -->
+            </table>
           </div>
         </div>
       </div>

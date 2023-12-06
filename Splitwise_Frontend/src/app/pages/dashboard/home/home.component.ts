@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BackServicesService } from 'src/app/back-services.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,7 @@ export class HomeComponent implements OnInit
   owes:number |any;
   balance:number |any;
   dosts: any[] = [];
-  paymentsList: any[] = [];
+  transactionList: any[]=[];
   
   constructor(
     private backService: BackServicesService
@@ -24,7 +25,8 @@ export class HomeComponent implements OnInit
 
   ngOnInit(): void {
     this.udhariKaData();
-    this.getPaymentsDoneByUser();
+    this.getEntireTransactionDetailsOfUser();
+    //this.getPaymentsDoneByUser();
     // this.getUserKeFriends();
     //throw new Error('Method not implemented.');
   }
@@ -76,18 +78,26 @@ export class HomeComponent implements OnInit
   // }
 
 
-  getPaymentsDoneByUser(): void{
-    this.backService.listOfPayementsDoneByUser(this.id).subscribe(
-      (response) => {
-        console.log(this.id);
-        console.log(response);
-        this.paymentsList = response;
-        console.log(this.paymentsList);        
-      },
-      (error) => {
-        console.error('Error fetching payments list:', error);
-      }
-    );
-  }
+  getEntireTransactionDetailsOfUser(): void{
+    const listOfPaymentsObs = this.backService.listOfPayementsDoneByUser(this.id);
+  const listOfExpensesObs = this.backService.listOfPaymentsDoneForUser(this.id);
+
+  forkJoin({
+    payments: listOfPaymentsObs,
+    expenses: listOfExpensesObs
+  }).subscribe(
+    (response) => {
+      console.log('Payments:', response.payments);
+      console.log('Expenses:', response.expenses);
+      // Handle payments and expenses data as needed
+      this.transactionList = response.payments.concat(response.expenses);
+      console.log('amrit',this.transactionList);
+      
+    },
+    (error) => {
+      console.error('Error fetching payments and expenses:', error);
+    }
+  );
+}
 
 }

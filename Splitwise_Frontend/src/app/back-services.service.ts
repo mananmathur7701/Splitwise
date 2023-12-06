@@ -241,7 +241,14 @@ export class BackServicesService {
     return this._http.get("http://localhost:8080/showAllPaymentsDoneByUser/"+id, {headers : header});
   }
 
-  //listOfPaymentsDoneForUser()
+  listOfPaymentsDoneForUser(id:number) : Observable<any>
+  {
+    const header= new HttpHeaders({
+      "Access-Control-Allow-Origin" : "*"
+
+    });
+    return this._http.get("http://localhost:8080/expenseSplitWhereUserNeedsToPay/"+id, {headers : header});
+  }
 
 
   //     EXPENSE DETAILS KI BACK SERVICES
@@ -302,6 +309,28 @@ export class BackServicesService {
       password: password 
     };
     return this._http.delete("http://localhost:8080/deleteUser/"+id,);
+  }
+
+
+  showUserDetails(id:number) : Observable<any>
+  {
+    const header = new HttpHeaders({
+      "Access-Control-Allow-Origin" : "*"
+    });
+    return this._http.get("http://localhost:8080/userDetailsById/"+id, {headers: header})
+  }
+
+  //    FRIENDS K LIYE SETTLEMENT TRANSACTION WLA BACKSERVICES
+
+  addNewSquareOffTransaction(payeeId:number, payerId:number, settlementAmount:number) : Observable<any>
+  {
+    const requestBody = {
+      settlementAmount: settlementAmount,
+      payerId:payerId,
+      payeeId: payeeId
+        
+    };
+    return this._http.post("http://localhost:8080/addSquareOffTransaction",requestBody);
   }
   
 }
