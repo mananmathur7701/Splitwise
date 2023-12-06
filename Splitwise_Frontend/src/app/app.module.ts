@@ -21,6 +21,8 @@ import { GroupsComponent } from './pages/dashboard/groups/groups.component';
 import { HomeComponent } from './pages/dashboard/home/home.component';
 import { AddGroupComponent } from './pages/dashboard/add-group/add-group.component';
 import { GroupDetailsComponent } from './pages/dashboard/group-details/group-details.component';
+import { ProfileComponent } from './pages/dashboard/profile/profile.component';
+import { FriendDetailsComponent } from './pages/dashboard/friends/friend-details/friend-details.component';
 
 
 
@@ -40,6 +42,9 @@ import { GroupDetailsComponent } from './pages/dashboard/group-details/group-det
     GroupsComponent,
     AddGroupComponent,
     GroupDetailsComponent,
+    ProfileComponent,
+    FriendDetailsComponent
+    
   ],
   imports: [
     BrowserModule,

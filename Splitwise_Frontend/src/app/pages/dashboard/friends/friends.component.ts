@@ -13,8 +13,7 @@ export class FriendsComponent implements OnInit {
   owed:number |any;
   owes:number |any;
   balance:number |any;
-  dost: any[] = [];
-  Id: number = 0;
+  dosts: any[] = [];
   
   constructor(
     private backService: BackServicesService
@@ -85,15 +84,15 @@ export class FriendsComponent implements OnInit {
   }
 
   getUserKeFriends(): void{
-    this.backService.showUserKeFriends(this.Id).subscribe(
+    this.backService.showUserKeFriends(this.id).subscribe(
       (response) => {
         // console.log(this.groupId);
         console.log(response, 'gdxfcgyhuijkoihugyxfcgvhb');
-        this.dost = response;
-        console.log('sadfgds',this.dost);
+        this.dosts = response;
+        console.log('sadfgds',this.dosts);
       },
       (error) => {
-        console.error('Error fetching group members:', error);
+        console.error('Error fetching friends:', error);
       }
     );
   }

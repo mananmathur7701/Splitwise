@@ -24,26 +24,18 @@
     </div>
   </div>
   <ul>
-    <li *ngFor="let home of home">
-      <div class="frame-29">
-        <div class="nano"><span>Nano</span> added in <span>Babu</span></div>
+    <li *ngFor="let i of paymentsList">
+      <div class="frame-27">
         <div class="frame-22">
-          <div class="frame-24"></div>
-          <div class="frame-31">
-            <div class="frame-292">
-              <div class="petrol">Petrol</div>
-              <div class="frame-32">
-                <div class="you-owe">You owe :</div>
-              </div>
+          <div class="frame-23">
+            <div class="frame-24"></div>
+            <div class="frame-25">
+              <div class="oinkita-kaur">{{i.expenseName}}</div>
+              <div class="cigaretter">Group Name : {{i.groupName}}</div>
             </div>
-            <div class="frame-30">
-              <div class="frame-25">
-                <div class="total-400">Total : 400</div>
-              </div>
-              <div class="frame-26">
-                <div class="_100">100</div>
-              </div>
-            </div>
+          </div>
+          <div class="frame-26">
+            <div class="_38-0342">{{i.amount}}</div>
           </div>
         </div>
       </div>

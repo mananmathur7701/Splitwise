@@ -37,4 +37,11 @@ public class ExpenseSplitController
 
     // ISme ek DTO aur bana kar try karna hai ki hum kis group mai kaisse kitne paise maangte hai to group wise kisse kitne paise maang rhe hai wo bhi aa sakta hai
 
+
+    @GetMapping("/expenseSplitWhereUserNeedsToPay/{id}")
+    @CrossOrigin("http://localhost:4200")
+    public List<ExpenseSplit> sharesToBePaid(@PathVariable int id)
+    {
+        return expenseSplitServiceImplementation.amountToBeGivenByYou(id);
+    }
 }

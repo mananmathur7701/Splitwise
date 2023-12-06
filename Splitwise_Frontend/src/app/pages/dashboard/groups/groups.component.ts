@@ -53,7 +53,7 @@ export class GroupsComponent implements OnInit {
   lenaDenaBalance(): void {
     this.backService.lenaDenaBalance(this.id).subscribe(
       (response) => {
-        console.log();
+        // console.log();
         this.groups = response;
         console.log();
       },

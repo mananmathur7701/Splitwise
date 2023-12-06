@@ -9,6 +9,8 @@ import com.example.Splitwise_Backend.Expenses.Service.EspensesServiceImplementat
 import com.example.Splitwise_Backend.Expenses.Service.ExpensesService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.Splitwise_Backend.Expenses.Service.EspensesServiceImplementation;
 import java.util.List;
@@ -25,9 +27,12 @@ public class ExpensesController {
 
     @PostMapping("/addExpenseToGroup")
     @CrossOrigin("http://localhost:4200")
-    public String addExpense(@RequestBody ExpenseInfoDTO expenseInfoDTO)
-    {
-        return expensesServiceImplementation.addExpense(expenseInfoDTO);
+    public ResponseEntity<?> addExpense(@RequestBody ExpenseInfoDTO expenseInfoDTO) {
+        // Assuming addExpense method returns a String
+        String result = expensesServiceImplementation.addExpense(expenseInfoDTO);
+
+        // Create a response object with the result as JSON
+        return ResponseEntity.status(HttpStatus.OK).body("{\"result\": \"" + result + "\"}");
     }
 
     @DeleteMapping("/deleteExpense/{id}")
@@ -57,5 +62,7 @@ public class ExpensesController {
     {
         return expensesServiceImplementation.editExpense(id, expenseInfoDTO);
     }
+
+
 }
 

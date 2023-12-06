@@ -8,41 +8,42 @@ import { BackServicesService } from 'src/app/back-services.service';
 })
 export class HomeComponent implements OnInit
 {
-  home!: any[];
-  mylist!:any[];
+  friends!: any[];
   id : any = localStorage.getItem("id");
-  owed:number | any;
+  mylist!:any[];
+  owed:number |any;
   owes:number |any;
   balance:number |any;
-  constructor(private backService: BackServicesService){};
+  dosts: any[] = [];
+  paymentsList: any[] = [];
+  
+  constructor(
+    private backService: BackServicesService
+  ){};
 
-  ngOnInit(): void
-  {
-    // this.getHome();
+
+  ngOnInit(): void {
     this.udhariKaData();
+    this.getPaymentsDoneByUser();
+    // this.getUserKeFriends();
+    //throw new Error('Method not implemented.');
   }
+  
 
-  // getHome(): void
-  // {
-  //   this.backService.expensesOfUserWhereOwed(this.id).subscribe(
-  //     (response) => {
-  //       console.log(this.id);
-  //       this.home= response;
-  //       console.log(this.home);
 
-  //       this.backService.expensesOfUserWhereOwes(this.id).subscribe(
-  //         (response) => {
-  //           console.log(this.id);
-  //           this.home=response;
-  //           console.log(this.home);
-  //         }
-  //       )
-  //     },
-  //     (error) => {
-  //       console.error("Error fetching details:", error);
-  //     }
-  //   );
-  // }
+
+  lenaDenaBalance(): void{
+    this.backService.lenaDenaBalance(this.id).subscribe(
+      (response) => {
+        console.log();
+        this.friends=response;
+        console.log();
+      },
+      (error) => {
+        console.error("error fetching data", error);
+      }
+    );
+  }
 
   udhariKaData(){
     this.backService.dashboardKaData(this.id).subscribe(
@@ -60,42 +61,33 @@ export class HomeComponent implements OnInit
     )
   }
 
-  // getLeneKaSum():void{
-  //   this.backService.sumOfLeneKaMoney().subscribe(
+  // getUserKaExpenses(): void{
+  //   this.backService.showUserKaExpenses(this.id).subscribe(
   //     (response) => {
-  //       console.log();
-  //       this.home = response;
-  //       console.log();
+  //       // console.log(this.groupId);
+  //       console.log(response, 'gdxfcgyhuijkoihugyxfcgvhb');
+  //       this.dosts = response;
+  //       console.log('sadfgds',this.dosts);
   //     },
   //     (error) => {
-  //       console.error("error fetching data", error);
+  //       console.error('Error fetching friends:', error);
   //     }
   //   );
   // }
 
-  // getDeneKaSum(): void{
-  //   this.backService.sumOfDeneKaMoney().subscribe(
-  //     (response) => {
-  //       console.log();
-  //       this.home = response;
-  //       console.log();
-  //     },
-  //     (error) => {
-  //       console.error("error fetching data", error);
-  //     }
-  //   );
-  // }
 
-  // lenaDenaBalance(): void{
-  //   this.backService.lenaDenaBalance().subscribe(
-  //     (response) => {
-  //       console.log();
-  //       this.home=response;
-  //       console.log();
-  //     },
-  //     (error) => {
-  //       console.error("error fetching data", error);
-  //     }
-  //   );
-  // }
+  getPaymentsDoneByUser(): void{
+    this.backService.listOfPayementsDoneByUser(this.id).subscribe(
+      (response) => {
+        console.log(this.id);
+        console.log(response);
+        this.paymentsList = response;
+        console.log(this.paymentsList);        
+      },
+      (error) => {
+        console.error('Error fetching payments list:', error);
+      }
+    );
+  }
+
 }
