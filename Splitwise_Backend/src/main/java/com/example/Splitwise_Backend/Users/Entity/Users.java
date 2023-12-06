@@ -86,22 +86,7 @@ public class Users {
         this.groupsCreatedByUser = (List<Groups>) groupsCreatedByUser;
     }
 
-//    public Users(int id, String firstName, String lastName, String email, String number, String password, List<Groups> groups, List<PaymentSplit> paymentSplit, List<ExpenseSplit> expenseSplit1, List<ExpenseSplit> expenseSplit2, List<SquareOffTransactions> squareOffTransactions1, List<SquareOffTransactions> squareOffTransactions2, Groups groupsCreatedByUser) {
-//        this.id = id;
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.email = email;
-//        this.number = number;
-//        this.password = password;
-//        this.groups = groups;
-//        this.paymentSplit = paymentSplit;
-//        this.expenseSplit1 = expenseSplit1;
-//        this.expenseSplit2 = expenseSplit2;
-//        this.squareOffTransactions1 = squareOffTransactions1;
-//        this.squareOffTransactions2 = squareOffTransactions2;
-//        this.groupsCreatedByUser= (List<Groups>) groupsCreatedByUser;
-//
-//    }
+
 
     public Users() {
     }
@@ -243,34 +228,6 @@ public class Users {
                 ", email='" + email + '\'' +
                 ", number='" + number + '\'' +
                 ", password='" + password + '\'' +
-//                ", groups=" + groups +
-//                ", userWhoAddedFriend=" + userWhoAddedFriend +
-//                ", userWhoIsAddedAsFriend=" + userWhoIsAddedAsFriend +
-//                ", paymentSplit=" + paymentSplit +
-//                ", expenseSplit1=" + expenseSplit1 +
-//                ", expenseSplit2=" + expenseSplit2 +
-//                ", squareOffTransactions1=" + squareOffTransactions1 +
-//                ", squareOffTransactions2=" + squareOffTransactions2 +
-//                ", groupsCreatedByUser=" + groupsCreatedByUser +
                 '}';
     }
-
-//    @Override
-//    public String toString() {
-//        return "users{" +
-//                "id=" + id +
-//                ", firstName='" + firstName + '\'' +
-//                ", lastName='" + lastName + '\'' +
-//                ", email='" + email + '\'' +
-//                ", number='" + number + '\'' +
-//                ", password='" + password + '\'' +
-////                ", groups=" + groups +
-////                ", paymentSplit=" + paymentSplit +
-////               ", expenseSplit1=" + expenseSplit1 +
-////                ", expenseSplit2=" + expenseSplit2 +
-////                ", squareOffTransactions1=" + squareOffTransactions1 +
-////                ", squareOffTransactions2=" + squareOffTransactions2 +
-////                ", groupsCreatedByUser=" + groupsCreatedByUser +
-//                '}';
-//    }
 }

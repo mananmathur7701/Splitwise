@@ -5,6 +5,8 @@ import com.example.Splitwise_Backend.Groups.Entity.Groups;
 import com.example.Splitwise_Backend.Groups.Service.GroupsServiceImplementation;
 import com.example.Splitwise_Backend.Users.DTO.UsersViewDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -61,9 +63,10 @@ public class GroupsController
 
     @DeleteMapping("/deleteGroup/{id}")
     @CrossOrigin("http://localhost:4200")
-    public String deleteGroup(@PathVariable int id)
+    public ResponseEntity<?> deleteGroup(@PathVariable int id)
     {
-        return groupsServiceImplementation.deleteGroup(id);
+        String result =  groupsServiceImplementation.deleteGroup(id);
+        return ResponseEntity.status(HttpStatus.OK).body("{\"result\": \"" + result + "\"}");
     }
 
     @PostMapping("/addUserToGroup/{id}")

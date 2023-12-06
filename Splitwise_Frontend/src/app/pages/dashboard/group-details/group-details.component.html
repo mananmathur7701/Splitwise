@@ -41,8 +41,8 @@
     <div class="left-section">
       <ul>
         <h2 class="list-title">Expense List</h2>
-        <li *ngFor="let expense of expensesList" (click)="toggleExpenseModal()">
-          <div class="frame-27">
+        <li *ngFor="let expense of expensesList" >
+          <div class="frame-27" (click)="toggleExpenseModal(expense.id)">
             <div class="frame-22">
               <div class="frame-23">
                 <div class="frame-24"></div>
@@ -139,7 +139,7 @@
         <div class="wrap">
           <div class="title">
             <h1>Expense Details</h1>
-            <button class="close-icon" (click)="getExpenseDetails()">
+            <button class="close-icon" (click)="closeExpenseModalHandler()">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"

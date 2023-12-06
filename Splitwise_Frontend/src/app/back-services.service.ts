@@ -226,10 +226,8 @@ export class BackServicesService {
 
   deleteEntireGroup(groupId:any): Observable<any>
   {
-    const requestBody = {
-      groupId: groupId
-    };
-    return this._http.post("http://localhost:8080/deleteGroup/",requestBody);
+    
+    return this._http.delete("http://localhost:8080/deleteGroup/"+groupId);
   }
 
   showExpenseKaDetails(expenseId:any): Observable<any>
@@ -237,7 +235,7 @@ export class BackServicesService {
     const header = new HttpHeaders({
       "Access-Control-Allow-Origin" : "*"
     });
-    return this._http.get("http://localhost:8080/expenseInfoById/", {headers: header})
+    return this._http.get("http://localhost:8080/expenseInfoById/"+expenseId, {headers: header})
   }
   
 
@@ -250,6 +248,22 @@ export class BackServicesService {
     return this._http.get("http://localhost:8080/showAllPaymentsDoneByUser/"+id, {headers : header});
   }
 
+  expenseDetailsKeLiyeExpenseSplitKaData(expenseId:any):Observable<any>
+  {
+    const header = new HttpHeaders({
+      "Access-Control-Allow-Origin" : "*"
+    });
+    return this._http.get("http://localhost:8080/SharesOfParticularTransaction/"+expenseId, {headers: header})
+  }
+
+
+  expenseDetailsKeLiyePaymentSplitKaData(expenseId:any):Observable<any>
+  {
+    const header = new HttpHeaders({
+      "Access-Control-Allow-Origin" : "*"
+    });
+    return this._http.get("http://localhost:8080/showAllPaymentsDoneOfExpense/"+expenseId, {headers: header})
+  }
 
   
 }

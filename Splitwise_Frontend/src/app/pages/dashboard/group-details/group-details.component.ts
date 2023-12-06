@@ -60,8 +60,9 @@ export class GroupDetailsComponent implements OnInit {
     this.showExpenseModal = false; // Close the modal
   }
 
-  toggleExpenseModal() {
+  toggleExpenseModal(id:any) {
     this.showExpenseModal = !this.showExpenseModal;
+    this.getExpenseDetails(id);
   }
 
 
@@ -81,7 +82,7 @@ export class GroupDetailsComponent implements OnInit {
     this.getGroupKaNaam();
     this.getGroupDetails();
     this.getGroupKeMembers();
-    this.getExpenseDetails();
+    // this.getExpenseDetails();
   }
   getGroupDetails(): void {
     this.backService.showAllGroupExpense(this.groupId).subscribe(
@@ -207,17 +208,14 @@ export class GroupDetailsComponent implements OnInit {
     );
   }
 
-  getExpenseDetails(): void {
-    console.log(this.expenseId,'plkmk');
+  getExpenseDetails(expenseId:any): void {
+    console.log(expenseId,'plkmk');
     
-    this.backService.showExpenseKaDetails(this.expenseId).subscribe(
+    this.backService.showExpenseKaDetails(expenseId).subscribe(
       (response) => {
         // console.log(this.groupId);
-        console.log(response, 'gdxfcgyhuijkoihugyxfcgvhb');
+        console.log(response, 'amrit anurag');
         this.expenseDetails = response;
-        console.log(" aja bhai naam", response)
-        return response;
-        console.log(this.expenseDetails);
       },
       (error) => {
         console.error('Error fetching group name:', error);
