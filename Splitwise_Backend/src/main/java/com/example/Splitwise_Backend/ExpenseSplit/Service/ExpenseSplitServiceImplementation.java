@@ -94,12 +94,25 @@ public class ExpenseSplitServiceImplementation implements ExpenseSplitService
     }
 
     @Override
-    public List<ExpenseSplit> amountToBeRecievedByYou(int userId) {
+    public List<ExpenseSplitDTO> amountToBeRecievedByYou(int userId) {
         Optional<Users> userWhoRecieveAmount = usersRepo.findById(userId);
         if (userWhoRecieveAmount.isPresent())
         {
             Optional<List<ExpenseSplit>> allTransactionWhereUserRecieve = expenseSplitRepo.findByPayedToId(userWhoRecieveAmount.get());
-            return allTransactionWhereUserRecieve.get();
+            //return allTransactionWhereUserRecieve.get();
+            if (allTransactionWhereUserRecieve.isPresent())
+            {
+                List<ExpenseSplitDTO> expenseSplitDTOList = new ArrayList<>();
+                for (ExpenseSplit exp : allTransactionWhereUserRecieve.get())
+                {
+                    expenseSplitDTOList.add(new ExpenseSplitDTO(exp.getId(),exp.getShareAmount(), exp.getExpenses().getId(), exp.getExpenses().getComment(), exp.getGroups().getId(), exp.getGroups().getGroupName(), exp.getPayedToId().getId(), exp.getPayedToId().getEmail(), exp.getPayerId().getId(), exp.getPayerId().getEmail()));
+                }
+                return expenseSplitDTOList;
+            }
+            else
+            {
+                throw new GeneralException("No Transaction Of A Particular Expense");
+            }
         }
         else
         {
@@ -109,13 +122,26 @@ public class ExpenseSplitServiceImplementation implements ExpenseSplitService
     }
 
     @Override
-    public List<ExpenseSplit> amountToBeGivenByYou(int userId)
+    public List<ExpenseSplitDTO> amountToBeGivenByYou(int userId)
     {
         Optional<Users> userWhoGivesAmount = usersRepo.findById(userId);
         if (userWhoGivesAmount.isPresent())
         {
             Optional<List<ExpenseSplit>> allTransactionWhereUserGives = expenseSplitRepo.findByPayerId(userWhoGivesAmount.get());
-            return allTransactionWhereUserGives.get();
+            if (allTransactionWhereUserGives.isPresent())
+            {
+                List<ExpenseSplitDTO> expenseSplitDTOList = new ArrayList<>();
+                for (ExpenseSplit exp : allTransactionWhereUserGives.get())
+                {
+                    expenseSplitDTOList.add(new ExpenseSplitDTO(exp.getId(),exp.getShareAmount(), exp.getExpenses().getId(), exp.getExpenses().getComment(), exp.getGroups().getId(), exp.getGroups().getGroupName(), exp.getPayedToId().getId(), exp.getPayedToId().getEmail(), exp.getPayerId().getId(), exp.getPayerId().getEmail()));
+                }
+                return expenseSplitDTOList;
+            }
+            else
+            {
+                throw new GeneralException("No Transaction Of A Particular Expense");
+            }
+            //return allTransactionWhereUserGives.get();
         }
         else
         {
