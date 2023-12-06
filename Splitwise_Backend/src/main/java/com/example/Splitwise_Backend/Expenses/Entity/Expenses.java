@@ -6,7 +6,10 @@ import com.example.Splitwise_Backend.PaymentSplit.Entity.PaymentSplit;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
+import javax.validation.constraints.NotEmpty;
 import java.sql.Timestamp;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -19,7 +22,10 @@ public class Expenses {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Timestamp spentAt;
+    @NotNull(message = "AmountPaid cannot be null")
+    @Positive(message = "AmountPaid must be greater than 0")
     private float amountPaid;
+    @NotEmpty(message = "What Paid For Comment cannot be empty")
     private String comment;
 
     @ManyToOne

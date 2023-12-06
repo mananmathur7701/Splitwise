@@ -6,6 +6,7 @@ import com.example.Splitwise_Backend.Users.Entity.Users;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 
+import javax.validation.constraints.NotEmpty;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class Groups {
     private int id;
     
     private Timestamp createdAt;
+    @NotEmpty(message = "Group name cannot be empty")
     private String groupName;
 
     @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})

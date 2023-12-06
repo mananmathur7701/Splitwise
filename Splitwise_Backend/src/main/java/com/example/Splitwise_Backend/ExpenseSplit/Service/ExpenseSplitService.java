@@ -9,8 +9,8 @@ import java.util.List;
 public interface ExpenseSplitService {
     public ExpenseSplit saveExpenseSplit(int payerId, int payedToId, int groupId, int expenseId, float amountPaid);
     public String deleteExpenseSplit(int expenseId);
-    public List<ExpenseSplit> amountToBeRecievedByYou(int userId);
-    public List<ExpenseSplit> amountToBeGivenByYou(int userId);
+    public List<ExpenseSplitDTO> amountToBeRecievedByYou(int userId);
+    public List<ExpenseSplitDTO> amountToBeGivenByYou(int userId);
     public List<ExpenseSplitDTO> expenseSplitOfAllGroups(int groupId);
     public List<ExpenseSplitDTO> expenseSplitOfParticularExpenseId(int expenseId);
     public float totalAmountJoDenaHaiByPayerId(int payerId);

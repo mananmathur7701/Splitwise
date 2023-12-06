@@ -3,6 +3,8 @@ package com.example.Splitwise_Backend.SquareOffTransactions.Entity;
 import com.example.Splitwise_Backend.Users.Entity.Users;
 import jakarta.persistence.*;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -11,6 +13,8 @@ public class SquareOffTransactions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotNull(message = "AmountPaid cannot be null")
+    @Positive(message = "AmountPaid must be greater than 0")
     private double amount;
 
     private Timestamp time;

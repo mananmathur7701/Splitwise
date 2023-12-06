@@ -3,6 +3,8 @@ package com.example.Splitwise_Backend.PaymentSplit.Entity;
 import com.example.Splitwise_Backend.Expenses.Entity.Expenses;
 import com.example.Splitwise_Backend.Users.Entity.Users;
 import jakarta.persistence.*;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class PaymentSplit {
@@ -10,6 +12,8 @@ public class PaymentSplit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotNull(message = "AmountPaid cannot be null")
+    @Positive(message = "AmountPaid must be greater than 0")
     private double amountPaid;
 
     @ManyToOne

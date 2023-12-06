@@ -40,8 +40,15 @@ public class ExpenseSplitController
 
     @GetMapping("/expenseSplitWhereUserNeedsToPay/{id}")
     @CrossOrigin("http://localhost:4200")
-    public List<ExpenseSplit> sharesToBePaid(@PathVariable int id)
+    public List<ExpenseSplitDTO> sharesToBePaid(@PathVariable int id)
     {
         return expenseSplitServiceImplementation.amountToBeGivenByYou(id);
+    }
+
+    @GetMapping("/expenseSplitWhereUserNeedsToRecieve/{id}")
+    @CrossOrigin("http://localhost:4200")
+    public List<ExpenseSplitDTO> sharesToBeRecieved(@PathVariable int id)
+    {
+        return expenseSplitServiceImplementation.amountToBeRecievedByYou(id);
     }
 }

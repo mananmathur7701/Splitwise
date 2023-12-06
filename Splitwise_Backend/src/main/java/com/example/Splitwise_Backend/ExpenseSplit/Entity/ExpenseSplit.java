@@ -5,6 +5,9 @@ import com.example.Splitwise_Backend.Users.Entity.Users;
 import com.example.Splitwise_Backend.Groups.Entity.Groups;
 import jakarta.persistence.*;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
 @Entity
 public class ExpenseSplit {
 
@@ -14,6 +17,8 @@ public class ExpenseSplit {
     private int id;
 
     @Column(name = "share_amount")
+    @NotNull(message = "AmountPaid cannot be null")
+    @Positive(message = "AmountPaid must be greater than 0")
     private float shareAmount;
 
     @ManyToOne
