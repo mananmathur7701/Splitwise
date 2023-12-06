@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BackServicesService } from 'src/app/back-services.service';
-
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-group-details',
@@ -211,14 +211,23 @@ export class GroupDetailsComponent implements OnInit {
   getExpenseDetails(expenseId:any): void {
     console.log(expenseId,'plkmk');
     
-    this.backService.showExpenseKaDetails(expenseId).subscribe(
+    const expenseDetails$ = this.backService.showExpenseKaDetails(expenseId);
+    const expenseSplitDetails$ = this.backService.expenseDetailsKeLiyeExpenseSplitKaData(expenseId);
+    const paymentSplitDetails$ = this.backService.expenseDetailsKeLiyePaymentSplitKaData(expenseId);
+  
+    forkJoin({
+      expenseDetails: expenseDetails$,
+      expenseSplitDetails: expenseSplitDetails$,
+      paymentSplitDetails: paymentSplitDetails$
+    }).subscribe(
       (response) => {
-        // console.log(this.groupId);
-        console.log(response, 'amrit anurag');
-        this.expenseDetails = response;
+        console.log(response);
+        // Access individual responses from 'response.expenseDetails', 'response.expenseSplitDetails', 'response.paymentSplitDetails'
+        this.expenseDetails = response.expenseDetails;
+        // Do further processing or assignment of data
       },
       (error) => {
-        console.error('Error fetching group name:', error);
+        console.error('Error fetching details:', error);
       }
     );
   }

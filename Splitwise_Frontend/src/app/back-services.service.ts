@@ -230,14 +230,7 @@ export class BackServicesService {
     return this._http.delete("http://localhost:8080/deleteGroup/"+groupId);
   }
 
-  showExpenseKaDetails(expenseId:any): Observable<any>
-  {
-    const header = new HttpHeaders({
-      "Access-Control-Allow-Origin" : "*"
-    });
-    return this._http.get("http://localhost:8080/expenseInfoById/"+expenseId, {headers: header})
-  }
-  
+  //    HOME PAGE K LIYE TRANSACTIONS KI LIST K LIYE BACKSERVICES
 
   listOfPayementsDoneByUser(id:number):Observable<any>
   {
@@ -247,6 +240,20 @@ export class BackServicesService {
     });
     return this._http.get("http://localhost:8080/showAllPaymentsDoneByUser/"+id, {headers : header});
   }
+
+  //listOfPaymentsDoneForUser()
+
+
+  //     EXPENSE DETAILS KI BACK SERVICES
+
+  showExpenseKaDetails(expenseId:any): Observable<any>
+  {
+    const header = new HttpHeaders({
+      "Access-Control-Allow-Origin" : "*"
+    });
+    return this._http.get("http://localhost:8080/expenseInfoById/"+expenseId, {headers: header})
+  }
+  
 
   expenseDetailsKeLiyeExpenseSplitKaData(expenseId:any):Observable<any>
   {
@@ -265,6 +272,37 @@ export class BackServicesService {
     return this._http.get("http://localhost:8080/showAllPaymentsDoneOfExpense/"+expenseId, {headers: header})
   }
 
+
+  //    PROFILE PAGE KI BACK SERVICES
+
+  editProfile(id:number,firstName:string,lastName:string,email:string,number:string): Observable<any>
+  {
+    const requestBody = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      number: number
+    };
+    return this._http.put("http://localhost:8080/editDetails/"+id, requestBody);
+  }
+
+
+
+  editPassword(id:number, password:string): Observable<any>
+  {
+    const requestBody = {
+      password: password 
+    };
+    return this._http.put("http://localhost:8080/editPassword/"+id, requestBody);
+  }
+
+  deleteProfile(id:number,password:string) : Observable<any>
+  {
+    const requestBody = {
+      password: password 
+    };
+    return this._http.delete("http://localhost:8080/deleteUser/"+id,);
+  }
   
 }
 
