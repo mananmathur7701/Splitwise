@@ -22,7 +22,15 @@ export class GroupDetailsComponent implements OnInit {
   expensesList: any[] = [];
   //router: any;
   expenseId: any;
-  expenseDetails: any;
+  expenseDetails={
+    amountPaid:0,
+    comment: '',
+    groupName:'',
+    id:0,
+    spentAt:''
+  };
+  expenseSplitDetailsList:any[] = [];
+  paymentSplitDetailsList:any[] = [];
 
 
   
@@ -83,17 +91,17 @@ export class GroupDetailsComponent implements OnInit {
     });
     this.getGroupKaNaam();
     this.getGroupDetails();
-    
     this.getGroupKeMembers();
-    // this.getExpenseDetails();
+    
   }
   getGroupDetails(): void {
+    console.log('getGroup expenses');
+    
     this.backService.showAllGroupExpense(this.groupId).subscribe(
       (response) => {
         console.log('asdfgsdf', response);
         this.expensesList = response;
-        this.getGroupDetails = response;
-        console.log('qwertyuio', this.getGroupDetails);
+        // console.log('qwertyuio', this.getGroupDetails);
       },
       (error) => {
         console.error('Error fetching details:', error);
@@ -102,19 +110,35 @@ export class GroupDetailsComponent implements OnInit {
   }
 
   getGroupKaNaam(): void {
-    console.log(this.groupId,'plkmk');
+    console.log("get group name");
     
     this.backService.showGroupKaName(this.groupId).subscribe(
       (response) => {
         // console.log(this.groupId);
-        console.log(response, 'gdxfcgyhuijkoihugyxfcgvhb');
+        // console.log(response, 'gdxfcgyhuijkoihugyxfcgvhb');
         this.groupName = response;
         console.log(" aja bhai naam", response)
-        return response;
-        console.log(this.groupName);
+        
+        // console.log(this.groupName);
       },
       (error) => {
         console.error('Error fetching group name:', error);
+      }
+    );
+  }
+
+  getGroupKeMembers(): void {
+    console.log('get group members');
+    
+    this.backService.showGroupKeMembers(this.groupId).subscribe(
+      (response) => {
+        // console.log(this.groupId);
+        console.log(response, 'gdxfcgyhuijkoihugyxfcgvhb');
+        this.members = response;
+        // console.log('sadfgds',this.members);
+      },
+      (error) => {
+        console.error('Error fetching group members:', error);
       }
     );
   }
@@ -123,9 +147,6 @@ export class GroupDetailsComponent implements OnInit {
     this.backService.addMembersToGroup(this.groupId,this.membersToAdd).subscribe(
       (response) => {
           console.log(response);
-          this.membersToAdd=[];
-          
-          
       },
       (error) => {
         console.error("Error adding member:", error);
@@ -133,22 +154,10 @@ export class GroupDetailsComponent implements OnInit {
     );
   }
 
-  getGroupKeMembers(): void {
-    this.backService.showGroupKeMembers(this.groupId).subscribe(
-      (response) => {
-        // console.log(this.groupId);
-        console.log(response, 'gdxfcgyhuijkoihugyxfcgvhb');
-        this.members = response;
-        console.log('sadfgds',this.members);
-      },
-      (error) => {
-        console.error('Error fetching group members:', error);
-      }
-    );
-  }
+
 
   removeMemberFromGroup(userEmail: string,): void{
-    console.log(userEmail,this.groupId,'sjdhbviewbsfciwbiwbsciwebfciwebfifcbiewf');
+    // console.log(userEmail,this.groupId,'sjdhbviewbsfciwbiwbsciwebfciwebfifcbiewf');
     
     const confirmDelete = window.confirm('Are you sure you want to remove this member?');
 
@@ -226,8 +235,14 @@ export class GroupDetailsComponent implements OnInit {
     }).subscribe(
       (response) => {
         console.log(response);
-        // Access individual responses from 'response.expenseDetails', 'response.expenseSplitDetails', 'response.paymentSplitDetails'
+        // console.log(response.expenseDetails);
         this.expenseDetails = response.expenseDetails;
+        // console.log(this.expenseDetails.comment);
+        this.expenseSplitDetailsList = response.expenseSplitDetails;
+        this.paymentSplitDetailsList = response.paymentSplitDetails;
+        
+        // Access individual responses from 'response.expenseDetails', 'response.expenseSplitDetails', 'response.paymentSplitDetails'
+        // this.expenseDetails = response.expenseDetails;
         // Do further processing or assignment of data
       },
       (error) => {

@@ -47,7 +47,7 @@
               <div class="frame-23">
                 <div class="frame-24"></div>
                 <div class="frame-25">
-                  <div class="oinkita-kaur">{{ expense.comment }}</div>
+                  <div class="oinkita-kaur">{{expense.comment}}</div>
                   <div class="cigaretter">
                     {{ expense.spentAt | date : "medium" }}
                   </div>
@@ -158,15 +158,20 @@
           <div class="expense-details">
             <h1>{{expenseDetails.amountPaid}}</h1>
             <table>
-              <!-- <tr class="details-list"> -->
-                <tr *ngFor="let expense of expenseDetails">
-                  <td></td>
-                  <td>40</td>
-                  <td>and spent </td>
-                  <td>150</td>
+              <tr class="details-list"> 
+                <tr *ngFor="let expense of paymentSplitDetailsList">
+                  <td>{{expense.userId}}</td>
+                  <td> paid </td>
+                  <td>{{expense.amount}}</td>
                 </tr>
-                
-              <!-- </tr> -->
+                <tr *ngFor="let expense of expenseSplitDetailsList">
+                  <td>{{expense.payeeMail}}</td>
+                  <td> milega </td>
+                  <td>{{expense.amount}}</td>
+                  <td> from </td>
+                  <td>{{expense.payerMail}}</td>
+
+                </tr>
             </table>
           </div>
         </div>

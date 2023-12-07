@@ -24,6 +24,7 @@ ul {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  height: 100%;
   overflow-y: auto;
   width: 100%;
 }
@@ -290,11 +291,13 @@ ul {
 .container {
   display: flex; /* Use flexbox layout */
   justify-content: space-between; /* Position items with space between them */
+  overflow-y: auto;
 }
 .left-section {
   /* display: flex; */
   width: 50%;
   gap: 12px;
+
 }
 .right-section {
   /* display: flex; */
