@@ -10,7 +10,11 @@ import { BackServicesService } from 'src/app/back-services.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
-  myForm!: FormGroup;
+  profileData: any = {
+    firstName: '',
+    lastName: '',
+    number: '',
+  };
   errors!: Error;
   id: any = localStorage.getItem('id');
   newPassword: any;
@@ -18,6 +22,7 @@ export class ProfileComponent {
   details: any = [];
   showEditModal = false;
   showPasswordModal = false;
+  showDeleteModal = false;
 
 
 
@@ -28,11 +33,7 @@ export class ProfileComponent {
     private backserviceService: BackServicesService,
     private formBuilder: FormBuilder
   ){
-    this.myForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      number: ['', Validators.required],
-    });
+    
     
  
   }
@@ -51,6 +52,12 @@ export class ProfileComponent {
     this.showPasswordModal = !this.showPasswordModal;
   }
 
+  toggleDeleteModal() {
+    console.log('deletion in progress');
+    this.showDeleteModal = !this.showDeleteModal;
+  }
+  
+
   getUserDetails(): void{
     console.log('id:- ', this.id);
     
@@ -67,8 +74,8 @@ export class ProfileComponent {
       
   }
 
-  editUserDetails(id: number,Form:FormGroup): void{
-    this.backService.editProfile(id,Form.value.firstName,Form.value.lastName,Form.value.number,Form.value.email).subscribe(
+  editUserDetails(): void{
+    this.backService.editProfile(this.id, this.profileData.firstName, this.profileData.lastName,this.details.email, this.profileData.number).subscribe(
       (response)=>{
         console.log(response);
         
@@ -80,8 +87,10 @@ export class ProfileComponent {
   }
 
   editPassword(): void{
+    console.log('sadcwsasacascasc',this.profileData);
+    
 
-    this.backService.editPassword(this.id,this.newPassword).subscribe(
+    this.backService.editPassword(this.id,this.profileData.oldPassword,this.profileData.password).subscribe(
       (response) =>{
         console.log(response);
       },
@@ -92,8 +101,10 @@ export class ProfileComponent {
   }
 
   deleteUser(): void{
+    console.log(this.profileData.password);
+    
 
-    this.backService.deleteProfile(this.id,this.password).subscribe(
+    this.backService.deleteProfile(this.id,this.profileData.password).subscribe(
       (response) =>{
         console.log(response);
       },

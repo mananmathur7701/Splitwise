@@ -12,7 +12,9 @@
     <button class="btn-profile" (click)="togglePasswordModal()">
       Change Password
     </button>
-    <button class="btn-profile">Delete Profile</button>
+    <button class="btn-profile" (click)="toggleDeleteModal()">
+    Delete Profile
+    </button>
   </div>
 
   <!-- Name modal -->
@@ -37,41 +39,48 @@
             </svg>
           </button>
         </div>
-        <form #myForm="ngForm" (ngSubmit)="editUserDetails(id, myForm.value)">
+        <form #myForm="ngForm" (ngSubmit)="editUserDetails()">
           <div class="form-group">
             <div>
-              <label for="firstName">Enter new name:</label>
+              <label for="firstName">Enter FIRST NAME:</label>
               <span class="input-group">
                 <input
                   type="text"
                   id="firstName"
                   #firstName
                   class="form-control"
+                  name="firstName"
+                  [(ngModel)]="profileData.firstName"
                   placeholder="Jon"
                   required
                 />
               </span>
             </div>
             <div>
-              <label for="lastName">Enter new name:</label>
+              <label for="lastName">Enter LAST NAME:</label>
               <span class="input-group">
                 <input
                   type="text"
                   id="lastName"
                   #lastName
                   class="form-control"
-                  placeholder="doe"
+                  name="lastName"
+                  [(ngModel)]="profileData.lastName"
+                  placeholder="doe" 
                   required
+                  
                 />
               </span>
             </div>
             <div>
-              <label for="number">Enter new name:</label>
+              <label for="number">Enter NEW NUMBER:</label>
               <span class="input-group">
                 <input
                   type="number"
                   id="number"
                   #number
+                  name="number"
+                  [(ngModel)]="profileData.number"
                   class="form-control"
                   placeholder="XXXXXXXXX"
                   required
@@ -91,7 +100,7 @@
     <div class="modal-content">
       <div class="wrap">
         <div class="title">
-          <h1>Edit Name</h1>
+          <h1>Edit PASSWORD</h1>
           <button class="close-icon" (click)="togglePasswordModal()">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -109,17 +118,32 @@
         </div>
         <form
           #passwordForm="ngForm"
-          (ngSubmit)="editUserDetails(id, passwordForm.value)"
-        >
+          (ngSubmit)="editPassword()">
           <div class="form-group">
+            <div>
+              <label for="password">Enter old password:</label>
+              <span class="input-group">
+                <input
+                  type="password"
+                  id="oldPassword"
+                  #passwrod
+                  class="form-control"
+                  name="oldPassword"
+                  [(ngModel)]="profileData.oldPassword"
+                  required
+                />
+              </span>
+            </div>
             <div>
               <label for="password">Enter new password:</label>
               <span class="input-group">
                 <input
                   type="password"
-                  id="firspasswordtName"
+                  id="firstPassword"
                   #passwrod
                   class="form-control"
+                  name="password"
+                  [(ngModel)]="profileData.password"
                   required
                 />
               </span>
@@ -132,8 +156,14 @@
                   id="repassword"
                   #repassword
                   class="form-control"
+                  name="rePassword"
+                  [(ngModel)]="profileData.repassword"
                   required
+
                 />
+                <!-- <div *ngIf="repassword.invalid && (repassword.dirty || repassword.touched)" class="text-danger">
+                  <div *ngIf="repassword.errors?.required">Confirmation password is required.</div>
+                  <div *ngIf="repassword.errors?.pattern">Passwords do not match.</div> -->
               </span>
             </div>
           </div>
@@ -142,4 +172,52 @@
       </div>
     </div>
   </div>
+
+   <!-- Delete Profile modal -->
+   <div class="modal" [style.display]="showDeleteModal ? 'flex' : 'none'">
+    <div class="blur"></div>
+    <div class="modal-content">
+      <div class="wrap">
+        <div class="title">
+          <h1>DELETE PROFILE??</h1>
+          <button class="close-icon" (click)="toggleDeleteModal()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="black"
+              class="bi bi-x-lg"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"
+              />
+            </svg>
+          </button>
+        </div>
+        <form #myForm="ngForm" (ngSubmit)="deleteUser()">
+          <div class="form-group">
+            <div>
+              <label for="firstName">Enter PASSWORD:</label>
+              <span class="input-group">
+                <input
+                  type="text"
+                  id="password"
+                  #firstName
+                  class="form-control"
+                  name="password"
+                  [(ngModel)]="profileData.password"
+                  placeholder="xxxxxx"
+                  required
+                />
+              </span>
+            </div>
+            
+          </div>
+          <button type="submit">Confirm Profile DELETION</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
 </div>

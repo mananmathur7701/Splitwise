@@ -295,20 +295,25 @@ export class BackServicesService {
 
 
 
-  editPassword(id:number, password:string): Observable<any>
+  editPassword(id:number, oldPassword:string,newPassword:string): Observable<any>
   {
     const requestBody = {
-      password: password 
+      newPassword: newPassword ,
+      oldPassword: oldPassword
+      
     };
     return this._http.put("http://localhost:8080/editPassword/"+id, requestBody);
   }
 
   deleteProfile(id:number,password:string) : Observable<any>
   {
-    const requestBody = {
-      password: password 
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: password
     };
-    return this._http.delete("http://localhost:8080/deleteUser/"+id,);
+    return this._http.delete("http://localhost:8080/deleteUser/"+id,httpOptions);
   }
 
 
@@ -325,7 +330,7 @@ export class BackServicesService {
   addNewSquareOffTransaction(payeeId:number, payerId:number, settlementAmount:number) : Observable<any>
   {
     const requestBody = {
-      settlementAmount: settlementAmount,
+      amount: settlementAmount,
       payerId:payerId,
       payeeId: payeeId
         

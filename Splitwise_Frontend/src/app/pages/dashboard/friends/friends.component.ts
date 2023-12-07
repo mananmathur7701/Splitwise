@@ -7,17 +7,19 @@ import { BackServicesService } from 'src/app/back-services.service';
   styleUrls: ['./friends.component.css']
 })
 export class FriendsComponent implements OnInit {
+
   friends!: any[];
-  id : any = localStorage.getItem("id");
+  userId : any = localStorage.getItem("id");
   mylist!:any[];
-  owed:number |any;
-  owes:number |any;
+  owed:any;
+  owes:any;
   balance:number |any;
   dosts: any[] = [];
   showModal = false;
   amount : any;
   payeeid : any;
-  settelmentAmt : any;
+  friendAmt:any;
+  settleToBeAmt : any;
   constructor(
     private backService: BackServicesService
   ){};
@@ -30,7 +32,13 @@ export class FriendsComponent implements OnInit {
   }
   
 
-  toggleModal() {
+  onSubmit() {
+    this.addNewSquareOffTransaction(this.settleToBeAmt);
+    }
+
+  toggleModal(friendId:any,debtAmt:any) {
+      this.payeeid = friendId;
+      this.friendAmt = debtAmt;
     this.showModal = !this.showModal;
   }
 
@@ -64,7 +72,7 @@ export class FriendsComponent implements OnInit {
   // }
 
   lenaDenaBalance(): void{
-    this.backService.lenaDenaBalance(this.id).subscribe(
+    this.backService.lenaDenaBalance(this.userId).subscribe(
       (response) => {
         console.log();
         this.friends=response;
@@ -77,7 +85,7 @@ export class FriendsComponent implements OnInit {
   }
 
   udhariKaData(){
-    this.backService.dashboardKaData(this.id).subscribe(
+    this.backService.dashboardKaData(this.userId).subscribe(
       (data)=>{
         console.log(data);
         this.mylist=data;
@@ -93,7 +101,7 @@ export class FriendsComponent implements OnInit {
   }
 
   getUserKeFriends(): void{
-    this.backService.showUserKeFriends(this.id).subscribe(
+    this.backService.showUserKeFriends(this.userId).subscribe(
       (response) => {
         // console.log(this.groupId);
         console.log(response, 'gdxfcgyhuijkoihugyxfcgvhb');
@@ -107,13 +115,15 @@ export class FriendsComponent implements OnInit {
   }
 
 
-  addNewSquareOffTransaction(): void{
-    this.backService.addNewSquareOffTransaction(this.amount,this.id,this.payeeid).subscribe(
+  addNewSquareOffTransaction(amount:any): void{
+    console.log('the amount needed to be settle: ' ,amount);
+    
+    this.backService.addNewSquareOffTransaction(this.payeeid,this.userId,amount).subscribe(
       (response) => {
         // console.log(this.groupId);
         console.log(response, 'gdxfcgyhuijkoihugyxfcgvhb');
-        this.dosts = response;
-        console.log('sadfgds',this.dosts);
+        // this.dosts = response;
+        // console.log('sadfgds',this.dosts);
       },
       (error) => {
         console.error('Error fetching friends:', error);
