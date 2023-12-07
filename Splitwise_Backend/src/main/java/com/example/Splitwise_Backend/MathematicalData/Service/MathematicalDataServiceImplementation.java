@@ -72,6 +72,7 @@ public class MathematicalDataServiceImplementation implements MathematicalDataSe
                     String friendName =  friend.get().getFirstName()+" "+friend.get().getLastName();
                     float amount = AmountUserOweOrOwes(userId,id);
                     String mailId = friend.get().getEmail();
+                    ledgerDTO.setId(id);
                     ledgerDTO.setName(friendName);
                     ledgerDTO.setMailId(mailId);
                     ledgerDTO.setAmount(amount);
