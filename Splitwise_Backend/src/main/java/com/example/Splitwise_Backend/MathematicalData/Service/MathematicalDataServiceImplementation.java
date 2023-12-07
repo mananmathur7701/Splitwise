@@ -107,7 +107,7 @@ public class MathematicalDataServiceImplementation implements MathematicalDataSe
                     {
                         if(exp.getPayedToId().getId()==payeeId)
                         {
-                            amountUserPaisaDiya=exp.getShareAmount();
+                            amountUserPaisaDiya+=exp.getShareAmount();
                         }
                     }
                 }
@@ -125,7 +125,7 @@ public class MathematicalDataServiceImplementation implements MathematicalDataSe
                     {
                         if(exp.getPayedToId().getId()==payerId)
                         {
-                            amountUserPaisaDenaHai=exp.getShareAmount();
+                            amountUserPaisaDenaHai+=exp.getShareAmount();
                         }
                     }
                 }
@@ -143,7 +143,7 @@ public class MathematicalDataServiceImplementation implements MathematicalDataSe
                     {
                         if (squareOffTransactions.getPayerId().getId()==payeeId)
                         {
-                            amountUserPaisaMaangtaHai=(float) squareOffTransactions.getAmount();
+                            amountUserPaisaMaangtaHai+=(float) squareOffTransactions.getAmount();
                         }
                     }
                 }
@@ -161,7 +161,7 @@ public class MathematicalDataServiceImplementation implements MathematicalDataSe
                     {
                         if (squareOffTransactions.getPayerId().getId()==payerId)
                         {
-                            amountUserPaisaDenaMaangtaHai=(float) squareOffTransactions.getAmount();
+                            amountUserPaisaDenaMaangtaHai+=(float) squareOffTransactions.getAmount();
                         }
                     }
                 }
