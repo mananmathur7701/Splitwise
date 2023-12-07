@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BackServicesService } from 'src/app/back-services.service';
 import { forkJoin } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-group-details',
@@ -19,7 +20,7 @@ export class GroupDetailsComponent implements OnInit {
   membersToAdd: any[] = []; // Array to store the members to be added
   groupName: string = '';
   expensesList: any[] = [];
-  router: any;
+  //router: any;
   expenseId: any;
   expenseDetails: any;
 
@@ -68,7 +69,8 @@ export class GroupDetailsComponent implements OnInit {
 
   constructor(
     private backService: BackServicesService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -79,8 +81,9 @@ export class GroupDetailsComponent implements OnInit {
       // You can now use this.groupId in this component
       console.log('Group ID from URL parameter:', this.groupId);
     });
-    this.getGroupDetails();
     this.getGroupKaNaam();
+    this.getGroupDetails();
+    
     this.getGroupKeMembers();
     // this.getExpenseDetails();
   }
@@ -185,6 +188,7 @@ export class GroupDetailsComponent implements OnInit {
       this.backService.deleteEntireGroup(this.groupId).subscribe(
         (response) => {
           console.log(response);
+          this.router.navigate(['/dashboard/groups'],{ relativeTo: this.route });
           // Handle successful group deletion, if needed
         },
         (error) => {

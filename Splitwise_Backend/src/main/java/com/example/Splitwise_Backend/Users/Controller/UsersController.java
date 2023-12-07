@@ -112,7 +112,7 @@ public class UsersController {
         return usersServiceImplementation.editDetails(updatedUser);
     }
 
-    @PostMapping("/editPassword/{id}")
+    @PutMapping("/editPassword/{id}")
     @CrossOrigin("http://localhost:4200")
     public UsersDTO editPassword(@PathVariable int id,@RequestBody Map<String, String> passwords)
     {
