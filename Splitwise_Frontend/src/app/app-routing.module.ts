@@ -45,7 +45,7 @@ const routes: Routes = [
       { path: 'addExpense', component: ExpenseComponent },
       { path: 'addGroup', component: AddGroupComponent },
       { path: 'group-details/:id', component: GroupDetailsComponent },
-      { path: 'friund-details/:id', component: FriendDetailsComponent },
+      { path: 'friend-details/:id', component: FriendDetailsComponent },
       { path: 'profile', component: ProfileComponent },
     ]
   },

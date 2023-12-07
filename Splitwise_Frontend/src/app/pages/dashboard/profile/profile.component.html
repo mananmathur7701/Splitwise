@@ -1,1 +1,145 @@
-<p>profile works!</p>
+<div class="frame-15">
+  <div class="frame-21">
+    <h2>{{ details.firstName }} {{ details.lastName }}</h2>
+    <h3>{{ details.email }}</h3>
+    <h3>{{ details.number }}</h3>
+  </div>
+  <!-- modal buttons -->
+  <div class="profile-buttons">
+    <button class="btn-profile" (click)="toggleEditModal()">
+      Edit Profile
+    </button>
+    <button class="btn-profile" (click)="togglePasswordModal()">
+      Change Password
+    </button>
+    <button class="btn-profile">Delete Profile</button>
+  </div>
+
+  <!-- Name modal -->
+  <div class="modal" [style.display]="showEditModal ? 'flex' : 'none'">
+    <div class="blur"></div>
+    <div class="modal-content">
+      <div class="wrap">
+        <div class="title">
+          <h1>Edit Name</h1>
+          <button class="close-icon" (click)="toggleEditModal()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="black"
+              class="bi bi-x-lg"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"
+              />
+            </svg>
+          </button>
+        </div>
+        <form #myForm="ngForm" (ngSubmit)="editUserDetails(id, myForm.value)">
+          <div class="form-group">
+            <div>
+              <label for="firstName">Enter new name:</label>
+              <span class="input-group">
+                <input
+                  type="text"
+                  id="firstName"
+                  #firstName
+                  class="form-control"
+                  placeholder="Jon"
+                  required
+                />
+              </span>
+            </div>
+            <div>
+              <label for="lastName">Enter new name:</label>
+              <span class="input-group">
+                <input
+                  type="text"
+                  id="lastName"
+                  #lastName
+                  class="form-control"
+                  placeholder="doe"
+                  required
+                />
+              </span>
+            </div>
+            <div>
+              <label for="number">Enter new name:</label>
+              <span class="input-group">
+                <input
+                  type="number"
+                  id="number"
+                  #number
+                  class="form-control"
+                  placeholder="XXXXXXXXX"
+                  required
+                />
+              </span>
+            </div>
+          </div>
+          <button type="submit">Update user details</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Password modal -->
+  <div class="modal" [style.display]="showPasswordModal ? 'flex' : 'none'">
+    <div class="blur"></div>
+    <div class="modal-content">
+      <div class="wrap">
+        <div class="title">
+          <h1>Edit Name</h1>
+          <button class="close-icon" (click)="togglePasswordModal()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="black"
+              class="bi bi-x-lg"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"
+              />
+            </svg>
+          </button>
+        </div>
+        <form
+          #passwordForm="ngForm"
+          (ngSubmit)="editUserDetails(id, passwordForm.value)"
+        >
+          <div class="form-group">
+            <div>
+              <label for="password">Enter new password:</label>
+              <span class="input-group">
+                <input
+                  type="password"
+                  id="firspasswordtName"
+                  #passwrod
+                  class="form-control"
+                  required
+                />
+              </span>
+            </div>
+            <div>
+              <label for="repassword">Re-enter new password:</label>
+              <span class="input-group">
+                <input
+                  type="password"
+                  id="repassword"
+                  #repassword
+                  class="form-control"
+                  required
+                />
+              </span>
+            </div>
+          </div>
+          <button type="submit">Update user password</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

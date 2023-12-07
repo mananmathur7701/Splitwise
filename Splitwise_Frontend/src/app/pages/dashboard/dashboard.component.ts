@@ -10,4 +10,5 @@ export class DashboardComponent {
   logout() {
     localStorage.setItem('id', '');
   }
+
 }
