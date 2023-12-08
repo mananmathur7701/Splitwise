@@ -44,7 +44,7 @@ public class MathematicalDataServiceImplementation implements MathematicalDataSe
     @Override
     public ArrayList<String> dataToBeSentOnDashboard(int userId) {
         ArrayList<String> data = new ArrayList<>();
-        float paisaLena = expenseSplitServiceImplementation.totalAmountJoLenaHaiByPaidToId(userId)-squareOffTransactionsServiceImplementation.totalAmountByPayerId(userId);
+        float paisaLena = (-1)*(expenseSplitServiceImplementation.totalAmountJoLenaHaiByPaidToId(userId)-squareOffTransactionsServiceImplementation.totalAmountByPayerId(userId));
         float paisaDena = expenseSplitServiceImplementation.totalAmountJoDenaHaiByPayerId(userId)-squareOffTransactionsServiceImplementation.totalAmountByPaidToId(userId);
         float balance = paisaLena-paisaDena;
 
