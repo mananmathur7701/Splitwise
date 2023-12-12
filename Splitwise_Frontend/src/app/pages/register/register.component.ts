@@ -20,12 +20,16 @@ export class RegisterComponent {
           firstName: ['', Validators.required],
           lastName: ['', Validators.required],
           email: ['', [Validators.required, Validators.email]],
-          number: ['', Validators.required],
-          password: ['', Validators.required],
-          confirmPassword: ['', Validators.required],
+          number: ['', [Validators.required, Validators.pattern('[0-9]*')]],
+          password: ['', [Validators.required, Validators.minLength(6)]],
+          confirmPassword: ['', Validators.required]
+    },{
+      
         });
     console.log("Sign Up Is Rendered")
   }
+
+  
 
 //-----------------------------------ngOnInit-----------------------
   ngOnInit():void{

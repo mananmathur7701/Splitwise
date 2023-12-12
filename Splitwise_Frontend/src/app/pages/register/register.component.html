@@ -33,3 +33,8 @@
       <p class="existing" type="button">Existing User Then <span (click)="logIn()">Log-In</span></p>
     </form>
   </div>
+
+  <form [formGroup]="myForm" (ngSubmit)="toRegister(myForm)">
+    <!-- Your form fields with necessary HTML -->
+  </form>
+  

@@ -44,6 +44,7 @@ export class FriendsComponent implements OnInit {
 
   closeModalHandler() {
     this.showModal = false; // Close the modal
+    this.settleToBeAmt = '';
   }
   // getLeneKaSum():void{
   //   this.backService.sumOfLeneKaMoney().subscribe(
@@ -124,6 +125,8 @@ export class FriendsComponent implements OnInit {
         console.log(response, 'gdxfcgyhuijkoihugyxfcgvhb');
         // this.dosts = response;
         // console.log('sadfgds',this.dosts);
+        this.closeModalHandler();
+        this.getUserKeFriends();
       },
       (error) => {
         console.error('Error fetching friends:', error);

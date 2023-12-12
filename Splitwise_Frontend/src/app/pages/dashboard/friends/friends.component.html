@@ -1,6 +1,6 @@
 <div class="frame-15">
   <div class="frame-21">
-    <div class="frame-17">
+    <div class="frame-17" [ngClass]="{ 'positive-balance': balance >= 0, 'negative-balance': balance < 0 }">
       <div class="total-balance">Total Balance</div>
       <div class="_38-034">₹{{ balance }}</div>
     </div>
@@ -33,7 +33,7 @@
           <div class="frame-23">
             <div class="frame-24"></div>
             <div class="frame-25">
-              {{dost.id}}
+              <!-- {{dost.id}} -->
               <div class="oinkita-kaur">{{ dost.name }}</div>
               <div class="cigaretter">{{ dost.mailId }}</div>
             </div>

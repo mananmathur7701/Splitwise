@@ -51,6 +51,7 @@ export class GroupDetailsComponent implements OnInit {
     }
   }
   toggleModal() {
+    
     this.showModal = !this.showModal;
   }
 
@@ -147,9 +148,18 @@ export class GroupDetailsComponent implements OnInit {
     this.backService.addMembersToGroup(this.groupId,this.membersToAdd).subscribe(
       (response) => {
           console.log(response);
+          // this.router.navigate(['/dashboard/groups']);
+          this.toggleModal();
+          this.getGroupKeMembers();
+          this.membersToAdd=[];
       },
       (error) => {
         console.error("Error adding member:", error);
+        
+        this.toggleModal();
+        this.getGroupKeMembers();  
+        
+          
       }
     );
   }
@@ -165,6 +175,7 @@ export class GroupDetailsComponent implements OnInit {
     this.backService.removeMemberFromGroup(userEmail,this.groupId).subscribe(
       (response) => {
         console.log(response);
+        this.getGroupKeMembers();
 
       },
       (error) => {
@@ -181,9 +192,15 @@ export class GroupDetailsComponent implements OnInit {
         this.showEditModal = false; // Close the modal after successful update
         // Optionally, update 'groupName' variable if needed
         this.groupName = newGroupName;
+        this.getGroupKaNaam();
+        this.toggleEditModal();
+        
       },
       (error) => {
         console.error("Error changing group's name:", error);
+        this.toggleEditModal();
+        this.getGroupKaNaam();
+        
       }
     );
   }
@@ -206,19 +223,6 @@ export class GroupDetailsComponent implements OnInit {
         }
       );
     }
-  }
-
-  
-  deleteEntireGroup():void{
-    this.backService.deleteEntireGroup(this.groupId).subscribe(
-      (response) =>{
-        console.log(response);
-
-      },
-      (error) => {
-        console.error("Error deleting group:", error);
-      }
-    );
   }
 
   getExpenseDetails(expenseId:any): void {
