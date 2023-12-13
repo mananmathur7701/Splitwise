@@ -59,26 +59,55 @@ export class LoginComponent {
   // }
 
   toLogin(Form: FormGroup) {
-    return new Promise((resolve, reject) => 
-    {
-        this.backserviceService.login(Form.value.email,Form.value.password).subscribe
-        (
-          (data) => {
-            console.log(data);
-            const id = data.id;
-            //localStorage.setItem("id",String(id));
-            localStorage.setItem("id",id);
-            this.router.navigateByUrl('/dashboard/home');
-            resolve(data); // Resolve the Promise with the data
-          },
-          (error) => {
-            console.log(error);
-            this.loginForm.reset();
-            alert("Wrong Passwprd")
-            reject(error); // Reject the Promise with the error
-          }
-        );
-    });
+    console.log("hello");
+
+    this.backserviceService.login(Form.value.email,Form.value.password).subscribe(
+      
+      (response:any) => {
+        // Handle the response from the backend here
+        console.log('Sucessfully Logged In', response);
+        this.backserviceService.setToken(response.accessToken);
+        // this.login.loginUser(response.accessToken);
+        // this.backserviceService.getCurrentUser().subscribe(
+        //   (user:any)=>{
+            
+        //     console.log(user);
+            // if(user!= null){
+              this.router.navigateByUrl('/dashboard');
+              // this.login.loginStatusSubject.next(true);
+      //       }
+           
+      //     }
+      //   )
+      },
+      error => {
+        // Handle any errors here
+        console.error('Error:', error);
+      
+      }
+    );
+    
+    // return new Promise((resolve, reject) => 
+    // {
+    //     this.backserviceService.login(Form.value.email,Form.value.password).subscribe
+    //     (
+    //       (data) => {
+    //         console.log('token :',data);
+    //         this.backserviceService.getCurrentUser().subscribe();
+    //         const id = data.id;
+    //         //localStorage.setItem("id",String(id));
+    //         localStorage.setItem("id",id);
+    //         this.router.navigateByUrl('/dashboard/home');
+    //         resolve(data); // Resolve the Promise with the data
+    //       },
+    //       (error) => {
+    //         console.log(error);
+    //         this.loginForm.reset();
+    //         alert("Wrong Passwprd")
+    //         reject(error); // Reject the Promise with the error
+    //       }
+    //     );
+    // });
   }
 
   proceed()

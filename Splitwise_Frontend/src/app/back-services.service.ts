@@ -11,19 +11,30 @@ import { group } from '@angular/animations';
 export class BackServicesService {
 
   groupKaId: any;
-
+  token:any;
   constructor( private _http:HttpClient) { }
+  setToken(token: any){
+      this.token = token;
+  }
+  getToken(){
+    return this.token ;
+}
 
   // ***************** LOGIN ******************************************
 
   login(email:any,password:any):Observable<any>{
+    localStorage.setItem("id", "1");
 
     const requestBody = {
-      email: email,
+      username: email,
       password: password,
     };
-    return this._http.post("http://localhost:8080/login",requestBody);
+    return this._http.post("http://localhost:8080/auth/login",requestBody);
 
+  }
+
+  public getCurrentUser(){
+    return this._http.get("http://localhost:8080/auth/get-current-user");
   }
 
 // ******************* SIGNUP ******************************************

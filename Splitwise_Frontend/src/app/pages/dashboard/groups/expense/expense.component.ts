@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { BackServicesService } from 'src/app/back-services.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-expense',
@@ -20,9 +22,13 @@ export class ExpenseComponent {
 
   payeeValues: { [key: number]: number } = {};
   settlementValues: { [key: number]: number } = {};
+  
 
 
-  constructor(private backService: BackServicesService,) {
+  constructor(
+    private backService: BackServicesService,
+    private router: Router
+    ) {
 
   }
   ngOnInit() {
@@ -51,6 +57,11 @@ export class ExpenseComponent {
       const payeeArray = [];
       const settlementArray = [];
 
+      let totalPayeeAmount = 0; // Total amount in "WHO PAID HOW MUCH" section
+      let totalSettlementAmount = 0; //
+      console.log(form.value);
+      
+
       // Loop through members to access payeeValues and settlementValues
       for (let member of this.members) {
         const payeeValue = this.payeeValues[member.id];
@@ -58,12 +69,32 @@ export class ExpenseComponent {
 
         if (payeeValue) {
           payeeArray.push({ userId: member.id, amount: payeeValue });
+          totalPayeeAmount += payeeValue;
         }
-
+        if(!this.isESplitChecked){
+          console.log('inside');
+          
+          settlementArray.push({ userId: member.id, amount: (amountPaid/this.members.length) });
+          totalSettlementAmount += (amountPaid/this.members.length); 
+        }
         if (settlementValue) {
           settlementArray.push({ userId: member.id, amount: settlementValue });
+          totalSettlementAmount += settlementValue; 
         }
       }
+      console.log('payeeArray',payeeArray);
+      
+      console.log('settelment array',settlementArray);
+      
+
+      // Validate if the total amounts match the amount paid
+    if (totalPayeeAmount !== amountPaid || totalSettlementAmount !== amountPaid) {
+      // Handle validation error (amounts do not match)
+      // For example, you can show an error message or prevent form submission
+      console.error('Total amounts do not match the amount paid.');
+      alert('The total amounts do not match the amount paid/ amount to be paid.');
+      return; // Prevent further execution
+    }
 
       const payload = {
         groupId: this.backService.groupKaId, // Change groupId as needed
@@ -80,6 +111,7 @@ export class ExpenseComponent {
         (response) => {
           // console.log(this.groupId);
           console.log(response, 'gdxfcgyhuijkoihugyxfcgvhb');
+          this.router.navigate(['/dashboard/group-details/'+ this.backService.groupKaId]);
         },
         (error) => {
           console.error('Error adding expense:', error);
@@ -90,11 +122,6 @@ export class ExpenseComponent {
   }
   
 
-
-
-  addExpense(){
-    
-  }
 
   addExpenseMeinMembersKaName(){
     this.backService.showGroupKeMembers(this.backService.groupKaId).subscribe(

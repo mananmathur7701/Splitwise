@@ -124,7 +124,8 @@ public class PaymentSplitServiceImplementation implements PaymentSplitService
                 List<PaymentSplitDTO> paymentSplitDTOS = new ArrayList<>();
                 for(PaymentSplit split : expenseWhosePaymentsDone.get())
                 {
-                    paymentSplitDTOS.add(new PaymentSplitDTO(split.getId(), split.getAmountPaid(),split.getExpenses().getId(),split.getExpenses().getComment(), split.getExpenses().getGroups().getGroupName(),split.getUsers().getId()));
+
+                    paymentSplitDTOS.add(new PaymentSplitDTO(split.getId(), split.getAmountPaid(),split.getExpenses().getId(),split.getExpenses().getComment(), split.getExpenses().getGroups().getGroupName(),split.getUsers().getId(),split.getUsers().getFirstName().concat(" ").concat(split.getUsers().getLastName())));
                 }
                 return paymentSplitDTOS;
             }

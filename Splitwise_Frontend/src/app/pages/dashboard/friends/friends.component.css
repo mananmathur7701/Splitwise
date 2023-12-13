@@ -55,6 +55,37 @@ ul {
   position: relative;
   overflow: hidden;
 }
+/* Add these styles to your CSS file */
+.positive-balance {
+  background: #215f1b;
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+  color: #00ff19; /* Change color to green for positive balance */
+}
+
+.negative-balance {
+  background: #791616;
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+  color: #ff0000; /* Change color to red for negative balance */
+}
+
 .total-balance {
   color: #bfbfbf;
   text-align: center;

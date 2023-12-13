@@ -78,6 +78,7 @@ export class ProfileComponent {
     this.backService.editProfile(this.id, this.profileData.firstName, this.profileData.lastName,this.details.email, this.profileData.number).subscribe(
       (response)=>{
         console.log(response);
+        this.router.navigate(['/dashboard/home']);
         
       },
       (error)=>{

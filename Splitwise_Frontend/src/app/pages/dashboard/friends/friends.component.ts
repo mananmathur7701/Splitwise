@@ -44,6 +44,7 @@ export class FriendsComponent implements OnInit {
 
   closeModalHandler() {
     this.showModal = false; // Close the modal
+    this.settleToBeAmt = '';
   }
   // getLeneKaSum():void{
   //   this.backService.sumOfLeneKaMoney().subscribe(
@@ -124,6 +125,8 @@ export class FriendsComponent implements OnInit {
         console.log(response, 'gdxfcgyhuijkoihugyxfcgvhb');
         // this.dosts = response;
         // console.log('sadfgds',this.dosts);
+        this.closeModalHandler();
+        this.getUserKeFriends();
       },
       (error) => {
         console.error('Error fetching friends:', error);
@@ -131,6 +134,27 @@ export class FriendsComponent implements OnInit {
     );
   }
 
+
+  getColor(element: any): string {
+    // console.log('this is the element',element);
+    
+
+
+
+    
+  
+    // Checking the condition of different lengths of keys
+    if (element < 0) {
+      // If lengths differ, return red
+      // console.log('this is the colour given :- RED');
+      
+      return 'red';
+    } else {
+      // console.log('this is the colour given :- GREEN');
+      // If lengths are the same, return green
+      return '#00ff19';
+    }
+  }
 
 
 
