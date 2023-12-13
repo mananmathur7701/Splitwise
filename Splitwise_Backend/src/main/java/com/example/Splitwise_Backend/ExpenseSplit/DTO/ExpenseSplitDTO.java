@@ -10,8 +10,10 @@ public class ExpenseSplitDTO
     private String groupName;
     private int payeeId;
     private String payeeMail;
+    private String payeeName;
     private int payerId;
     private String payerMail;
+    private String payerName;
 
     public ExpenseSplitDTO(int id, float amount, int expenseId, String expenseName, int groupId, String groupName, int payeeId, String payeeMail, int payerId, String payerMail) {
         this.id = id;
@@ -26,7 +28,38 @@ public class ExpenseSplitDTO
         this.payerMail = payerMail;
     }
 
+    public ExpenseSplitDTO(int id, float amount, int expenseId, String expenseName, int groupId, String groupName, int payeeId, String payeeMail, String payeeName, int payerId, String payerMail, String payerName) {
+        this.id = id;
+        this.amount = amount;
+        this.expenseId = expenseId;
+        this.expenseName = expenseName;
+        this.groupId = groupId;
+        this.groupName = groupName;
+        this.payeeId = payeeId;
+        this.payeeMail = payeeMail;
+        this.payeeName = payeeName;
+        this.payerId = payerId;
+        this.payerMail = payerMail;
+        this.payerName = payerName;
+    }
+
     public ExpenseSplitDTO() {
+    }
+
+    public String getPayeeName() {
+        return payeeName;
+    }
+
+    public void setPayeeName(String payeeName) {
+        this.payeeName = payeeName;
+    }
+
+    public String getPayerName() {
+        return payerName;
+    }
+
+    public void setPayerName(String payerName) {
+        this.payerName = payerName;
     }
 
     public int getId() {
@@ -120,8 +153,10 @@ public class ExpenseSplitDTO
                 ", groupName='" + groupName + '\'' +
                 ", payeeId=" + payeeId +
                 ", payeeMail='" + payeeMail + '\'' +
+                ", payeeName='" + payeeName + '\'' +
                 ", payerId=" + payerId +
                 ", payerMail='" + payerMail + '\'' +
+                ", payerName='" + payerName + '\'' +
                 '}';
     }
 }

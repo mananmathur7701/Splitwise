@@ -7,6 +7,7 @@ public class PaymentSplitDTO {
     private String expenseName;
     private String groupName;
     private int userId;
+    private String userName;
 
     public PaymentSplitDTO(int id, double amount, int expId, String expenseName, String groupName, int userId) {
         this.id = id;
@@ -15,9 +16,28 @@ public class PaymentSplitDTO {
         this.expenseName = expenseName;
         this.groupName = groupName;
         this.userId = userId;
+
+    }
+
+    public PaymentSplitDTO(int id, double amount, int expenseId, String expenseName, String groupName, int userId, String userName) {
+        this.id = id;
+        this.amount = amount;
+        this.expenseId = expenseId;
+        this.expenseName = expenseName;
+        this.groupName = groupName;
+        this.userId = userId;
+        this.userName = userName;
     }
 
     public PaymentSplitDTO() {
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public int getId() {
@@ -77,6 +97,7 @@ public class PaymentSplitDTO {
                 ", expenseName='" + expenseName + '\'' +
                 ", groupName='" + groupName + '\'' +
                 ", userId=" + userId +
+                ", userName='" + userName + '\'' +
                 '}';
     }
 }

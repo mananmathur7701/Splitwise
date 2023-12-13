@@ -6,6 +6,7 @@ import com.example.Splitwise_Backend.Users.DTO.UsersViewDTO;
 import com.example.Splitwise_Backend.Users.Entity.Users;
 import com.example.Splitwise_Backend.Users.Repository.UsersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 
@@ -19,6 +20,9 @@ public class UsersServiceImplementation implements UsersService{
         this.usersRepo = usersRepo;
     }
 
+    @Autowired
+    private PasswordEncoder encoder;
+
     @Override
     public Users createUser(UsersDTO usersDTO) {
         Users users = new Users();
@@ -27,7 +31,7 @@ public class UsersServiceImplementation implements UsersService{
         users.setFirstName(usersDTO.getFirstName());
         users.setLastName(usersDTO.getLastName());
         users.setNumber(usersDTO.getNumber());
-        users.setPassword(usersDTO.getPassword());
+        users.setPassword(encoder.encode(usersDTO.getPassword()));
         usersRepo.save(users);
         return users;
     }

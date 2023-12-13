@@ -59,6 +59,8 @@ export class ExpenseComponent {
 
       let totalPayeeAmount = 0; // Total amount in "WHO PAID HOW MUCH" section
       let totalSettlementAmount = 0; //
+      console.log(form.value);
+      
 
       // Loop through members to access payeeValues and settlementValues
       for (let member of this.members) {
@@ -69,12 +71,21 @@ export class ExpenseComponent {
           payeeArray.push({ userId: member.id, amount: payeeValue });
           totalPayeeAmount += payeeValue;
         }
-
+        if(!this.isESplitChecked){
+          console.log('inside');
+          
+          settlementArray.push({ userId: member.id, amount: (amountPaid/this.members.length) });
+          totalSettlementAmount += (amountPaid/this.members.length); 
+        }
         if (settlementValue) {
           settlementArray.push({ userId: member.id, amount: settlementValue });
           totalSettlementAmount += settlementValue; 
         }
       }
+      console.log('payeeArray',payeeArray);
+      
+      console.log('settelment array',settlementArray);
+      
 
       // Validate if the total amounts match the amount paid
     if (totalPayeeAmount !== amountPaid || totalSettlementAmount !== amountPaid) {

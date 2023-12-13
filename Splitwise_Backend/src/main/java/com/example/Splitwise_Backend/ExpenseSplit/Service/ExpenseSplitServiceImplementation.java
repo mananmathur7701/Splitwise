@@ -189,7 +189,7 @@ public class ExpenseSplitServiceImplementation implements ExpenseSplitService
                 List<ExpenseSplitDTO> expenseSplitDTOList = new ArrayList<>();
                 for (ExpenseSplit exp : allTransactionOfExpense.get())
                 {
-                    expenseSplitDTOList.add(new ExpenseSplitDTO(exp.getId(),exp.getShareAmount(), exp.getExpenses().getId(), exp.getExpenses().getComment(), exp.getGroups().getId(), exp.getGroups().getGroupName(), exp.getPayedToId().getId(), exp.getPayedToId().getEmail(), exp.getPayerId().getId(), exp.getPayerId().getEmail()));
+                    expenseSplitDTOList.add(new ExpenseSplitDTO(exp.getId(),exp.getShareAmount(), exp.getExpenses().getId(), exp.getExpenses().getComment(), exp.getGroups().getId(), exp.getGroups().getGroupName(), exp.getPayedToId().getId(), exp.getPayedToId().getEmail(),exp.getPayedToId().getFirstName().concat(" ").concat(exp.getPayedToId().getLastName()), exp.getPayerId().getId(), exp.getPayerId().getEmail(),exp.getPayerId().getFirstName().concat(" ").concat(exp.getPayerId().getLastName())));
                 }
                 return expenseSplitDTOList;
             }
