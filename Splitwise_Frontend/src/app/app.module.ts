@@ -23,6 +23,7 @@ import { AddGroupComponent } from './pages/dashboard/add-group/add-group.compone
 import { GroupDetailsComponent } from './pages/dashboard/group-details/group-details.component';
 import { ProfileComponent } from './pages/dashboard/profile/profile.component';
 import { FriendDetailsComponent } from './pages/dashboard/friends/friend-details/friend-details.component';
+import { authInterceptorProviders } from './auth.interceptor';
 
 
 
@@ -55,7 +56,9 @@ import { FriendDetailsComponent } from './pages/dashboard/friends/friend-details
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    authInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
