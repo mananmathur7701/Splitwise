@@ -24,7 +24,8 @@ export class DashboardComponent {
 
 
   logout() {
-    localStorage.setItem('id', '');
+    localStorage.removeItem('id');
+    localStorage.removeItem('token');
   }
 
   constructor(

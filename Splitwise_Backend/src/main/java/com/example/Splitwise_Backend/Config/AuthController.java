@@ -1,6 +1,7 @@
 package com.example.Splitwise_Backend.Config;
 
 import com.example.Splitwise_Backend.Exceptions.UserNotFoundException;
+import com.example.Splitwise_Backend.Users.DTO.UsersViewDTO;
 import com.example.Splitwise_Backend.Users.Entity.Users;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,7 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin("*")
 public class AuthController {
 
     @Autowired
@@ -30,14 +32,21 @@ public class AuthController {
     public String password;
 
     @GetMapping("/get-current-user")
-    @CrossOrigin("http://localhost:4200")
-    public Users user(@NotNull Principal principal){
+//    @CrossOrigin("http://localhost:4200")
+    public UsersViewDTO user(@NotNull Principal principal){
         System.out.println(principal);
-        return (Users)(this.service.loadUserByUsername(principal.getName()));
+        Users userToBeFind = (Users) this.service.loadUserByUsername(principal.getName());
+        UsersViewDTO loggedInUser = new UsersViewDTO();
+        loggedInUser.setId(userToBeFind.getId());
+        loggedInUser.setEmail(userToBeFind.getEmail());
+        loggedInUser.setFirstName(userToBeFind.getFirstName());
+        loggedInUser.setLastName(userToBeFind.getLastName());
+        loggedInUser.setNumber(userToBeFind.getNumber());
+        return loggedInUser;
     }
 
     @PostMapping("/login")
-    @CrossOrigin("http://localhost:4200")
+//    @CrossOrigin("http://localhost:4200")
     public ResponseEntity<JwtAuthResponse> createToken(@NotNull @RequestBody JwtAuthRequest request)
     {
 //        this.password = request.getPassword();
