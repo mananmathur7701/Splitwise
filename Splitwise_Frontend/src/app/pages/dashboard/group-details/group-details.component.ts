@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BackServicesService } from 'src/app/back-services.service';
 import { forkJoin } from 'rxjs';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-group-details',
@@ -11,6 +12,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./group-details.component.css'],
 })
 export class GroupDetailsComponent implements OnInit {
+
+  @ViewChild('nameForm') nameForm!: NgForm;
   groups!: any[];
   // id: any = localStorage.getItem('id');
   groupId: number = 0;
@@ -54,6 +57,7 @@ export class GroupDetailsComponent implements OnInit {
   toggleModal() {
     
     this.showModal = !this.showModal;
+
   }
 
   closeModalHandler() {
@@ -61,6 +65,7 @@ export class GroupDetailsComponent implements OnInit {
   }
   toggleEditModal() {
     this.showEditModal = !this.showEditModal;
+    this.nameForm.resetForm();
   }
 
   closeEditModalHandler() {
@@ -156,6 +161,12 @@ export class GroupDetailsComponent implements OnInit {
       },
       (error) => {
         console.error("Error adding member:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Please ask your friend to create an account to add them to the group.",
+          // footer: '<a href="#">Why do I have this issue?</a>'
+        });
         
         this.toggleModal();
         this.getGroupKeMembers();  

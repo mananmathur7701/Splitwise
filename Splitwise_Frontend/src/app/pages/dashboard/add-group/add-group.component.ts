@@ -1,7 +1,8 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { BackServicesService } from 'src/app/back-services.service';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -10,6 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-group.component.css']
 })
 export class AddGroupComponent {
+  @ViewChild('myForm') myForm!: NgForm; // ViewChild to access the form
+
   groupData: any = { groupName: '' }; // Define groupData object with groupName property
   id = localStorage.getItem("id");
   groups: any;
@@ -41,5 +44,6 @@ export class AddGroupComponent {
 
   onCloseClick(): void {
     this.closeModal.emit(); // Emit an event when the close button is clicked
+    this.myForm.resetForm(); // This resets the form
   }
 }

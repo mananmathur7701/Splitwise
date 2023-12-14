@@ -2,8 +2,10 @@
   width: 85vw;
   height: 92vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* gap: ; */
 }
 
 form {
@@ -13,7 +15,13 @@ form {
   gap: 12px;
   color: white;
 }
-
+form .heading {
+  padding-left: 12px;
+  margin-bottom: 48px;
+  font-size: 48px;
+  border-left: 8px solid #a0d7c3;
+  /* padding-left: 16px; */
+}
 .form-group {
   display: flex;
   flex-direction: row;

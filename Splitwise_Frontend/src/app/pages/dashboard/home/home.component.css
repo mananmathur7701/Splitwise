@@ -307,3 +307,155 @@ ul {
   position: relative;
   overflow: hidden;
 }
+.home-add-expense{
+  display: flex;
+  width: 100%;
+  gap: 8px;
+}
+
+.home-add-expense ul{
+  width: 100%;
+}
+
+.add-expense{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #232323;
+  cursor: pointer;
+  padding: 28px;
+  /* gap: 120px; */
+}
+
+.add-expense svg{
+  border: 10px solid #6f6f6f;
+  border-radius: 100px;
+}
+
+.add-expense h1{
+  color: #6f6f6f;
+  margin-bottom: 50px;
+}
+
+/* modal css */
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  padding: 24px;
+  background-color: #000;
+  width: 40vw;
+  height: max-content;
+  z-index: 999;
+}
+.blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(10px);
+  z-index: 99;
+  /* filter: blur(100px); */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  /* align-items: end; */
+  gap: 48px;
+  color: white;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+}
+
+input,
+select {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2;
+  /* min-width: 420px; */
+  padding: 8px;
+  border-radius: 5px;
+  margin-top: 6px;
+  background-color: #000;
+  color: #fff;
+  border: 0;
+  width: 100%;
+}
+label {
+  text-wrap: nowrap;
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(223, 223, 223);
+}
+
+button,
+input[type="submit"] {
+  background-color: #a0d7c3;
+  font-size: medium;
+  font-weight: 700;
+  color: #1a1a1a;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #3b9675;
+  color: #fff;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.input-group input {
+  background: #2a2a2a;
+}
+
+.wrap {
+  width: 100%;
+  /* height: 100%; */
+  /* width: max-content; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 48px;
+  gap: 36px;
+}
+.wrap .title {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  /* gap: 24px; */
+}
+.close-icon {
+  width: max-content;
+  cursor: pointer;
+  /* background-color: transparent; */
+}
+
+#chooseGroup{
+  background-color: #2a2a2a;
+}

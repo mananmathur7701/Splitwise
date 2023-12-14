@@ -32,14 +32,20 @@ export class FriendsComponent implements OnInit {
   }
   
 
-  onSubmit() {
+  onSubmit(friendAmt:any) {
+    if(-friendAmt>= this.settleToBeAmt){
     this.addNewSquareOffTransaction(this.settleToBeAmt);
+    }else{
+      window.alert("Please enter amount exact as settlement amount or less..");
+    }
     }
 
   toggleModal(friendId:any,debtAmt:any) {
       this.payeeid = friendId;
       this.friendAmt = debtAmt;
+      if(debtAmt<0){
     this.showModal = !this.showModal;
+      }
   }
 
   closeModalHandler() {
@@ -137,11 +143,6 @@ export class FriendsComponent implements OnInit {
 
   getColor(element: any): string {
     // console.log('this is the element',element);
-    
-
-
-
-    
   
     // Checking the condition of different lengths of keys
     if (element < 0) {

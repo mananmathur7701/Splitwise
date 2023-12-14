@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 //mport { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BackServicesService } from 'src/app/back-services.service';
@@ -11,6 +11,12 @@ import Swal from 'sweetalert2';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
+
+  @ViewChild('passwordForm') passwordForm!: NgForm; // ViewChild to access the form
+  @ViewChild('myForm') myForm!: NgForm;
+  @ViewChild('deleteForm') deleteForm!: NgForm;
+
+
   profileData: any = {
     firstName: '',
     lastName: '',
@@ -24,6 +30,9 @@ export class ProfileComponent {
   showEditModal = false;
   showPasswordModal = false;
   showDeleteModal = false;
+
+  // passwordForm: FormGroup;
+
 
 
 
@@ -46,16 +55,26 @@ export class ProfileComponent {
 
   toggleEditModal() {
     this.showEditModal = !this.showEditModal;
+    // if (!this.showEditModal) {
+      this.myForm.resetForm();
+    // }
   }
 
   togglePasswordModal() {
+   
     console.log('helo');
     this.showPasswordModal = !this.showPasswordModal;
+    
+      this.passwordForm.reset();
+    
   }
 
   toggleDeleteModal() {
     console.log('deletion in progress');
     this.showDeleteModal = !this.showDeleteModal;
+    // if (!this.showDeleteModal) {
+      this.deleteForm.resetForm();
+    // }
   }
   
 
@@ -88,18 +107,48 @@ export class ProfileComponent {
     );
   }
 
+ 
+
+  // // Custom validator function for password matching
+  // passwordMatchValidator(control: AbstractControl) {
+  //   const password = control.get('password');
+  //   const rePassword = control.get('rePassword');
+
+  //   if (password && rePassword && password.value !== rePassword.value) {
+  //     rePassword.setErrors({ passwordMismatch: true });
+  //   } else {
+  //     rePassword.setErrors(null);
+  //   }
+
+  //   return null;
+  // }
+
   editPassword(): void{
     console.log('sadcwsasacascasc',this.profileData);
-    
-
+    if (this.profileData.password== this.profileData.rePassword){
     this.backService.editPassword(this.id,this.profileData.oldPassword,this.profileData.password).subscribe(
       (response) =>{
         console.log(response);
       },
       (error)=>{
+        Swal.fire({
+          icon: "error",
+          title: "OOOPS...",
+          text: "Account Password does not match",
+          // footer: "Please Settleup All Your Expenses And Try Again..."
+        });
         console.error("error changing password ", error);
       }
     );
+    }
+    else{
+      Swal.fire({
+        icon: "error",
+        title: "OOOPS...",
+        text: "New Passwords does not match",
+        // footer: "Please Settleup All Your Expenses And Try Again..."
+      });
+    }
   }
 
   deleteUser(): void{
@@ -116,8 +165,8 @@ export class ProfileComponent {
         Swal.fire({
           icon: "error",
           title: "OOOPS...",
-          text: "Something went wrong, SORRY! ",
-          footer: "Please Settleup All Your Expenses And Try Again..."
+          text: "Please Settleup All Your Expenses And Try Again...",
+          // footer: "Please Settleup All Your Expenses And Try Again..."
         });
       }
     );

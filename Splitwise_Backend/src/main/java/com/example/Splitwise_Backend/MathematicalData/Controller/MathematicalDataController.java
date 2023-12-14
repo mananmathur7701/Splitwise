@@ -26,6 +26,7 @@ public class MathematicalDataController
     public ArrayList<String> dashboardData(@PathVariable int id)
     {
         return mathematicalDataServiceImplementation.dataToBeSentOnDashboard(id);
+//        return new ArrayList<>();
     }
 
     @GetMapping("/LedgerOfUser/{id}")
@@ -33,5 +34,6 @@ public class MathematicalDataController
     public List<LedgerDTO> ledgerData(@PathVariable int id)
     {
         return mathematicalDataServiceImplementation.ledgerData(id);
+//        return new ArrayList<>();
     }
 }

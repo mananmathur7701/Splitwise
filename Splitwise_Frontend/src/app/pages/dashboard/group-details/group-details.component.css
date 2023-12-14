@@ -292,6 +292,7 @@ ul {
   display: flex; /* Use flexbox layout */
   justify-content: space-between; /* Position items with space between them */
   overflow-y: auto;
+  gap: 8px;
 }
 .left-section {
   /* display: flex; */
@@ -332,10 +333,12 @@ ul {
   padding: 8px 16px;
   border-radius: 4px;
   box-shadow: 0 0 5px #00ff19, 0 0 10px #00ff19;
+  transition: 0.2s ease-in;
 }
 
 .addBtn:hover{
   box-shadow: 0 0 5px #00ff19, 0 0 25px #00ff19, 0 0 50px #00ff19, 0 0 75px #00ff19, 0 0 100px #00ff19;
+  transition: 0.3s ease-out;
 }
 
 .modal {
@@ -641,4 +644,10 @@ label {
 }
 .wrap.expense {
   width: 40vw;
+}
+
+@media screen and (max-width: 1280px) {
+  .wrap.expense{
+    width: 70vw;
+  }
 }

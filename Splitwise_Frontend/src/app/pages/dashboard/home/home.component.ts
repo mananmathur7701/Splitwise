@@ -1,104 +1,111 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BackServicesService } from 'src/app/back-services.service';
 import { forkJoin } from 'rxjs';
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit
-{
+export class HomeComponent implements OnInit {
+
+  @ViewChild('selectGroupForm') selectGroupForm!: NgForm;
   friends!: any[];
-  id : any = localStorage.getItem("id");
-  mylist!:any[];
-  owed:number |any;
-  owes:number |any;
-  balance:number |any;
+  id: any = localStorage.getItem('id');
+  mylist!: any[];
+  owed: number | any;
+  owes: number | any;
+  balance: number | any;
   dosts: any[] = [];
-  transactionList: any[]=[];
-  
-  
+  transactionList: any[] = [];
+  showModal = false;
+
+
+  payeeValues: { [key: number]: number } = {};
+  settlementValues: { [key: number]: number } = {};
+
   constructor(
-    private backService: BackServicesService
-  ){
-    console.log('---------------------------------------------------------------------');
-    
+    private backService: BackServicesService,
+    private router: Router
+  ) {
+    console.log(
+      '---------------------------------------------------------------------'
+    );
+
     const element1 = {
       amount: 300,
       expId: 1,
-      expenseName: "DINNER",
-      groupName: "hum 3",
+      expenseName: 'DINNER',
+      groupName: 'hum 3',
       id: 1,
-      userId: 1
+      userId: 1,
     };
-    
+
     const element2 = {
       amount: 2000,
       expenseId: 2,
-      expenseName: "lunch",
+      expenseName: 'lunch',
       groupId: 10,
-      groupName: "hum 3",
+      groupName: 'hum 3',
       id: 3,
       payeeId: 52,
-      payeeMail: "rsoni@gmail.com",
+      payeeMail: 'rsoni@gmail.com',
       payerId: 1,
-      payerMail: "akumar@argusoft.com"
+      payerMail: 'akumar@argusoft.com',
     };
-    
+
     // Differentiating based on keys' existence
     const keysElement1 = Object.keys(element1);
     const keysElement2 = Object.keys(element2);
-    
+
     if (keysElement1.length !== keysElement2.length) {
       console.log('The elements have different keys.');
     } else {
       console.log('The elements have the same number of keys.');
     }
-    
-    console.log('---------------------------------------------------------------------');
-    
-  };
 
+    console.log(
+      '---------------------------------------------------------------------'
+    );
+  }
 
   ngOnInit(): void {
     this.udhariKaData();
     this.getEntireTransactionDetailsOfUser();
+
     //this.getPaymentsDoneByUser();
     // this.getUserKeFriends();
     //throw new Error('Method not implemented.');
   }
-  
 
-
-
-  lenaDenaBalance(): void{
+  lenaDenaBalance(): void {
     this.backService.lenaDenaBalance(this.id).subscribe(
       (response) => {
         console.log();
-        this.friends=response;
+        this.friends = response;
         console.log();
       },
       (error) => {
-        console.error("error fetching data", error);
+        console.error('error fetching data', error);
       }
     );
   }
 
-  udhariKaData(){
+  udhariKaData() {
     this.backService.dashboardKaData(this.id).subscribe(
-      (data)=>{
+      (data) => {
         console.log(data);
-        this.mylist=data;
-        this.owed=this.mylist[0];
-        this.owes=this.mylist[1];
-        this.balance=this.mylist[2];
+        this.mylist = data;
+        this.owed = this.mylist[0];
+        this.owes = this.mylist[1];
+        this.balance = this.mylist[2];
       },
-      (error)=>
-      {
+      (error) => {
         console.log(error);
       }
-    )
+    );
   }
 
   // getUserKaExpenses(): void{
@@ -115,63 +122,75 @@ export class HomeComponent implements OnInit
   //   );
   // }
 
+  getEntireTransactionDetailsOfUser(): void {
+    const listOfPaymentsObs = this.backService.listOfPayementsDoneByUser(
+      this.id
+    );
+    const listOfExpensesObs = this.backService.listOfPaymentsDoneForUser(
+      this.id
+    );
 
-  getEntireTransactionDetailsOfUser(): void{
-    const listOfPaymentsObs = this.backService.listOfPayementsDoneByUser(this.id);
-  const listOfExpensesObs = this.backService.listOfPaymentsDoneForUser(this.id);
+    forkJoin({
+      payments: listOfPaymentsObs,
+      expenses: listOfExpensesObs,
+    }).subscribe(
+      (response) => {
+        console.log('Payments:', response.payments);
+        console.log('Expenses:', response.expenses);
+        // Handle payments and expenses data as needed
+        this.transactionList = response.payments.concat(response.expenses);
+        console.log(
+          'before sort: ',
+          response.payments.concat(response.expenses)
+        );
+        this.transactionList.sort((a, b) => {
+          const expenseIdA = a.expenseId || 0; // If expenseId is undefined, set it as 0
+          const expenseIdB = b.expenseId || 0;
 
-  forkJoin({
-    payments: listOfPaymentsObs,
-    expenses: listOfExpensesObs
-  }).subscribe(
-    (response) => {
-      console.log('Payments:', response.payments);
-      console.log('Expenses:', response.expenses);
-      // Handle payments and expenses data as needed
-      this.transactionList = response.payments.concat(response.expenses);
-      console.log('before sort: ',response.payments.concat(response.expenses));
-      this.transactionList.sort((a, b) => {
-        const expenseIdA = a.expenseId || 0; // If expenseId is undefined, set it as 0
-        const expenseIdB = b.expenseId || 0;
-  
-        return expenseIdA - expenseIdB; // Sorting based on expenseId
-      });
-      console.log('after sort: ',this.transactionList);
-    },
-    (error) => {
-      console.error('Error fetching payments and expenses:', error);
-    }
-  );
-}
-
-getColor(element: any): string {
-  console.log('this is the element',element);
-  
-  const element1 = {
-    amount: 300,
-    expenseId: 1,
-    expenseName: "DINNER",
-    groupName: "hum 3",
-    id: 1,
-    userId: 1,
-    userName: null
-  };
-  const defaultKey = Object.keys(element1);
-  const keysElement = Object.keys(element);
-  // console.log('this is the length ',keysElement.length,'  this is the default lenght - ',defaultKey.length);
-  
-
-  // Checking the condition of different lengths of keys
-  if (keysElement.length != defaultKey.length) {
-    // If lengths differ, return red
-    console.log('this is the colour given :- RED');
-    
-    return 'red';
-  } else {
-    console.log('this is the colour given :- GREEN');
-    // If lengths are the same, return green
-    return '#00ff19';
+          return expenseIdA - expenseIdB; // Sorting based on expenseId
+        });
+        console.log('after sort: ', this.transactionList);
+      },
+      (error) => {
+        console.error('Error fetching payments and expenses:', error);
+      }
+    );
   }
-}
 
+  getColor(element: any): string {
+    // console.log('this is the element',element);
+
+    const element1 = {
+      amount: 300,
+      expenseId: 1,
+      expenseName: 'DINNER',
+      groupName: 'hum 3',
+      id: 1,
+      userId: 1,
+      userName: null,
+    };
+    const defaultKey = Object.keys(element1);
+    const keysElement = Object.keys(element);
+    // console.log('this is the length ',keysElement.length,'  this is the default lenght - ',defaultKey.length);
+
+    // Checking the condition of different lengths of keys
+    if (keysElement.length != defaultKey.length) {
+      // If lengths differ, return red
+      // console.log('this is the colour given :- RED');
+
+      return 'red';
+    } else {
+      // console.log('this is the colour given :- GREEN');
+      // If lengths are the same, return green
+      return '#00ff19';
+    }
+  }
+  
+  // for modal
+  toggleModal() {
+    this.showModal = !this.showModal;
+    // if (!this.showEditModal) {
+      this.selectGroupForm.resetForm();
+    // }
+  }
 }

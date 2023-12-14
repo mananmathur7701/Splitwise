@@ -196,7 +196,7 @@ ul {
   overflow: hidden;
 }
 .frame-24 {
-  background: #3eae49;
+  background: #a0d7c3;
   align-self: stretch;
   flex-shrink: 0;
   width: 8px;
@@ -348,14 +348,7 @@ ul {
   position: relative;
   overflow: hidden;
 }
-.frame-24 {
-  background: #3eae49;
-  align-self: stretch;
-  flex-shrink: 0;
-  width: 8px;
-  position: relative;
-  overflow: hidden;
-}
+
 .frame-25 {
   padding: 12px 0px 12px 0px;
   display: flex;
@@ -468,4 +461,11 @@ ul {
   backdrop-filter: blur(10px);
   z-index: 99;
   /* filter: blur(100px); */
+}
+
+.heading{
+  padding-left: 12px;
+  margin-bottom: 48px;
+  font-size: 48px;
+  border-left: 8px solid #a0d7c3;
 }

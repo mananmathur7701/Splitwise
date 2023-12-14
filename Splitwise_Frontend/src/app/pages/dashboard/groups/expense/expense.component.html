@@ -1,7 +1,8 @@
 <div class="wrap">
   <form    #expenseForm="ngForm" (ngSubmit)="onSubmit(expenseForm)">
+    <h1 class="heading">NEW EXPENSE</h1>
     <div class="form-group" onsubmit="">
-      <label for="comment">Comment :</label>
+      <label for="comment">Expense Name :</label>
       <input
         type="text"
         id="comment"

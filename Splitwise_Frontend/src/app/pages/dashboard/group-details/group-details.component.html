@@ -120,7 +120,7 @@
               </svg>
             </button>
           </div>
-          <form #myForm="ngForm" (ngSubmit)="changeGroupKaName(newName.value)">
+          <form #nameForm="ngForm" (ngSubmit)="changeGroupKaName(newName.value)">
             <div class="form-group">
               <label for="memberMail">Enter new name:</label>
               <span class="input-group">
@@ -235,7 +235,7 @@
             <ul class="member-list">
               <li *ngFor="let member of membersToAdd">
                 {{ member }}
-                <button (click)="removeMember(member)">
+                <button (click)="removeMember(member)" style="background-color: red;">
                   <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"

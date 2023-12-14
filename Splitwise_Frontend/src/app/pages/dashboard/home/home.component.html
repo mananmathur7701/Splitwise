@@ -1,15 +1,21 @@
 <div class="frame-15">
   <div class="frame-21">
-    <div class="frame-17" [ngClass]="{ 'positive-balance': balance >= 0, 'negative-balance': balance < 0 }">
+    <div
+      class="frame-17"
+      [ngClass]="{
+        'positive-balance': balance >= 0,
+        'negative-balance': balance < 0
+      }"
+    >
       <div class="total-balance">Total Balance</div>
-      <div class="_38-034">₹{{balance}}</div>
+      <div class="_38-034">₹{{ balance }}</div>
     </div>
     <div class="frame-20">
       <div class="frame-18">
         <div class="you-are-owed-69-000">
           <span
             ><span class="you-are-owed-69-000-span">You are owed :<br /></span
-            ><span class="you-are-owed-69-000-span2">₹{{owed}}</span></span
+            ><span class="you-are-owed-69-000-span2">₹{{ owed }}</span></span
           >
         </div>
       </div>
@@ -17,28 +23,85 @@
         <div class="you-owe-380">
           <span
             ><span class="you-owe-380-span">You owe :<br /></span
-            ><span class="you-owe-380-span2">₹{{owes}}</span></span
+            ><span class="you-owe-380-span2">₹{{ -owes }}</span></span
           >
         </div>
       </div>
     </div>
   </div>
-  <ul>
-    <li *ngFor="let i of transactionList">
-      <div class="frame-27">
-        <div class="frame-22">
-          <div class="frame-23">
-            <div class="frame-24"></div>
-            <div class="frame-25">
-              <div class="oinkita-kaur">{{i.expenseName}}</div>
-              <div class="cigaretter">Group Name : {{i.groupName}}</div>
+  <div class="home-add-expense">
+    <ul>
+      <li *ngFor="let i of transactionList">
+        <div class="frame-27">
+          <div class="frame-22">
+            <div class="frame-23">
+              <div class="frame-24"></div>
+              <div class="frame-25">
+                <div class="oinkita-kaur">{{ i.expenseName }}</div>
+                <div class="cigaretter">Group Name : {{ i.groupName }}</div>
+              </div>
+            </div>
+            <div class="frame-26">
+              <div class="_38-0342" [style.color]="getColor(i)">
+                {{ i.amount }}
+              </div>
             </div>
           </div>
-          <div class="frame-26">
-            <div class="_38-0342" [style.color]="getColor(i)">{{i.amount}}</div>
+        </div>
+      </li>
+    </ul>
+    <div class="add-expense" (click)="toggleModal()">
+      <h1>Add Expense</h1>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="192"
+        height="192"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="#6f6f6f"
+          d="M12.75 7a.75.75 0 0 0-1.5 0v4.25H7a.75.75 0 0 0 0 1.5h4.25V17a.75.75 0 0 0 1.5 0v-4.25H17a.75.75 0 0 0 0-1.5h-4.25z"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Profile modal -->
+<div class="modal" [style.display]="showModal ? 'flex' : 'none'">
+  <div class="blur"></div>
+  <div class="modal-content">
+    <div class="wrap">
+      <div class="title">
+        <h1>Select a Group</h1>
+        <button class="close-icon" (click)="toggleModal()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="black"
+            class="bi bi-x-lg"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"
+            />
+          </svg>
+        </button>
+      </div>
+      <form #selectGroupForm="ngForm">
+        <div class="form-group">
+          <label for="chooseGroup">Choose Group :</label>
+          <div>
+            <select name="chooseGroup" id="chooseGroup">
+              <option value="g1">Group 1</option>
+              <option value="g1">Group 1</option>
+              <option value="g1">Group 1</option>
+            </select>
           </div>
         </div>
-      </div>
-    </li>
-  </ul>
+        <button type="submit">Proceed</button>
+      </form>
+    </div>
+  </div>
 </div>

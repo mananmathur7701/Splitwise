@@ -13,7 +13,7 @@
       Change Password
     </button>
     <button class="btn-profile" (click)="toggleDeleteModal()">
-    Delete Profile
+      Delete Profile
     </button>
   </div>
 
@@ -66,9 +66,8 @@
                   class="form-control"
                   name="lastName"
                   [(ngModel)]="profileData.lastName"
-                  placeholder="doe" 
+                  placeholder="doe"
                   required
-                  
                 />
               </span>
             </div>
@@ -100,7 +99,7 @@
     <div class="modal-content">
       <div class="wrap">
         <div class="title">
-          <h1>Edit PASSWORD</h1>
+          <h1>Edit Password</h1>
           <button class="close-icon" (click)="togglePasswordModal()">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -116,9 +115,7 @@
             </svg>
           </button>
         </div>
-        <form
-          #passwordForm="ngForm"
-          (ngSubmit)="editPassword()">
+        <form #passwordForm="ngForm" (ngSubmit)="editPassword()">
           <div class="form-group">
             <div>
               <label for="password">Enter old password:</label>
@@ -159,7 +156,6 @@
                   name="rePassword"
                   [(ngModel)]="profileData.repassword"
                   required
-
                 />
                 <!-- <div *ngIf="repassword.invalid && (repassword.dirty || repassword.touched)" class="text-danger">
                   <div *ngIf="repassword.errors?.required">Confirmation password is required.</div>
@@ -173,8 +169,8 @@
     </div>
   </div>
 
-   <!-- Delete Profile modal -->
-   <div class="modal" [style.display]="showDeleteModal ? 'flex' : 'none'">
+  <!-- Delete Profile modal -->
+  <div class="modal" [style.display]="showDeleteModal ? 'flex' : 'none'">
     <div class="blur"></div>
     <div class="modal-content">
       <div class="wrap">
@@ -195,7 +191,7 @@
             </svg>
           </button>
         </div>
-        <form #myForm="ngForm" (ngSubmit)="deleteUser()">
+        <form #deleteForm="ngForm" (ngSubmit)="deleteUser()">
           <div class="form-group">
             <div>
               <label for="firstName">Enter PASSWORD:</label>
@@ -212,12 +208,10 @@
                 />
               </span>
             </div>
-            
           </div>
           <button type="submit">Confirm Profile DELETION</button>
         </form>
       </div>
     </div>
   </div>
-
 </div>

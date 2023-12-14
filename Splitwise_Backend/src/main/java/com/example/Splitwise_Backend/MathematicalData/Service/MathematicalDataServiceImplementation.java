@@ -44,10 +44,22 @@ public class MathematicalDataServiceImplementation implements MathematicalDataSe
     @Override
     public ArrayList<String> dataToBeSentOnDashboard(int userId) {
         ArrayList<String> data = new ArrayList<>();
-        float paisaLena = (-1)*(expenseSplitServiceImplementation.totalAmountJoLenaHaiByPaidToId(userId)-squareOffTransactionsServiceImplementation.totalAmountByPayerId(userId));
-        float paisaDena = expenseSplitServiceImplementation.totalAmountJoDenaHaiByPayerId(userId)-squareOffTransactionsServiceImplementation.totalAmountByPaidToId(userId);
-        float balance = paisaLena-paisaDena;
+//        float paisaLena = (expenseSplitServiceImplementation.totalAmountJoLenaHaiByPaidToId(userId)-squareOffTransactionsServiceImplementation.totalAmountByPayerId(userId));
+//        float paisaDena = expenseSplitServiceImplementation.totalAmountJoDenaHaiByPayerId(userId)-squareOffTransactionsServiceImplementation.totalAmountByPaidToId(userId);
+//        float balance = paisaLena-paisaDena;
+        float paisaLena =0;
+        float paisaDena =0;
+        float balance =0;
 
+        List<LedgerDTO> allTransData = ledgerData(userId);
+        for(LedgerDTO l : allTransData){
+            if(l.getAmount()>=0){
+                paisaLena = paisaLena+l.getAmount();
+            }else if (l.getAmount()<0){
+                paisaDena = paisaDena+l.getAmount();
+            }
+        }
+        balance = paisaLena-paisaDena;
         data.add(Float.toString(paisaLena));
         data.add(Float.toString(paisaDena));
         data.add(Float.toString(balance));
@@ -88,24 +100,24 @@ public class MathematicalDataServiceImplementation implements MathematicalDataSe
     }
 
     @Override
-    public float AmountUserOweOrOwes(int payerId, int payeeId)
+    public float AmountUserOweOrOwes(int amritId, int mananId)
     {
-        Optional<Users> payer = usersRepo.findById(payerId);
-        if(payer.isPresent())
+        Optional<Users> amrit = usersRepo.findById(amritId);
+        if(amrit.isPresent())
         {
-            Optional<Users> payee= usersRepo.findById(payeeId);
-            if(payee.isPresent())
+            Optional<Users> manan= usersRepo.findById(mananId);
+            if(manan.isPresent())
             {
 
 
-                //Amount Jaha User Paise Diya
+                //Amount Jaha Amrit Paise Diya
                 float amountUserPaisaDiya =0;
-                Optional<List<ExpenseSplit>> ListOfExpensesWhereUserPaid = expenseSplitRepo.findByPayerId(payer.get());
+                Optional<List<ExpenseSplit>> ListOfExpensesWhereUserPaid = expenseSplitRepo.findByPayerId(manan.get());
                 if(ListOfExpensesWhereUserPaid.isPresent())
                 {
                     for(ExpenseSplit exp: ListOfExpensesWhereUserPaid.get())
                     {
-                        if(exp.getPayedToId().getId()==payeeId)
+                        if(exp.getPayedToId().getId()==amritId)
                         {
                             amountUserPaisaDiya=amountUserPaisaDiya+exp.getShareAmount();
                         }
@@ -116,14 +128,36 @@ public class MathematicalDataServiceImplementation implements MathematicalDataSe
                     return amountUserPaisaDiya;
                 }
 
-                 //Amount Jaha User Ko Paisa Dena Hai
+                // Square Off Mai User Kitna Paisa Liya Hai
+                float amountUserPaisaDenaMaangtaHai=0;
+                Optional<List<SquareOffTransactions>> whereUserPaisaDenaMaangtaHai= squareOffTransactionsRepo.findByPayerId(manan.get());
+                if(whereUserPaisaDenaMaangtaHai.isPresent())
+                {
+                    for(SquareOffTransactions squareOffTransactions: whereUserPaisaDenaMaangtaHai.get())
+                    {
+                        if (squareOffTransactions.getPayedToId().getId()==amritId)
+                        {
+                            amountUserPaisaDenaMaangtaHai=amountUserPaisaDenaMaangtaHai+(float) squareOffTransactions.getAmount();
+                        }
+                    }
+                }
+                else
+                {
+                    return amountUserPaisaDenaMaangtaHai;
+                }
+
+            float amrit_ko_lena = amountUserPaisaDiya - amountUserPaisaDenaMaangtaHai;
+
+
+
+                //Amount Jaha User Ko Paisa Dena Hai
                 float amountUserPaisaDenaHai =0;
-                Optional<List<ExpenseSplit>> ListOfExpensesWhereUserHasShare = expenseSplitRepo.findByPayerId(payee.get());
+                Optional<List<ExpenseSplit>> ListOfExpensesWhereUserHasShare = expenseSplitRepo.findByPayerId(amrit.get());
                 if(ListOfExpensesWhereUserHasShare.isPresent())
                 {
                     for(ExpenseSplit exp: ListOfExpensesWhereUserHasShare.get())
                     {
-                        if(exp.getPayedToId().getId()==payerId)
+                        if(exp.getPayedToId().getId()==mananId)
                         {
                             amountUserPaisaDenaHai=amountUserPaisaDenaHai+exp.getShareAmount();
                         }
@@ -136,12 +170,12 @@ public class MathematicalDataServiceImplementation implements MathematicalDataSe
 
                 // SquareOff Mai User Kitna Paisa Diya Hai
                 float amountUserPaisaMaangtaHai=0;
-                Optional<List<SquareOffTransactions>> whereUserPaisaMaangtaHai= squareOffTransactionsRepo.findByPayerId(payer.get());
+                Optional<List<SquareOffTransactions>> whereUserPaisaMaangtaHai= squareOffTransactionsRepo.findByPayerId(amrit.get());
                 if(whereUserPaisaMaangtaHai.isPresent())
                 {
                     for(SquareOffTransactions squareOffTransactions: whereUserPaisaMaangtaHai.get())
                     {
-                        if (squareOffTransactions.getPayerId().getId()==payeeId)
+                        if (squareOffTransactions.getPayedToId().getId()==mananId)
                         {
                             amountUserPaisaMaangtaHai=amountUserPaisaMaangtaHai+(float) squareOffTransactions.getAmount();
                         }
@@ -152,31 +186,16 @@ public class MathematicalDataServiceImplementation implements MathematicalDataSe
                     return amountUserPaisaMaangtaHai;
                 }
 
-                // Square Off Mai User Kitna Paisa Liya Hai
-                float amountUserPaisaDenaMaangtaHai=0;
-                Optional<List<SquareOffTransactions>> whereUserPaisaDenaMaangtaHai= squareOffTransactionsRepo.findByPayerId(payee.get());
-                if(whereUserPaisaDenaMaangtaHai.isPresent())
-                {
-                    for(SquareOffTransactions squareOffTransactions: whereUserPaisaDenaMaangtaHai.get())
-                    {
-                        if (squareOffTransactions.getPayerId().getId()==payerId)
-                        {
-                            amountUserPaisaDenaMaangtaHai=amountUserPaisaDenaMaangtaHai+(float) squareOffTransactions.getAmount();
-                        }
-                    }
-                }
-                else
-                {
-                    return amountUserPaisaDenaMaangtaHai;
-                }
 
+                float amrit_ko_dena = amountUserPaisaDenaHai - amountUserPaisaMaangtaHai;
 
-                float totalamount = amountUserPaisaDiya-amountUserPaisaDenaHai+amountUserPaisaMaangtaHai-amountUserPaisaDenaMaangtaHai;
-                return totalamount;
+                float total_amount = amrit_ko_lena - amrit_ko_dena;
+                return total_amount;
+
 
             }
-           else
-           {
+            else
+            {
                 throw new UserNotFoundException("Payee Not Found");}
         }
         else
