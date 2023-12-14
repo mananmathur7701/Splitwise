@@ -7,7 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./landing.component.css']
 })
 export class LandingComponent {
-  constructor(private router:Router) { }
+  constructor(private router:Router) { 
+    localStorage.clear();
+  }
 
   ngOnInit(): void {}
   

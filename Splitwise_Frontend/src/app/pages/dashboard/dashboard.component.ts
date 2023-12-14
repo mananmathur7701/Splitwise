@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLinkActive } from '@angular/router';
+import { NavigationEnd, RouterLinkActive } from '@angular/router';
 import { BackServicesService } from 'src/app/back-services.service';
 
 @Component({
@@ -8,6 +8,7 @@ import { BackServicesService } from 'src/app/back-services.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
+  [x: string]: any;
   
 
   id: any = localStorage.getItem('id');
@@ -38,6 +39,13 @@ export class DashboardComponent {
 
   ngOnInit(): void{
     this.getUserDetails();
+    this['router'].events.subscribe((event: any) => {
+      if (event instanceof NavigationEnd) {
+        this.index = 0; // Reset the index for typewriter effect
+        this.displayedFirstName = ''; // Reset the displayedFirstName
+        this.typeWriterFirstName(); // Call your typewriter function
+      }
+    });
   }
 
   getUserDetails(): void{

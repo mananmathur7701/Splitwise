@@ -145,7 +145,7 @@ export class HomeComponent implements OnInit
 }
 
 getColor(element: any): string {
-  // console.log('this is the element',element);
+  console.log('this is the element',element);
   
   const element1 = {
     amount: 300,
@@ -153,7 +153,8 @@ getColor(element: any): string {
     expenseName: "DINNER",
     groupName: "hum 3",
     id: 1,
-    userId: 1
+    userId: 1,
+    userName: null
   };
   const defaultKey = Object.keys(element1);
   const keysElement = Object.keys(element);
@@ -163,11 +164,11 @@ getColor(element: any): string {
   // Checking the condition of different lengths of keys
   if (keysElement.length != defaultKey.length) {
     // If lengths differ, return red
-    // console.log('this is the colour given :- RED');
+    console.log('this is the colour given :- RED');
     
     return 'red';
   } else {
-    // console.log('this is the colour given :- GREEN');
+    console.log('this is the colour given :- GREEN');
     // If lengths are the same, return green
     return '#00ff19';
   }
