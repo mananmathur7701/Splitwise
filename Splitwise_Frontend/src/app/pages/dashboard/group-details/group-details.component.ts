@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BackServicesService } from 'src/app/back-services.service';
 import { forkJoin } from 'rxjs';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-group-details',
@@ -208,21 +209,36 @@ export class GroupDetailsComponent implements OnInit {
 
 
   deleteGroup(): void {
-    const confirmDelete = window.confirm('Are you sure you want to delete this group?');
-  
-    if (confirmDelete) {
-      this.backService.deleteEntireGroup(this.groupId).subscribe(
-        (response) => {
-          console.log(response);
-          this.router.navigate(['/dashboard/groups'],{ relativeTo: this.route });
-          // Handle successful group deletion, if needed
-        },
-        (error) => {
-          console.error('Error deleting group:', error);
-          // Handle error while deleting group, if needed
-        }
-      );
-    }
+    // const confirmDelete = window.confirm('Are you sure you want to delete this group?');
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.backService.deleteEntireGroup(this.groupId).subscribe(
+          (response) => {
+            console.log(response);
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success"
+            });
+            this.router.navigate(['/dashboard/groups'],{ relativeTo: this.route });
+            // Handle successful group deletion, if needed
+          },
+          (error) => {
+            console.error('Error deleting group:', error);
+            // Handle error while deleting group, if needed
+          }
+        );
+        
+      }
+    });  
   }
 
   getExpenseDetails(expenseId:any): void {

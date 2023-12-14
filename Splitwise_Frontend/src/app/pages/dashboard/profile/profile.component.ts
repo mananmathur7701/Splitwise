@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 //mport { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BackServicesService } from 'src/app/back-services.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile',
@@ -110,7 +111,14 @@ export class ProfileComponent {
         console.log(response);
       },
       (error)=>{
-        console.error("error frtching user details ", error);
+        console.error("error deleting user ", error);
+        // window.alert("Failed to delete profile. Please settleup all your expenses and try again later.");
+        Swal.fire({
+          icon: "error",
+          title: "OOOPS...",
+          text: "Something went wrong, SORRY! ",
+          footer: "Please Settleup All Your Expenses And Try Again..."
+        });
       }
     );
   }
