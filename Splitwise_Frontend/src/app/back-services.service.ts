@@ -96,6 +96,8 @@ export class BackServicesService {
 
 
   //********EK USER KO KAHAN SE KITNE PAISE MILENGE WO LIST */
+
+  
   expensesOfUserWhereOwes(id:number):Observable<any>
   {
     const header= new HttpHeaders({

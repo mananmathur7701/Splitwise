@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   dosts: any[] = [];
   transactionList: any[] = [];
   showModal = false;
+  groups!: any[];
 
 
   payeeValues: { [key: number]: number } = {};
@@ -74,6 +75,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.udhariKaData();
     this.getEntireTransactionDetailsOfUser();
+    this.getListOfGroups();
 
     //this.getPaymentsDoneByUser();
     // this.getUserKeFriends();
@@ -192,5 +194,25 @@ export class HomeComponent implements OnInit {
     // if (!this.showEditModal) {
       this.selectGroupForm.resetForm();
     // }
+  }
+
+
+  onSubmit(): void {
+    // Handle form submission here
+    // For example, navigate to the "add-expense" route when the form is submitted
+    this.router.navigate(['/dashboard/addExpense']); // Replace 'add-expense' with your desired route path
+  }
+
+  getListOfGroups(): void {
+    this.backService.groupsOfUser(this.id).subscribe(
+      (response) => {
+        console.log(this.id);
+        this.groups = response;
+        console.log(this.groups);
+      },
+      (error) => {
+        console.error('Error fetching groups:', error);
+      }
+    );
   }
 }

@@ -89,14 +89,17 @@
           </svg>
         </button>
       </div>
-      <form #selectGroupForm="ngForm">
+
+      <!-- Add expense feature in home page --> 
+
+      <form #selectGroupForm="ngForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="chooseGroup">Choose Group :</label>
-          <div>
-            <select name="chooseGroup" id="chooseGroup">
-              <option value="g1">Group 1</option>
-              <option value="g1">Group 1</option>
-              <option value="g1">Group 1</option>
+          <div >
+            <select  name="chooseGroup" id="chooseGroup">
+              
+              <option *ngFor="let group of groups" value="g1">{{group.groupName}}</option>
+             
             </select>
           </div>
         </div>
