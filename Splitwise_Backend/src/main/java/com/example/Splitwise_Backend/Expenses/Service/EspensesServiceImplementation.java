@@ -51,7 +51,7 @@ public class EspensesServiceImplementation implements ExpensesService{
             newExpenses.setGroups(groupOfExpense.get());
             newExpenses.setComment(expenseInfoDTO.getComment());
             newExpenses.setAmountPaid(expenseInfoDTO.getAmountPaid());
-            newExpenses.setSpentAt(Timestamp.from(Instant.now()));
+            newExpenses.setSpentAt(expenseInfoDTO.getSpentAt());
             expensesRepo.save(newExpenses);
             int expenseId = expensesRepo.save(newExpenses).getId();
 
@@ -82,7 +82,7 @@ public class EspensesServiceImplementation implements ExpensesService{
                         boolean found = false;
                         for (SplitData settlement : usersWhoOwe) {
                             if (settlement.getUserId() == payee.getUserId()) {
-                                int difference = payee.getAmount() - settlement.getAmount();
+                                float difference = payee.getAmount() - settlement.getAmount();
                                 if (difference > 0) {
                                     maangneWaale.add(new SplitData(payee.getUserId(), difference));
                                 } else if (difference < 0) {
@@ -116,7 +116,7 @@ public class EspensesServiceImplementation implements ExpensesService{
                     for (SplitData maangne : maangneWaale) {
                         for (SplitData dene : deneWaale) {
                             if (maangne.getUserId()!=dene.getUserId()) {
-                                int amountToSettle = Math.min(maangne.getAmount(), dene.getAmount());
+                                float amountToSettle = Math.min(maangne.getAmount(), dene.getAmount());
                                 System.out.println(maangne.getUserId() + " Needs To Give " + amountToSettle + " To " + dene.getUserId());
                                 expenseSplitServiceImplementation.saveExpenseSplit(dene.getUserId(),maangne.getUserId(),groupOfExpense.get().getId(), expenseId,amountToSettle);
                                 maangne.setAmount(maangne.getAmount() - amountToSettle);
@@ -222,7 +222,7 @@ public class EspensesServiceImplementation implements ExpensesService{
                        boolean found = false;
                        for (SplitData settlement : usersWhoOwe) {
                            if (settlement.getUserId() == payee.getUserId()) {
-                               int difference = payee.getAmount() - settlement.getAmount();
+                               float difference = payee.getAmount() - settlement.getAmount();
                                if (difference > 0) {
                                    maangneWaale.add(new SplitData(payee.getUserId(), difference));
                                } else if (difference < 0) {
@@ -256,7 +256,7 @@ public class EspensesServiceImplementation implements ExpensesService{
                    for (SplitData maangne : maangneWaale) {
                        for (SplitData dene : deneWaale) {
                            if (maangne.getUserId()!=dene.getUserId()) {
-                               int amountToSettle = Math.min(maangne.getAmount(), dene.getAmount());
+                               float amountToSettle = Math.min(maangne.getAmount(), dene.getAmount());
                                System.out.println(maangne.getUserId() + " Needs To Give " + amountToSettle + " To " + dene.getUserId());
                                expenseSplitServiceImplementation.saveExpenseSplit(maangne.getUserId(),dene.getUserId(),groupOfUpdation.get().getId(), expenseId,amountToSettle);
                                maangne.setAmount(maangne.getAmount() - amountToSettle);

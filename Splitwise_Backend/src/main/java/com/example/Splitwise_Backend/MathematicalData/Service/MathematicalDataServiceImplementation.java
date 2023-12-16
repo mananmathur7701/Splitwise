@@ -59,7 +59,7 @@ public class MathematicalDataServiceImplementation implements MathematicalDataSe
                 paisaDena = paisaDena+l.getAmount();
             }
         }
-        balance = paisaLena-paisaDena;
+        balance = paisaLena+paisaDena;
         data.add(Float.toString(paisaLena));
         data.add(Float.toString(paisaDena));
         data.add(Float.toString(balance));

@@ -22,6 +22,7 @@ export class ExpenseComponent {
 
   payeeValues: { [key: number]: number } = {};
   settlementValues: { [key: number]: number } = {};
+  expenseDate: any;
   
 
 
@@ -29,6 +30,19 @@ export class ExpenseComponent {
     private backService: BackServicesService,
     private router: Router
     ) {
+
+          // Get the current date and time
+    const currentDate = new Date();
+
+    // Format the date to match the datetime-local input format (YYYY-MM-DDTHH:mm)
+    const year = currentDate.getFullYear();
+    const month = ('0' + (currentDate.getMonth() + 1)).slice(-2); // Months are zero-based
+    const day = ('0' + currentDate.getDate()).slice(-2);
+    const hours = ('0' + currentDate.getHours()).slice(-2);
+    const minutes = ('0' + currentDate.getMinutes()).slice(-2);
+
+    // Assign the formatted date and time to the expenseDate variable
+    this.expenseDate = `${year}-${month}-${day}T${hours}:${minutes}`;
 
   }
   ngOnInit() {
@@ -53,6 +67,12 @@ export class ExpenseComponent {
     if (form.valid) {
       const comment = form.value.comment;
       const amountPaid = form.value.amount;
+      const spentAt = new Date(form.value.expenseDate );
+      if(spentAt>new Date())
+      {
+        alert("You cannot add future Expense");
+        return;
+      }
 
       const payeeArray = [];
       const settlementArray = [];
@@ -88,7 +108,7 @@ export class ExpenseComponent {
       
 
       // Validate if the total amounts match the amount paid
-    if (totalPayeeAmount !== amountPaid || totalSettlementAmount !== amountPaid) {
+    if (totalPayeeAmount !== amountPaid || Math.round(totalSettlementAmount) !== amountPaid) {
       // Handle validation error (amounts do not match)
       // For example, you can show an error message or prevent form submission
       console.error('Total amounts do not match the amount paid.');
@@ -100,6 +120,7 @@ export class ExpenseComponent {
         groupId: this.backService.groupKaId, // Change groupId as needed
         amountPaid,
         comment,
+        spentAt,
         payee: payeeArray,
         settlement: settlementArray
       };

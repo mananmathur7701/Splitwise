@@ -216,6 +216,8 @@ export class BackServicesService {
 
   addExpense(payload:any) : Observable<any>
   {
+    console.log("yeh data jara hai add expense mein",payload);
+    
    return this._http.post("http://localhost:8080/addExpenseToGroup",payload);
   }
 

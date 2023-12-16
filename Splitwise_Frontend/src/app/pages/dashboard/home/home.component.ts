@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
 
   payeeValues: { [key: number]: number } = {};
   settlementValues: { [key: number]: number } = {};
+selectedGroupId: any;
 
   constructor(
     private backService: BackServicesService,
@@ -198,9 +199,16 @@ export class HomeComponent implements OnInit {
 
 
   onSubmit(): void {
-    // Handle form submission here
-    // For example, navigate to the "add-expense" route when the form is submitted
-    this.router.navigate(['/dashboard/addExpense']); // Replace 'add-expense' with your desired route path
+    // Check if a group is selected
+    if (this.selectedGroupId) {
+      console.log(this.selectedGroupId,'this is the group id');
+      this.backService.groupKaId = this.selectedGroupId;
+      // Pass the selected group ID as a query parameter to the "addExpense" route
+      this.router.navigate(['/dashboard/addExpense'])
+    } else {
+      // Handle the case where no group is selected
+      alert('Please select a group before proceeding.');
+    }
   }
 
   getListOfGroups(): void {
@@ -214,5 +222,14 @@ export class HomeComponent implements OnInit {
         console.error('Error fetching groups:', error);
       }
     );
+  }
+
+  setGroupId(id:any){
+    console.log('dfghj getting from',id);
+    
+    this.backService.groupKaId = id;
+    console.log(this.backService.groupKaId);
+    
+
   }
 }

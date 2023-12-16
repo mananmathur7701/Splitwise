@@ -73,8 +73,8 @@ select {
   padding: 16px;
   border-radius: 5px;
   margin-top: 3px;
-  background-color: #000;
-  color: #fff;
+  background-color: #cccccc;
+  color: #000;
   border: 0;
 }
 .list {
@@ -117,3 +117,4 @@ button:hover {
   display: flex;
   justify-content: space-between;
 }
+

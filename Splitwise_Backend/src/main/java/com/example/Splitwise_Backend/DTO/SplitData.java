@@ -2,9 +2,9 @@ package com.example.Splitwise_Backend.DTO;
 
 public class SplitData {
     private int userId;
-    private int amount;
+    private float amount;
 
-    public SplitData(int userId, int amount) {
+    public SplitData(int userId, float amount) {
         this.userId = userId;
         this.amount = amount;
     }
@@ -17,11 +17,11 @@ public class SplitData {
         this.userId = userId;
     }
 
-    public int getAmount() {
+    public float getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(float amount) {
         this.amount = amount;
     }
 

@@ -174,12 +174,12 @@
                 <tr *ngFor="let expense of paymentSplitDetailsList">
                   <td>{{expense.userName | uppercase }}</td>
                   <td> Paid </td>
-                  <td>{{expense.amount}}</td>
+                  <td>{{expense.amount  | number: '1.2-2' }}</td>
                 </tr>
                 <tr *ngFor="let expense of expenseSplitDetailsList">
                   <td>{{expense.payerName | uppercase }}</td>
                   <td> Owes </td>
-                  <td>{{expense.amount}}</td>
+                  <td>{{expense.amount | number: '1.2-2'}}</td>
                   <td> from </td>
                   <td>{{expense.payeeName | uppercase }}</td>
 
