@@ -292,17 +292,18 @@ ul {
   display: flex; /* Use flexbox layout */
   justify-content: space-between; /* Position items with space between them */
   overflow-y: auto;
+  width: 100%;
   gap: 8px;
 }
 .left-section {
   /* display: flex; */
-  width: 50%;
+  width: 100%;
   gap: 12px;
 
 }
 .right-section {
   /* display: flex; */
-  width: 50%;
+  width: 100%;
   gap: 12px;
 }
 .list-section {
