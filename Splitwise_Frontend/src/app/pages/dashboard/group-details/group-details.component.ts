@@ -205,7 +205,7 @@ export class GroupDetailsComponent implements OnInit {
         // Optionally, update 'groupName' variable if needed
         this.groupName = newGroupName;
         this.getGroupKaNaam();
-        this.toggleEditModal();
+        // this.toggleEditModal();
         
       },
       (error) => {
@@ -215,6 +215,7 @@ export class GroupDetailsComponent implements OnInit {
         
       }
     );
+    
   }
 
 

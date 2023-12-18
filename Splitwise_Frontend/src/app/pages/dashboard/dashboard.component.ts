@@ -64,18 +64,29 @@ export class DashboardComponent {
     );
       
   }
-  typeWriterFirstName(): void {
-    const firstName = this.details.firstName || '';
-    const helloString = 'Hello ' + firstName;
+typeWriterFirstName(): void {
+  const firstName = this.details.firstName || '';
+  const helloString = 'Hello ' + firstName;
+
+  const typeEffect = () => {
     const interval = setInterval(() => {
       if (this.index < helloString.length) {
         this.displayedFirstName += helloString.charAt(this.index);
         this.index++;
       } else {
         clearInterval(interval); // Stop the typewriter effect when finished
+        // Reset values to restart the typewriter effect
+        this.index = 0;
+        this.displayedFirstName = '';
+        // Call the function again to start over
+        typeEffect();
       }
     }, 300);
-  }
+  };
+
+  // Start the typewriter effect
+  typeEffect();
+}
 
 }
 

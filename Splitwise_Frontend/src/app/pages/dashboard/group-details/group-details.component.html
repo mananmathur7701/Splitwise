@@ -50,7 +50,7 @@
       <ul>
         <h2 class="list-title">Expense List</h2>
         <li *ngFor="let expense of expensesList" >
-          <div class="frame-27" (click)="toggleExpenseModal(expense.id)">
+          <div class="frame-27 e-list" (click)="toggleExpenseModal(expense.id)">
             <div class="frame-22">
               <div class="frame-23">
                 <div class="frame-24"></div>
@@ -133,7 +133,7 @@
                   required
                 />
                 <div class="add-icon">
-                  <button type="submit">
+                  <button type="submit" (click)="toggleEditModal()">
                     Update
                   </button>
                 </div>
@@ -180,7 +180,7 @@
                   <td>{{expense.payerName | uppercase }}</td>
                   <td> Owes </td>
                   <td>{{expense.amount | number: '1.2-2'}}</td>
-                  <td> from </td>
+                  <td> to </td>
                   <td>{{expense.payeeName | uppercase }}</td>
 
                 </tr>

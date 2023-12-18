@@ -141,6 +141,10 @@ ul {
   flex-shrink: 0;
   position: relative;
 }
+.e-list{
+  cursor: pointer;
+}
+
 .frame-22 {
   background: #232323;
   border-radius: 4px;

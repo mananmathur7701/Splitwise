@@ -78,27 +78,32 @@ export class ProfileComponent {
   }
   
 
-  getUserDetails(): void{
+  getUserDetails(): void {
     console.log('id:- ', this.id);
     
     this.backService.showUserDetails(this.id).subscribe(
-      (response) =>{
+      (response) => {
         console.log(response);
         this.details = response;
         console.log(this.details);
+  
+        // Set initial values for the edit user details modal
+        this.profileData.firstName = this.details.firstName;
+        console.log(this.profileData.firstName)
+        this.profileData.lastName = this.details.lastName;
+        this.profileData.number = this.details.number;
       },
-      (error)=>{
-        console.error("error frtching user details ", error);
+      (error) => {
+        console.error("error fetching user details ", error);
       }
     );
-      
   }
 
   editUserDetails(): void{
     this.backService.editProfile(this.id, this.profileData.firstName, this.profileData.lastName,this.details.email, this.profileData.number).subscribe(
       (response)=>{
         console.log(response);
-        this.router.navigate(['/dashboard/home']);
+        this.toggleEditModal();
         
       },
       (error)=>{
