@@ -161,6 +161,8 @@ export class GroupDetailsComponent implements OnInit {
       },
       (error) => {
         console.error("Error adding member:", error);
+        console.log("nahi hua add");
+        
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -246,6 +248,13 @@ export class GroupDetailsComponent implements OnInit {
           (error) => {
             console.error('Error deleting group:', error);
             // Handle error while deleting group, if needed
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Please Settleup all the Expenses in the group to Delete it!",
+              // footer: '<a href="#">Why do I have this issue?</a>'
+            });
+            
           }
         );
         
@@ -283,5 +292,32 @@ export class GroupDetailsComponent implements OnInit {
     );
   }
 
+  deleteExpense(expenseId:any): void{
+    console.log(expenseId,"for deleting");
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.backService.deleteExpense(expenseId).subscribe(
+          (response)=>{
+            console.log(response); 
+            this.getGroupDetails();     
+          },
+          (error)=>{
+            console.error("Error deleting Expense", error);
+          }
+        )  
+        
+      }
+    });
+
+      
+  }
 
 }

@@ -38,7 +38,7 @@ public class UsersController {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("mananmathur321@gmail.com");
         message.setTo(toEmail);
-        message.setSubject("Confirmation OTP For Splitter");
+        message.setSubject("Confirmation OTP For KHATA BAHI");
         message.setText(body);
 
         javaMailSender.send(message);

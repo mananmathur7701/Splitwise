@@ -8,14 +8,14 @@
       }"
     >
       <div class="total-balance">Total Balance</div>
-      <div class="_38-034">₹{{ balance }}</div>
+      <div class="_38-034">₹{{ balance | number: '1.2-2'}}</div>
     </div>
     <div class="frame-20">
       <div class="frame-18">
         <div class="you-are-owed-69-000">
           <span
             ><span class="you-are-owed-69-000-span">You are owed :<br /></span
-            ><span class="you-are-owed-69-000-span2">₹{{ owed }}</span></span
+            ><span class="you-are-owed-69-000-span2">₹{{ owed | number: '1.2-2'}}</span></span
           >
         </div>
       </div>
@@ -23,7 +23,7 @@
         <div class="you-owe-380">
           <span
             ><span class="you-owe-380-span">You owe :<br /></span
-            ><span class="you-owe-380-span2">₹{{ -owes }}</span></span
+            ><span class="you-owe-380-span2">₹{{ -owes | number: '1.2-2'}}</span></span
           >
         </div>
       </div>
@@ -60,7 +60,7 @@
             </div>
             <div class="frame-26">
               <div class="_38-0342" [style.color]="getColor(i)">
-                {{ i.amount }}
+                {{ i.amount | number: '1.2-2'}}
               </div>
             </div>
           </div>

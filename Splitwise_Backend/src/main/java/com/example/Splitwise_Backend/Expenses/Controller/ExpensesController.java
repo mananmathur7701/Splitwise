@@ -37,9 +37,10 @@ public class ExpensesController {
 
     @DeleteMapping("/deleteExpense/{id}")
     @CrossOrigin("http://localhost:4200")
-    public String deleteExpense(@PathVariable int id)
+    public ResponseEntity<?> deleteExpense(@PathVariable int id)
     {
-        return expensesServiceImplementation.deleteExpense(id);
+        String result = expensesServiceImplementation.deleteExpense(id);
+        return ResponseEntity.status(HttpStatus.OK).body("{\"result\": \"" + result + "\"}");
     }
 
     @GetMapping("/showAllGroupExpense/{groupId}")

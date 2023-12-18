@@ -10,6 +10,8 @@ import com.example.Splitwise_Backend.Users.DTO.UsersViewDTO;
 import com.example.Splitwise_Backend.Users.Entity.Users;
 import com.example.Splitwise_Backend.Users.Repository.UsersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -22,14 +24,16 @@ import java.util.Optional;
 public class GroupsServiceImplementation implements GroupsService{
     private final GroupsRepo groupsRepo;
     private final UsersRepo usersRepo;
+    private final JavaMailSender javaMailSender;
 
     private final FriendsServiceImplementation friendsServiceImplementation;
 
     @Autowired
-    public GroupsServiceImplementation(GroupsRepo groupsRepo, UsersRepo usersRepo, FriendsServiceImplementation friendsServiceImplementation)
+    public GroupsServiceImplementation(GroupsRepo groupsRepo, UsersRepo usersRepo, JavaMailSender javaMailSender, FriendsServiceImplementation friendsServiceImplementation)
     {
         this.groupsRepo = groupsRepo;
         this.usersRepo = usersRepo;
+        this.javaMailSender = javaMailSender;
         this.friendsServiceImplementation = friendsServiceImplementation;
     }
 
@@ -183,6 +187,9 @@ public class GroupsServiceImplementation implements GroupsService{
                     }
 
                 }
+                else {
+                    sendMail(s,"Please Create an account in khata bahi, to be added in a group.");
+                }
             }
             return groupToWhichUserAdded.get();
         }
@@ -190,6 +197,18 @@ public class GroupsServiceImplementation implements GroupsService{
         {
             throw new GroupNotFoundException("Group Not Found");
         }
+    }
+
+    public void sendMail(String toEmail, String body)
+    {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("mananmathur321@gmail.com");
+        message.setTo(toEmail);
+        message.setSubject("Invitation for creating an account in KHATA BAHI");
+        message.setText(body);
+
+        javaMailSender.send(message);
+        System.out.println("Mail Send Successfully To : "+toEmail);
     }
 
     @Override

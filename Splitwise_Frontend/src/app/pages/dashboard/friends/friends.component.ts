@@ -133,6 +133,7 @@ export class FriendsComponent implements OnInit {
         // console.log('sadfgds',this.dosts);
         this.closeModalHandler();
         this.getUserKeFriends();
+        this.udhariKaData();
       },
       (error) => {
         console.error('Error fetching friends:', error);

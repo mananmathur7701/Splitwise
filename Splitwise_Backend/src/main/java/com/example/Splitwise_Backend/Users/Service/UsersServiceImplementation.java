@@ -70,7 +70,8 @@ public class UsersServiceImplementation implements UsersService{
         if(userToBeDeleted.isPresent())
         {
             System.out.println(userToBeDeleted.get().getPassword());
-            if(password.equals(userToBeDeleted.get().getPassword()))
+            String encodePassword = encoder.encode(password);
+            if(encodePassword.equals(userToBeDeleted.get().getPassword()))
             {
                 String message="User Deleted With Id : "+id+" and Username : "+userToBeDeleted.get().getFirstName();
                 usersRepo.deleteById(id);
@@ -80,6 +81,7 @@ public class UsersServiceImplementation implements UsersService{
             {
                 throw new GeneralException("Password Missmatch");
             }
+
         }
         else
         {

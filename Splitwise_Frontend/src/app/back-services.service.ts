@@ -360,6 +360,11 @@ export class BackServicesService {
     };
     return this._http.post("http://localhost:8080/addSquareOffTransaction",requestBody);
   }
+
+  deleteExpense(id:number) : Observable<any>
+  {
+    return this._http.delete("http://localhost:8080/deleteExpense/"+id);
+  }
   
 }
 

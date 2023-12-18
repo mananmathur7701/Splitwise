@@ -76,6 +76,8 @@ public class GroupsController
         return groupsServiceImplementation.addUser(emails,id);
     }
 
+
+
     @PostMapping("/deleteUserFromGroup/{id}")
     @CrossOrigin("http://localhost:4200")
     public Groups deleteUserFromGroup(@PathVariable int id, @RequestBody Map<String,String> data)
