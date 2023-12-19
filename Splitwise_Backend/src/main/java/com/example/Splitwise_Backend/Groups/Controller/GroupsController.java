@@ -71,9 +71,10 @@ public class GroupsController
 
     @PostMapping("/addUserToGroup/{id}")
     @CrossOrigin("http://localhost:4200")
-    public Groups addUserToGroup(@PathVariable int id,@RequestBody List<String> emails)
+    public List<UsersViewDTO> addUserToGroup(@PathVariable int id,@RequestBody List<String> emails)
     {
-        return groupsServiceImplementation.addUser(emails,id);
+        Groups g= groupsServiceImplementation.addUser(emails,id);
+        return groupsServiceImplementation.getGroupMembers(g.getId());
     }
 
 
