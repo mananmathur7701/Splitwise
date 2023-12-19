@@ -645,7 +645,7 @@ label {
   border-spacing: 8px;
 }
 .title h2 {
-  color: white !important;
+  color: #00ff19 !important;
 }
 .wrap.expense {
   width: 40vw;

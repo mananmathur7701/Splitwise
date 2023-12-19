@@ -74,8 +74,11 @@
         <h1>Settle</h1>
         <div>
           Amount to settle : 
-          <span>
-            Rs. {{-friendAmt}}
+          <span *ngIf="friendAmt > 0">
+            Rs. {{friendAmt | number: '1.2-2'}}
+          </span>
+          <span *ngIf="friendAmt < 0">
+            Rs. {{-friendAmt | number: '1.2-2'}}
           </span>
         </div>
         <div class="form-group">

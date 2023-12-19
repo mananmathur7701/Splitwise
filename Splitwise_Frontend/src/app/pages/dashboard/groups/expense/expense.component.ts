@@ -11,8 +11,9 @@ import { Router } from '@angular/router';
 })
 export class ExpenseComponent {
   
-  isPSplitChecked: boolean = false;
+  isPSplitChecked: boolean = true;
   isESplitChecked: boolean = false;
+  isEqualSplitChecked: boolean = true;
   groupId:any;
   members: any[] = [];
   comment: string = '';
@@ -23,6 +24,8 @@ export class ExpenseComponent {
   payeeValues: { [key: number]: number } = {};
   settlementValues: { [key: number]: number } = {};
   expenseDate: any;
+  groupName: any;
+  splitValues: { [key: number]: boolean} = {};
   
 
 
@@ -50,15 +53,25 @@ export class ExpenseComponent {
     console.log('sdfg',this.backService.groupKaId);
     // Set the initial state of the checkbox and split list
     this.addExpenseMeinMembersKaName();
+    this.getGroupKaNaam();
+    // this.members.forEach(member => {
+    //   this.splitValues[member.id] = true; // Set default value to true for each member ID
+    // });
   }
 
   togglePSplitList() {
     this.isPSplitChecked = !this.isPSplitChecked;
+    if (this.isPSplitChecked) {
+      this.isESplitChecked = false; // Unselect split2 checkbox if split is selected
+    }
     // This function is triggered whenever the checkbox changes
     // It toggles the value of isSplitChecked which controls the visibility of the div
   }
   toggleESplitList() {
     this.isESplitChecked = !this.isESplitChecked;
+    if (this.isESplitChecked) {
+      this.isPSplitChecked = false; 
+    }
     // This function is triggered whenever the checkbox changes
     // It toggles the value of isSplitChecked which controls the visibility of the div
   }
@@ -91,22 +104,35 @@ export class ExpenseComponent {
           payeeArray.push({ userId: member.id, amount: payeeValue });
           totalPayeeAmount += payeeValue;
         }
-        if(!this.isESplitChecked){
-          console.log('inside');
+
+        
+        // if(this.isESplitChecked){
+        //   console.log('inside');
           
-          settlementArray.push({ userId: member.id, amount: (amountPaid/this.members.length) });
-          totalSettlementAmount += (amountPaid/this.members.length); 
-        }
+        //   settlementArray.push({ userId: member.id, amount: (amountPaid/this.members.length) });
+        //   totalSettlementAmount += (amountPaid/this.members.length); 
+        // }
+        
         if (settlementValue) {
           settlementArray.push({ userId: member.id, amount: settlementValue });
           totalSettlementAmount += settlementValue; 
         }
       }
+      if(this.isPSplitChecked){
+        totalSettlementAmount = 0;
+        settlementArray.forEach(ele=>{
+        ele.amount = amountPaid/settlementArray.length
+        totalSettlementAmount = totalSettlementAmount+ele.amount;
+      });
+    }
       console.log('payeeArray',payeeArray);
       
       console.log('settelment array',settlementArray);
-      
 
+      
+      console.log('settelment array',settlementArray);
+      console.log(totalSettlementAmount,' and ', totalPayeeAmount,' and ',amountPaid);
+      
       // Validate if the total amounts match the amount paid
     if (totalPayeeAmount !== amountPaid || Math.round(totalSettlementAmount) !== amountPaid) {
       // Handle validation error (amounts do not match)
@@ -154,6 +180,24 @@ export class ExpenseComponent {
       },
       (error) => {
         console.error('Error fetching group members:', error);
+      }
+    );
+  }
+
+  getGroupKaNaam(): void {
+    console.log("get group name");
+    console.log(this.backService.groupKaId);
+    this.backService.showGroupKaName(this.backService.groupKaId).subscribe(
+      (response) => {
+        
+        console.log(response, 'gdxfcgyhuijkoihugyxfcgvhb');
+        this.groupName = response;
+        console.log(" aja bhai naam", response)
+        
+        // console.log(this.groupName);
+      },
+      (error) => {
+        console.error('Error fetching group name:', error);
       }
     );
   }

@@ -19,6 +19,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class GroupsServiceImplementation implements GroupsService{
@@ -188,7 +189,14 @@ public class GroupsServiceImplementation implements GroupsService{
 
                 }
                 else {
-                    sendMail(s,"Please Create an account in khata bahi, to be added in a group.");
+                    List<String> memberNames = groupToWhichUserAdded.get().getUsers().stream()
+                            .map(user -> user.getFirstName() + " " + user.getLastName()) // Combine first name and last name
+                            .toList();
+                    String joinedNames = String.join(", ", memberNames);
+                    sendMail(s,"Please Create an account in khata bahi. \n " +
+                            "to be added in \" "+ groupToWhichUserAdded.get().getGroupName() + " \"\n" +
+                            "the group members are " + joinedNames + "\n" +
+                            "created by " + groupToWhichUserAdded.get().getCreatedBy().getFirstName().concat(" ").concat(groupToWhichUserAdded.get().getCreatedBy().getLastName()));
                 }
             }
             return groupToWhichUserAdded.get();

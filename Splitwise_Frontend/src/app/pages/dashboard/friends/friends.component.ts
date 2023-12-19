@@ -33,17 +33,30 @@ export class FriendsComponent implements OnInit {
   
 
   onSubmit(friendAmt:any) {
+
+    if(friendAmt<0){
     if(-friendAmt>= this.settleToBeAmt){
-    this.addNewSquareOffTransaction(this.settleToBeAmt);
-    }else{
+     this.addNewSquareOffTransaction(this.settleToBeAmt);
+    }
+    else{
       window.alert("Please enter amount exact as settlement amount or less..");
     }
-    }
+  }
+  else{
+    if(friendAmt>= this.settleToBeAmt){
+      this.addNewSquareOffTransaction(this.settleToBeAmt);
+     }
+     else{
+       window.alert("Please enter amount exact as settlement amount or less..");
+     }
+  }
+
+  }
 
   toggleModal(friendId:any,debtAmt:any) {
       this.payeeid = friendId;
       this.friendAmt = debtAmt;
-      if(debtAmt<0){
+      if(debtAmt!=0){
     this.showModal = !this.showModal;
       }
   }
@@ -124,8 +137,10 @@ export class FriendsComponent implements OnInit {
 
   addNewSquareOffTransaction(amount:any): void{
     console.log('the amount needed to be settle: ' ,amount);
-    
-    this.backService.addNewSquareOffTransaction(this.payeeid,this.userId,amount).subscribe(
+    if(this.friendAmt<0){     
+      console.log('call -ve amount');
+      
+      this.backService.addNewSquareOffTransaction(this.payeeid,this.userId,amount).subscribe(
       (response) => {
         // console.log(this.groupId);
         console.log(response, 'gdxfcgyhuijkoihugyxfcgvhb');
@@ -139,6 +154,24 @@ export class FriendsComponent implements OnInit {
         console.error('Error fetching friends:', error);
       }
     );
+    }
+    else{
+      console.log('call +ve amount');
+      this.backService.addNewSquareOffTransaction(this.userId,this.payeeid,amount).subscribe(
+        (response) => {
+          // console.log(this.groupId);
+          console.log(response, 'gdxfcgyhuijkoihugyxfcgvhb');
+          // this.dosts = response;
+          // console.log('sadfgds',this.dosts);
+          this.closeModalHandler();
+          this.getUserKeFriends();
+          this.udhariKaData();
+        },
+        (error) => {
+          console.error('Error fetching friends:', error);
+        }
+      );
+    }
   }
 
 

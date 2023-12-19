@@ -352,12 +352,15 @@ export class BackServicesService {
 
   addNewSquareOffTransaction(payeeId:number, payerId:number, settlementAmount:number) : Observable<any>
   {
+
     const requestBody = {
       amount: settlementAmount,
       payerId:payerId,
       payeeId: payeeId
         
     };
+    console.log('this is going to backend', requestBody);
+    
     return this._http.post("http://localhost:8080/addSquareOffTransaction",requestBody);
   }
 
