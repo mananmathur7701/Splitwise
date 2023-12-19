@@ -43,7 +43,7 @@ export class DashboardComponent {
       if (event instanceof NavigationEnd) {
         this.index = 0; // Reset the index for typewriter effect
         this.displayedFirstName = ''; // Reset the displayedFirstName
-        this.typeWriterFirstName(); // Call your typewriter function
+        // this.typeWriterFirstName(); // Call your typewriter function
       }
     });
   }
@@ -65,8 +65,8 @@ export class DashboardComponent {
       
   }
 typeWriterFirstName(): void {
-  const firstName = this.details.firstName || '';
-  const helloString = 'Hello ' + firstName;
+  // const firstName = this.details.firstName || '';
+  const helloString = 'Hello ' + this.details.firstName;
 
   const typeEffect = () => {
     const interval = setInterval(() => {

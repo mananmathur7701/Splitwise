@@ -52,35 +52,35 @@ public class Users implements UserDetails {
     @NotEmpty(message = "Password cannot be empty")
     private String password;
 
-    @ManyToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH}, mappedBy = "users")
+    @ManyToMany(mappedBy = "users")
     @JsonIgnore
     private List<Groups> groups;
 
-    @OneToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH}, mappedBy = "userWhoAddedFriend")
+    @OneToMany(mappedBy = "userWhoAddedFriend")
     @JsonIgnore
     private List<Friends> userWhoAddedFriend;
 
-    @OneToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH}, mappedBy = "userWhoIsAddedAsFriend")
+    @OneToMany(mappedBy = "userWhoIsAddedAsFriend")
     @JsonIgnore
     private List<Friends> userWhoIsAddedAsFriend;
 
-    @OneToMany(cascade =CascadeType.ALL ,mappedBy = "users")
+    @OneToMany(mappedBy = "users")
     @JsonIgnore
     private List<PaymentSplit> paymentSplit;
 
-    @OneToMany(cascade =CascadeType.ALL ,mappedBy = "payerId")
+    @OneToMany(mappedBy = "payerId")
     @JsonIgnore
     private List<ExpenseSplit> expenseSplit1;
 
-    @OneToMany(cascade =CascadeType.ALL ,mappedBy = "payedToId")
+    @OneToMany(mappedBy = "payedToId")
     @JsonIgnore
     private List<ExpenseSplit> expenseSplit2;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "payerId")
+    @OneToMany(mappedBy = "payerId")
     @JsonIgnore
     private List<SquareOffTransactions> squareOffTransactions1;
 
-    @OneToMany(cascade =CascadeType.ALL ,mappedBy = "payedToId")
+    @OneToMany(mappedBy = "payedToId")
     @JsonIgnore
     private List<SquareOffTransactions> squareOffTransactions2;
 

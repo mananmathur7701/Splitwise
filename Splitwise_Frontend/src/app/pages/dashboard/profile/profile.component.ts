@@ -4,6 +4,7 @@ import { AbstractControl, FormBuilder, FormGroup, NgForm, Validators } from '@an
 import { ActivatedRoute, Router } from '@angular/router';
 import { BackServicesService } from 'src/app/back-services.service';
 import Swal from 'sweetalert2';
+import { DashboardComponent } from '../dashboard.component';
 
 @Component({
   selector: 'app-profile',
@@ -41,7 +42,8 @@ export class ProfileComponent {
     private route: ActivatedRoute,
     private router: Router, 
     private backserviceService: BackServicesService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private dash: DashboardComponent
   ){
     
     
@@ -104,7 +106,8 @@ export class ProfileComponent {
       (response)=>{
         console.log(response);
         this.toggleEditModal();
-        
+        this.getUserDetails();
+        this.dash.getUserDetails();
       },
       (error)=>{
         console.error("error editing user details ", error);
