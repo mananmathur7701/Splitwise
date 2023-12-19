@@ -153,11 +153,12 @@ export class GroupDetailsComponent implements OnInit {
   addMembersToGroup(): void {
     this.backService.addMembersToGroup(this.groupId,this.membersToAdd).subscribe(
       (response) => {
-          console.log(response);
+          console.log(response,'this is the response of add');
           // this.router.navigate(['/dashboard/groups']);
           this.toggleModal();
           this.getGroupKeMembers();
           this.membersToAdd=[];
+          
       },
       (error) => {
         console.error("Error adding member:", error);

@@ -6,9 +6,12 @@ import com.example.Splitwise_Backend.Friends.Service.FriendsServiceImplementatio
 import com.example.Splitwise_Backend.Groups.DTO.GroupsDTO;
 import com.example.Splitwise_Backend.Groups.Entity.Groups;
 import com.example.Splitwise_Backend.Groups.Repository.GroupsRepo;
+import com.example.Splitwise_Backend.Users.Controller.UsersController;
+import com.example.Splitwise_Backend.Users.DTO.UsersDTO;
 import com.example.Splitwise_Backend.Users.DTO.UsersViewDTO;
 import com.example.Splitwise_Backend.Users.Entity.Users;
 import com.example.Splitwise_Backend.Users.Repository.UsersRepo;
+import com.example.Splitwise_Backend.Users.Service.UsersServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -28,15 +31,17 @@ public class GroupsServiceImplementation implements GroupsService{
     private final JavaMailSender javaMailSender;
 
     private final FriendsServiceImplementation friendsServiceImplementation;
+    private UsersServiceImplementation usersServiceImplementation;
 
-    @Autowired
-    public GroupsServiceImplementation(GroupsRepo groupsRepo, UsersRepo usersRepo, JavaMailSender javaMailSender, FriendsServiceImplementation friendsServiceImplementation)
-    {
+    public GroupsServiceImplementation(GroupsRepo groupsRepo, UsersRepo usersRepo, JavaMailSender javaMailSender, FriendsServiceImplementation friendsServiceImplementation, UsersServiceImplementation usersServiceImplementation) {
         this.groupsRepo = groupsRepo;
         this.usersRepo = usersRepo;
         this.javaMailSender = javaMailSender;
         this.friendsServiceImplementation = friendsServiceImplementation;
+        this.usersServiceImplementation = usersServiceImplementation;
     }
+
+
 
     @Override
     public Groups createGroup(int userId, String groupName)
@@ -197,6 +202,8 @@ public class GroupsServiceImplementation implements GroupsService{
                             "to be added in \" "+ groupToWhichUserAdded.get().getGroupName() + " \"\n" +
                             "the group members are " + joinedNames + "\n" +
                             "created by " + groupToWhichUserAdded.get().getCreatedBy().getFirstName().concat(" ").concat(groupToWhichUserAdded.get().getCreatedBy().getLastName()));
+                    Users newUser = usersServiceImplementation.createUser(new UsersDTO(1,"xxxx","xxxx",s,"##########","123456"));
+                    return addUser(userEmail,groupId);
                 }
             }
             return groupToWhichUserAdded.get();
@@ -217,6 +224,7 @@ public class GroupsServiceImplementation implements GroupsService{
 
         javaMailSender.send(message);
         System.out.println("Mail Send Successfully To : "+toEmail);
+
     }
 
     @Override
