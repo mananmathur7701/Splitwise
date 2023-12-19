@@ -158,22 +158,22 @@ export class GroupDetailsComponent implements OnInit {
           this.toggleModal();
           this.getGroupKeMembers();
           this.membersToAdd=[];
-          response.sort((a: { id: number; }, b: { id: number; }) => {
-          const expenseIdA = a.id || 0; // If expenseId is undefined, set it as 0
-          const expenseIdB = b.id || 0;
+        //   response.sort((a: { id: number; }, b: { id: number; }) => {
+        //   const expenseIdA = a.id || 0; // If expenseId is undefined, set it as 0
+        //   const expenseIdB = b.id || 0;
 
-          return expenseIdA - expenseIdB; // Sorting based on expenseId
+        //   return expenseIdA - expenseIdB; // Sorting based on expenseId
           
-        });
+        // });
         console.log(response,'this is the response of');
-        // if(response[response.length - 1].firstName == "xxxx"){
-        //   Swal.fire({
-        //     icon: "error",
-        //     title: "Oops...",
-        //     text: "Please ask your friend to create an account.",
-        //     // footer: '<a href="#">Why do I have this issue?</a>'
-        //   });
-        // }
+        if(response[response.length - 1].firstName == "xxxx"){
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Please ask your friend to create an account.",
+            // footer: '<a href="#">Why do I have this issue?</a>'
+          });
+        }
       },
       (error) => {
         console.error("Error adding member:", error);
