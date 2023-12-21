@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -89,11 +90,28 @@ public class SquareOffTransactionsController
         return squareOffDTO;
     }
 
-//
-//    @PostMapping("/showSquareOffTransactionBetweenTwoPerson")
-//    @CrossOrigin("http://localhost:4200")
-//    public SquareOffTransactions showSquareOffTransactionsBetweenPersons( )
-//    {
-//
-//    }
+
+
+    @GetMapping("/showTransactionListOfUser/{userId}")
+    @CrossOrigin("http://localhost:4200")
+    public List<SquareOffDTO> showTransactionListOfUser(@PathVariable int userId)
+    {
+        List<SquareOffTransactions> transactions = squareOffTransactionsServiceImplementation.viewTransactionListOfUser(userId);
+
+        // Convert SquareOffTransactions to SquareOffDTO
+        List<SquareOffDTO> dtoList = new ArrayList<>();
+        for (SquareOffTransactions s : transactions) {
+            SquareOffDTO squareOffDTO = new SquareOffDTO();
+            squareOffDTO.setId(s.getId());
+            squareOffDTO.setAmount(s.getAmount());
+            squareOffDTO.setTime((Timestamp) s.getTime());
+            squareOffDTO.setPayerId(s.getPayerId().getId());
+            squareOffDTO.setPayerEmail(s.getPayerId().getEmail());
+            squareOffDTO.setPayedToId(s.getPayedToId().getId());
+            squareOffDTO.setPayedToEmail(s.getPayedToId().getEmail());
+            dtoList.add(squareOffDTO);
+        }
+        return dtoList;
+    }
+
 }

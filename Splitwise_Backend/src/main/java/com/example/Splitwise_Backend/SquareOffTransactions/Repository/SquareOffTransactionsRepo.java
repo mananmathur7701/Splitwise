@@ -1,6 +1,7 @@
 package com.example.Splitwise_Backend.SquareOffTransactions.Repository;
 import com.example.Splitwise_Backend.SquareOffTransactions.Entity.SquareOffTransactions;
 import com.example.Splitwise_Backend.Users.Entity.Users;
+import org.apache.catalina.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,4 +13,6 @@ public interface SquareOffTransactionsRepo extends JpaRepository<SquareOffTransa
 {
     Optional<List<SquareOffTransactions>> findByPayerId(Users payer);
     Optional<List<SquareOffTransactions>> findByPayedToId(Users payedTo);
+
+//    List<SquareOffTransactions> findByUserId(int userId);
 }

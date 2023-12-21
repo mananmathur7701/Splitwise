@@ -368,6 +368,15 @@ export class BackServicesService {
   {
     return this._http.delete("http://localhost:8080/deleteExpense/"+id);
   }
+
+  listOfSquareOffTransactionOfUser(id:number) : Observable<any>
+  {
+    const header= new HttpHeaders({
+      "Access-Control-Allow-Origin" : "*"
+
+    });
+    return this._http.get("http://localhost:8080/showTransactionListOfUser/"+id, {headers : header});
+  }
   
 }
 

@@ -198,10 +198,9 @@ public class GroupsServiceImplementation implements GroupsService{
                             .map(user -> user.getFirstName() + " " + user.getLastName()) // Combine first name and last name
                             .toList();
                     String joinedNames = String.join(", ", memberNames);
-                    sendMail(s,"Please Create an account in khata bahi. \n " +
-                            "to be added in \" "+ groupToWhichUserAdded.get().getGroupName() + " \"\n" +
-                            "the group members are " + joinedNames + "\n" +
-                            "created by " + groupToWhichUserAdded.get().getCreatedBy().getFirstName().concat(" ").concat(groupToWhichUserAdded.get().getCreatedBy().getLastName()));
+                    sendMail(s,"You have been added to \"" + groupToWhichUserAdded.get().getGroupName() + "\" in khata bahi \n" +"Please open the website and update your account details and start sharing your expenses.\n"+
+                            "The group members are " + joinedNames + "\n" +
+                            "created by " + groupToWhichUserAdded.get().getCreatedBy().getFirstName().concat(" ").concat(groupToWhichUserAdded.get().getCreatedBy().getLastName())+ "\nYOUR USERNAME IS SAME AS YOUR \"EMAIL\" AND PASSWORD IS \"123456\"");
                     Users newUser = usersServiceImplementation.createUser(new UsersDTO(1,"xxxx","xxxx",s,"##########","123456"));
                     return addUser(userEmail,groupId);
                 }

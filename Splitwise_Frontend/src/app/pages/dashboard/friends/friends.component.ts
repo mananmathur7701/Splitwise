@@ -29,6 +29,7 @@ export class FriendsComponent implements OnInit {
     this.udhariKaData();
     this.getUserKeFriends();
     //throw new Error('Method not implemented.');
+    this.getTransactionList();
   }
   
 
@@ -189,6 +190,19 @@ export class FriendsComponent implements OnInit {
       // If lengths are the same, return green
       return '#00ff19';
     }
+  }
+
+  getTransactionList(): void{
+    this.backService.listOfSquareOffTransactionOfUser(this.userId).subscribe(
+      (response) => {
+        // console.log(this.groupId);
+        console.log(response, 'transaction list ka data');
+        
+      },
+      (error) => {
+        console.error('Error fetching transactions', error);
+      }
+    );
   }
 
 

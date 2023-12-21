@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { BackServicesService } from 'src/app/back-services.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -159,6 +160,12 @@ export class ExpenseComponent {
           // console.log(this.groupId);
           console.log(response, 'gdxfcgyhuijkoihugyxfcgvhb');
           this.router.navigate(['/dashboard/group-details/'+ this.backService.groupKaId]);
+          Swal.fire({  
+            icon: "success",
+            title: "EXPENSE HAVE BEEN ADDED",
+            showConfirmButton: false,
+            timer: 1500
+          });
         },
         (error) => {
           console.error('Error adding expense:', error);

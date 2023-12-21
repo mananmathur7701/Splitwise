@@ -24,6 +24,7 @@ import { GroupDetailsComponent } from './pages/dashboard/group-details/group-det
 import { ProfileComponent } from './pages/dashboard/profile/profile.component';
 import { FriendDetailsComponent } from './pages/dashboard/friends/friend-details/friend-details.component';
 import { authInterceptorProviders } from './auth.interceptor';
+import { TransactionComponent } from './pages/dashboard/transaction/transaction.component';
 
 
 
@@ -44,7 +45,8 @@ import { authInterceptorProviders } from './auth.interceptor';
     AddGroupComponent,
     GroupDetailsComponent,
     ProfileComponent,
-    FriendDetailsComponent
+    FriendDetailsComponent,
+    TransactionComponent
     
   ],
   imports: [

@@ -1,0 +1,102 @@
+<div class="frame-15">
+    <div class="frame-21">
+      <div class="frame-17" [ngClass]="{ 'positive-balance': balance >= 0, 'negative-balance': balance < 0 }">
+        <div class="total-balance">Total Balance</div>
+        <div class="_38-034">₹{{ balance | number: '1.2-2'}}</div>
+      </div>
+      <div class="frame-20">
+        <div class="frame-18">
+          <div class="you-are-owed-69-000">
+            <span
+              ><span class="you-are-owed-69-000-span">You are owed :<br /></span
+              ><span class="you-are-owed-69-000-span2">₹{{ owed | number: '1.2-2'}}</span></span
+            >
+          </div>
+        </div>
+        <div class="frame-19">
+          <div class="you-owe-380">
+            <span
+              ><span class="you-owe-380-span">You owe :<br /></span
+              ><span class="you-owe-380-span2">₹{{- owes | number: '1.2-2'}}</span></span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul >
+      <li *ngFor="let transaction of transactions">
+        <div class="frame-27">
+          <div class="frame-22">
+            <div class="frame-23">
+              <div class="frame-24" [style.background]="getColor(transaction.payerId)"></div>
+              <div class="frame-25">
+                <!-- {{dost.id}} -->
+                <div class="oinkita-kaur" >{{transaction.payerEmail}} paid to {{transaction.payedToEmail}}</div>
+                <!-- <div class="oinkita-kaur" >name</div> -->
+                <div class="cigaretter">{{transaction.time}}</div>
+              </div>
+            </div>
+            <div class="frame-26">
+              <div class="_38-0342" [style.color]="getColor(transaction.payerId)" >{{transaction.amount | number: '1.2-2'}}</div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
+  <!-- settle modal -->
+  <!-- <div class="modal" [style.display]="showModal ? 'flex' : 'none'">
+    <div class="blur"></div>
+    <div class="modal-content">
+      <div class="wrap expense">
+        <div class="title">
+          <h2></h2>
+          <button class="close-icon" (click)="closeModalHandler()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="black"
+              class="bi bi-x-lg"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"
+              />
+            </svg>
+  
+          </button> 
+        </div>
+        <form #myForm="ngForm" (ngSubmit)="onSubmit(friendAmt)">
+          <h1>Settle</h1>
+          <div>
+            Amount to settle : 
+            <span *ngIf="friendAmt > 0">
+              Rs. {{friendAmt | number: '1.2-2'}}
+            </span>
+            <span *ngIf="friendAmt < 0">
+              Rs. {{-friendAmt | number: '1.2-2'}}
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="amount">Enter settle amount:</label>
+            <span class="input-group">
+              <input
+                type="number"
+                id="amount"
+                #amount
+                class="form-control"
+                [(ngModel)]="settleToBeAmt"
+                placeholder="XXX"
+                name="settleAmount" 
+                required
+              />
+            </span>
+          </div>
+          <button type="submit">Settle</button>
+        </form>
+      </div>
+    </div>
+  </div> -->
+  

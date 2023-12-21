@@ -10,6 +10,34 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  showExpenseModal = false;
+  expenseDetails: any;
+  expenseSplitDetailsList: any;
+  paymentSplitDetailsList: any;
+  comment: any;
+expense: any;
+expenseDetailsHome ={
+  amountPaid:0,
+  comment: '',
+  groupName:'',
+  id:0,
+  spentAt:''
+};
+
+groupIdForRouting:any;
+
+toggleExpenseModal(expenseId: any) {
+    this.showExpenseModal = !this.showExpenseModal;
+    this.getExpenseDetails(expenseId);
+  }
+
+
+  
+
+
+closeExpenseModalHandler() {
+ this.showExpenseModal = false; // Close the modal
+}
 
   @ViewChild('selectGroupForm') selectGroupForm!: NgForm;
   friends!: any[];
@@ -27,6 +55,7 @@ export class HomeComponent implements OnInit {
   payeeValues: { [key: number]: number } = {};
   settlementValues: { [key: number]: number } = {};
 selectedGroupId: any;
+
 
   constructor(
     private backService: BackServicesService,
@@ -232,4 +261,39 @@ selectedGroupId: any;
     
 
   }
+
+  getExpenseDetails(expenseId: any): void {
+    console.log(expenseId,'home page k liye expense details');
+    
+    const expenseDetailsHome$ = this.backService.showExpenseKaDetails(expenseId);
+    const expenseSplitDetails$ = this.backService.expenseDetailsKeLiyeExpenseSplitKaData(expenseId);
+    const paymentSplitDetails$ = this.backService.expenseDetailsKeLiyePaymentSplitKaData(expenseId);
+  
+    forkJoin({
+      expenseDetailsHome: expenseDetailsHome$,
+      expenseSplitDetails: expenseSplitDetails$,
+      paymentSplitDetails: paymentSplitDetails$
+    }).subscribe(
+      (response) => {
+        console.log("this is home ", response);
+        // console.log(response.expenseDetails);
+        this.expenseDetailsHome = response.expenseDetailsHome;
+        this.comment = this.expenseDetailsHome.comment;
+        // console.log(this.expenseDetails.comment);
+        this.expenseSplitDetailsList = response.expenseSplitDetails;
+        this.paymentSplitDetailsList = response.paymentSplitDetails;
+        this.groupIdForRouting= this.expenseSplitDetailsList[1].groupId;
+        console.log(this.groupIdForRouting, "group id for routing");
+        
+        
+        // Access individual responses from 'response.expenseDetails', 'response.expenseSplitDetails', 'response.paymentSplitDetails'
+        // this.expenseDetails = response.expenseDetails;
+        // Do further processing or assignment of data
+      },
+      (error) => {
+        console.error('Error fetching details:', error);
+      }
+    );
+  }
+
 }

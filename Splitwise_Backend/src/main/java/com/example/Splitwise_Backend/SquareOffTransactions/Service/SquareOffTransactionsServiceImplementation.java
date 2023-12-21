@@ -3,7 +3,6 @@ import com.example.Splitwise_Backend.Exceptions.SquareOffTransactionNotFoundExce
 import com.example.Splitwise_Backend.Exceptions.UserNotFoundException;
 import com.example.Splitwise_Backend.ExpenseSplit.Repository.ExpenseSplitRepo;
 import com.example.Splitwise_Backend.ExpenseSplit.Service.ExpenseSplitServiceImplementation;
-import com.example.Splitwise_Backend.SquareOffTransactions.DTO.SquareOffDTO;
 import com.example.Splitwise_Backend.SquareOffTransactions.Entity.SquareOffTransactions;
 import com.example.Splitwise_Backend.SquareOffTransactions.Repository.SquareOffTransactionsRepo;
 import com.example.Splitwise_Backend.Users.Entity.Users;
@@ -124,6 +123,29 @@ public class SquareOffTransactionsServiceImplementation implements SquareOffTran
         else
         {
             throw new SquareOffTransactionNotFoundException("Transaction Id Not Found");
+        }
+    }
+
+    @Override
+    public List<SquareOffTransactions> viewTransactionListOfUser(int userId)
+    {
+        Optional<Users> payer = usersRepo.findById(userId);
+        if(payer.isPresent())
+        {
+        List<SquareOffTransactions> payerTransactionsToView = squareOffTransactionsRepo.findByPayerId(payer.get()).get();
+        List<SquareOffTransactions> PayedToTransactionsToView = squareOffTransactionsRepo.findByPayedToId(payer.get()).get();
+        List<SquareOffTransactions> mergedTransactions = new ArrayList<>(payerTransactionsToView);
+        mergedTransactions.addAll(PayedToTransactionsToView);
+
+        if(payerTransactionsToView.isEmpty() && PayedToTransactionsToView.isEmpty()) {
+            throw new SquareOffTransactionNotFoundException("Transactions Not Found");
+        } else {
+            return mergedTransactions;
+        }
+        }
+        else
+        {
+            throw new UserNotFoundException("User Not Found Who Paid");
         }
     }
 

@@ -14,6 +14,7 @@ import { GroupDetailsComponent } from './pages/dashboard/group-details/group-det
 import { ProfileComponent } from './pages/dashboard/profile/profile.component';
 import { FriendDetailsComponent } from './pages/dashboard/friends/friend-details/friend-details.component';
 import { AuthGuard } from './auth.guard';
+import { TransactionComponent } from './pages/dashboard/transaction/transaction.component';
 
 const routes: Routes = [
   {
@@ -48,6 +49,9 @@ const routes: Routes = [
       { path: 'group-details/:id', component: GroupDetailsComponent },
       { path: 'friend-details/:id', component: FriendDetailsComponent },
       { path: 'profile', component: ProfileComponent },
+      { path: 'transaction', component: TransactionComponent },
+      
+      
     ],
     canActivate:[AuthGuard]
   },
