@@ -364,10 +364,12 @@ export class BackServicesService {
     return this._http.post("http://localhost:8080/addSquareOffTransaction",requestBody);
   }
 
+
   deleteExpense(id:number) : Observable<any>
   {
     return this._http.delete("http://localhost:8080/deleteExpense/"+id);
   }
+
 
   listOfSquareOffTransactionOfUser(id:number) : Observable<any>
   {
@@ -377,7 +379,12 @@ export class BackServicesService {
     });
     return this._http.get("http://localhost:8080/showTransactionListOfUser/"+id, {headers : header});
   }
-  
+
+
+  editExpense(id:number, payload:any) : Observable<any>
+  {
+    return this._http.put("http://localhost:8080/editExpense/"+id, payload);
+  }
 }
 
 

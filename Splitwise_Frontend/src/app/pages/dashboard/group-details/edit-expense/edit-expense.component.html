@@ -1,0 +1,100 @@
+<div class="wrap">
+    <form    #expenseForm="ngForm" (ngSubmit)="onSubmit(expenseForm)">
+      <h1 class="heading">EDIT EXPENSE for {{groupName}}</h1>
+      
+      <div class="form-group" onsubmit="">
+        <label for="comment">Expense Name :</label>
+        <input
+          type="text"
+          id="comment"
+          name="comment"
+          class="form-control"
+          [(ngModel)]="expenseDetails.comment"
+          required
+          ngModel
+        />
+      </div>
+      <div class="form-group">
+        <label for="amount">Total Amount :</label>
+        <input
+          type="number"
+          id="amount"
+          name="amount"
+          class="form-control"
+          [(ngModel)]="expenseDetails.amountPaid"
+          required
+          ngModel
+          
+        />
+      </div>
+      <div class="form-group">
+        <label for="expenseDate">Time Spent At</label>
+        <input 
+          type="datetime-local" 
+          id="expenseDate" 
+          name="expenseDate" 
+          class="form-control"
+          [(ngModel)]="expenseDate"
+          required
+          ngModel
+          >
+      </div>
+      <div class="split-section">
+        <div>
+          <div class="split">
+            <!-- <input type="checkbox" name="split"  (change)="togglePSplitList()"/> -->
+            <label for="splitCheckbox">WHO PAID HOW MUCH</label>
+          </div>
+          <div class="form-group split list" >
+            <!-- <label>Split Between</label> -->
+            <ul class="ul-split">
+              <li *ngFor="let member of members">
+                {{ member.firstName }} {{member.lastName}}
+                <input type="number" [(ngModel)]="payeeValues[member.id] " name="payee_{{ member.id }}" >
+              </li>
+            </ul>
+          </div>        
+        </div>
+  
+        <div>
+          <div class="split">
+            <input id="splitCheckbox" type="checkbox" name="split" (change)="togglePSplitList()" [checked]="isPSplitChecked"/>
+            <label for="splitCheckbox">EQUAL SPLIT BETWEEN</label>
+          </div>
+          
+          <div class="form-group split list" *ngIf="isPSplitChecked">
+            <!-- <label>Split Between</label> -->
+            <ul class="ul-split">            
+              <li *ngFor="let member of members" class="member-item">
+                <label class="checkbox-label" [for]="'checkbox_' + member.id">
+                {{ member.firstName }} {{member.lastName}}            
+                <!-- <input type="checkbox" [(ngModel)]="settlementValues[member.id]" value="true-value=" name="equalSplit_{{ member.id }}" [checked]="isPSplitChecked"> -->
+                <input type="checkbox" [(ngModel)]="settlementValues[member.id]" [id]="'checkbox_' + member.id" name="equalSplit_{{ member.id }}" [checked]="isPSplitChecked">
+              </label>
+              </li>         
+            </ul>
+          </div>        
+        </div>
+        <div>
+          <div class="split">
+            <input id="split2Checkbox" type="checkbox" name="split2"  (change)="toggleESplitList()" [checked]="isESplitChecked"/>
+            <label for="split2Checkbox">UNEQUAL SPLIT BETWEEN</label>
+          </div>
+          <div class="form-group split list" *ngIf="isESplitChecked">
+            <!-- <label>Split Between (Another Criteria)</label> -->
+            <ul class="ul-split">
+              <li *ngFor="let member of members">                
+                {{ member.firstName }} {{member.lastName}}
+                <input type="number" [(ngModel)]="settlementValues[member.id]" name="settlement_{{ member.id }}">
+              </li>
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Submit" name="submit">
+      </div>
+    </form>
+  </div>
+  

@@ -1,0 +1,134 @@
+.wrap {
+    width: 85vw;
+    height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* gap: ; */
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    /* align-items: end; */
+    gap: 12px;
+    color: white;
+  }
+  form .heading {
+    padding-left: 12px;
+    margin-bottom: 48px;
+    font-size: 48px;
+    border-left: 8px solid #a0d7c3;
+    /* padding-left: 16px; */
+  }
+  .form-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+  .split-section {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      margin-top: 24px;
+      gap: 24px;
+  }
+  .split {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: max-content;
+      gap: 8px;
+      justify-self: end;
+      align-items: center;
+      width: max-content;
+  }
+  .split label {
+      font-size: 18px;
+      font-weight: 400;
+  }
+  .split input {
+      min-width: auto;
+  }
+  .split.list {
+      align-items: start;
+  }
+  .split.list input {
+      max-width: 128px;
+  }
+  .split.list li {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+  }
+  
+  .member-item {
+    margin-bottom: 8px;
+    margin-right: 20px; /* Adjust this value as needed */
+  }
+  
+  
+  input,
+  select {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2;
+    min-width: 420px;
+    padding: 16px;
+    border-radius: 5px;
+    margin-top: 3px;
+    background-color: #cccccc;
+    color: #000;
+    border: 0;
+  }
+  .list {
+      flex-direction: column;
+  }
+  label {
+    text-wrap: nowrap;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(223, 223, 223);
+  }
+  
+  button, input[type="submit"] {
+    font-weight: 300;
+    background-color: #a0d7c3;
+    font-size: medium;
+    font-weight: 700;
+    color: #1a1a1a;
+    border: none;
+    width: 100%;
+    border-radius: 3px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #3b9675;
+    color: #fff;
+  }
+  
+  .ul-split {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   width: min-content;
+   list-style: none;
+   padding: 0;
+  }
+  
+  .ul-split li {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .checkbox-label {
+    margin-right: 20px; /* Adjust the spacing between checkboxes as needed */
+  }
+  
+  

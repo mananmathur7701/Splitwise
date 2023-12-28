@@ -31,7 +31,7 @@
       <div class="frame-27">
         <div class="frame-22">
           <div class="frame-23">
-            <div class="frame-24"></div>
+            <div class="frame-24" [style.background]="getColor(dost.amount)" ></div>
             <div class="frame-25">
               <!-- {{dost.id}} -->
               <div class="oinkita-kaur" >{{ dost.name }}</div>
@@ -96,7 +96,8 @@
             />
           </span>
         </div>
-        <button type="submit">Settle</button>
+        <button type="submit">Settle(Already paid)</button>
+        <button (click)="makePayment()">Make Payment</button>
       </form>
     </div>
   </div>

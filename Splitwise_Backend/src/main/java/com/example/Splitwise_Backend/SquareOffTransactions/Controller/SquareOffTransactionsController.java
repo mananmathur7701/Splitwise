@@ -107,8 +107,10 @@ public class SquareOffTransactionsController
             squareOffDTO.setTime((Timestamp) s.getTime());
             squareOffDTO.setPayerId(s.getPayerId().getId());
             squareOffDTO.setPayerEmail(s.getPayerId().getEmail());
+            squareOffDTO.setPayerName(s.getPayerId().getFirstName());
             squareOffDTO.setPayedToId(s.getPayedToId().getId());
             squareOffDTO.setPayedToEmail(s.getPayedToId().getEmail());
+            squareOffDTO.setPayedToName(s.getPayedToId().getFirstName());
             dtoList.add(squareOffDTO);
         }
         return dtoList;

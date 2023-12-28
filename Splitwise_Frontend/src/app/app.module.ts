@@ -25,6 +25,8 @@ import { ProfileComponent } from './pages/dashboard/profile/profile.component';
 import { FriendDetailsComponent } from './pages/dashboard/friends/friend-details/friend-details.component';
 import { authInterceptorProviders } from './auth.interceptor';
 import { TransactionComponent } from './pages/dashboard/transaction/transaction.component';
+import { PaymentsComponent } from './pages/dashboard/payments/payments.component';
+import { EditExpenseComponent } from './pages/dashboard/group-details/edit-expense/edit-expense.component';
 
 
 
@@ -46,7 +48,9 @@ import { TransactionComponent } from './pages/dashboard/transaction/transaction.
     GroupDetailsComponent,
     ProfileComponent,
     FriendDetailsComponent,
-    TransactionComponent
+    TransactionComponent,
+    PaymentsComponent,
+    EditExpenseComponent
     
   ],
   imports: [
@@ -56,7 +60,7 @@ import { TransactionComponent } from './pages/dashboard/transaction/transaction.
     MatToolbarModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     authInterceptorProviders

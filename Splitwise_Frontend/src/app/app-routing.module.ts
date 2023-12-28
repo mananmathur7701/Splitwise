@@ -15,6 +15,8 @@ import { ProfileComponent } from './pages/dashboard/profile/profile.component';
 import { FriendDetailsComponent } from './pages/dashboard/friends/friend-details/friend-details.component';
 import { AuthGuard } from './auth.guard';
 import { TransactionComponent } from './pages/dashboard/transaction/transaction.component';
+import { PaymentsComponent } from './pages/dashboard/payments/payments.component';
+import { EditExpenseComponent } from './pages/dashboard/group-details/edit-expense/edit-expense.component';
 
 const routes: Routes = [
   {
@@ -50,6 +52,8 @@ const routes: Routes = [
       { path: 'friend-details/:id', component: FriendDetailsComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'transaction', component: TransactionComponent },
+      { path: 'payments', component: PaymentsComponent },
+      { path: 'edit-expense/:id', component: EditExpenseComponent },
       
       
     ],

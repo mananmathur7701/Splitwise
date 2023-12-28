@@ -58,24 +58,26 @@
 
       <div>
         <div class="split">
-          <input type="checkbox" name="split" (change)="togglePSplitList()" [checked]="isPSplitChecked"/>
+          <input id="splitCheckbox" type="checkbox" name="split" (change)="togglePSplitList()" [checked]="isPSplitChecked"/>
           <label for="splitCheckbox">EQUAL SPLIT BETWEEN</label>
         </div>
+        
         <div class="form-group split list" *ngIf="isPSplitChecked">
           <!-- <label>Split Between</label> -->
-          <ul class="ul-split">
-            <li *ngFor="let member of members">
-              {{ member.firstName }} {{member.lastName}}
+          <ul class="ul-split">            
+            <li *ngFor="let member of members" class="member-item">
+              <label class="checkbox-label" [for]="'checkbox_' + member.id">
+              {{ member.firstName }} {{member.lastName}}            
               <!-- <input type="checkbox" [(ngModel)]="settlementValues[member.id]" value="true-value=" name="equalSplit_{{ member.id }}" [checked]="isPSplitChecked"> -->
-              <input type="checkbox" [(ngModel)]="settlementValues[member.id]" name="equalSplit_{{ member.id }}" [checked]="isPSplitChecked">
-            </li>
+              <input type="checkbox" [(ngModel)]="settlementValues[member.id]" [id]="'checkbox_' + member.id" name="equalSplit_{{ member.id }}" [checked]="isPSplitChecked">
+            </label>
+            </li>         
           </ul>
-        </div>
-        
+        </div>        
       </div>
       <div>
         <div class="split">
-          <input type="checkbox" name="split2"  (change)="toggleESplitList()" [checked]="isESplitChecked"/>
+          <input id="split2Checkbox" type="checkbox" name="split2"  (change)="toggleESplitList()" [checked]="isESplitChecked"/>
           <label for="split2Checkbox">UNEQUAL SPLIT BETWEEN</label>
         </div>
         <div class="form-group split list" *ngIf="isESplitChecked">

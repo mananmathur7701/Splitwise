@@ -64,6 +64,13 @@ form .heading {
     gap: 16px;
     align-items: center;
 }
+
+.member-item {
+  margin-bottom: 8px;
+  margin-right: 20px; /* Adjust this value as needed */
+}
+
+
 input,
 select {
   font-size: 16px;
@@ -110,11 +117,17 @@ button:hover {
  flex-direction: column;
  align-items: flex-start;
  width: min-content;
+ list-style: none;
+ padding: 0;
 }
 
 .ul-split li {
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+.checkbox-label {
+  margin-right: 20px; /* Adjust the spacing between checkboxes as needed */
 }
 

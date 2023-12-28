@@ -355,9 +355,12 @@ export class GroupDetailsComponent implements OnInit {
         )  
         
       }
-    });
+    });      
+  }
 
-      
+  editExpense(expenseId:any) : void{
+    console.log("hello edit");    
+    this.router.navigate(['/dashboard/edit-expense/'+expenseId]);
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { BackServicesService } from 'src/app/back-services.service';
 
 @Component({
@@ -20,8 +21,11 @@ export class FriendsComponent implements OnInit {
   payeeid : any;
   friendAmt:any;
   settleToBeAmt : any;
+
+
   constructor(
-    private backService: BackServicesService
+    private backService: BackServicesService,
+    private router : Router,
   ){};
 
 
@@ -205,6 +209,14 @@ export class FriendsComponent implements OnInit {
     );
   }
 
+  makePayment(): void {
+    console.log("local storage pe save krna hai data");
+    // Save the settlement amount to local storage
+    localStorage.setItem('settlementAmount', this.settleToBeAmt);
+    this.router.navigate(['/dashboard/payments']);
+    
+    
+  }
 
 
 }

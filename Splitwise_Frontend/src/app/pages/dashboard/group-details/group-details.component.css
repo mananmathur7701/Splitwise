@@ -145,6 +145,17 @@ ul {
   cursor: pointer;
 }
 
+/* Initially hide the second piece of code */
+.frame-30 {
+  display: none;
+}
+
+/* Show the second piece of code when hovering over the container */
+.frame-27 :hover .frame-30 {
+  display: block;
+}
+
+
 .frame-22 {
   background: #232323;
   border-radius: 4px;
